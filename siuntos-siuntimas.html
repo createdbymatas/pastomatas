@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SP Paštomatai</title>
+    <link rel="shortcut icon" type="image/png" href="photos/favicon.ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+    <link href="apmokejimas-style.css" type="text/css" rel="stylesheet">
+</head>
+    <body onload="loadFunction()">
+        <style>
+          *{
+            font-family: IBM Plex Sans;
+            user-select: none;
+          }
+            body{
+                font-family: IBM Plex Sans;
+                text-align: center;
+                background-color: white;
+            }
+        .loader {
+      width: 48px;
+      height: 48px;
+      border: 3px solid crimson;
+      border-radius: 50%;
+      display: inline-block;
+      position: relative;
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;
+    }
+    .loader::after {
+      content: '';  
+      box-sizing: border-box;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 3px solid;
+      border-color: crimson transparent;
+    }
+    input{
+        transition: 0.3s;
+    }
+    input:focus{
+      outline: none;
+      box-shadow: 0 0 5px crimson;
+    }
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg) scale(2.0);
+      }
+      100% {
+        transform: rotate(360deg) scale(2.0);
+      }
+    } 
+    @keyframes move1{
+      0%{
+        margin-left: 0;
+      }
+      47%{
+        margin-left: 0;
+      }
+      50%{
+        margin-left: -200%;
+      }
+      97%{
+        margin-left: -200%;
+      }
+      100%{
+        margin-left: 0;
+      }
+    }
+    @keyframes move2{
+      0%{
+        margin-left: 200%;
+      }
+      47%{
+        margin-left: 200%;
+      }
+      50%{
+        margin-left: 0;
+      }
+      97%{
+        margin-left: 0;
+      }
+      100%{
+        margin-left: 200%;
+      }
+    }
+    #card{
+              width: 300px;
+              height: 200px;
+              background-color: crimson;
+              margin: 50px auto;
+              margin-top: 180px;
+              border-radius: 25px;
+              color: white;
+              position: relative;
+              font-size: 15px;
+              border: 2px solid crimson;
+              transition: 0.3s;
+              pointer-events: all;
+              transform: rotate(90deg); 
+              animation: kortele 2s linear infinite;
+          }
+          #card p{
+              position: absolute;
+          }
+          @keyframes kortele{
+    0%{
+        margin-top: 350px;
+    }
+    20%{
+        margin-top: 170px;
+    }
+    95%{
+        margin-top: 170px;
+    }
+    100%{
+        margin-top: 350px;
+    }
+}
+#keypad{
+    width: 100%;
+    height: 500px;
+    position: fixed;
+    left: 0;
+    bottom: -550px;
+    background-color: white;
+    box-shadow: 0 0 5px crimson;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    transition: 0.3s;
+}
+#keypad button{
+    width: 100px;
+    height: 60px;
+    border-radius: 15px;
+    border: none;
+    background-color:lightgrey;
+    color: black;
+    font-size: 30px;
+    transition: 0.3s;
+}
+#keypad2{
+  width: 100%;
+    height: 500px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: white;
+    box-shadow: 0 0 5px crimson;
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+#keypad2 button{
+    width: 100px;
+    height: 60px;
+    border-radius: 15px;
+    border: none;
+    background-color:lightgrey;
+    color: black;
+    font-size: 30px;
+    transition: 0.3s;
+}
+#keypad3{
+  width: 100%;
+    height: 500px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: white;
+    box-shadow: 0 0 5px crimson;
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+#keypad3 button{
+    width: 100px;
+    height: 60px;
+    border-radius: 15px;
+    border: none;
+    background-color:lightgrey;
+    color: black;
+    font-size: 30px;
+    transition: 0.3s;
+}
+#keypad4{
+  width: 100%;
+    height: 500px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: white;
+    box-shadow: 0 0 5px crimson;
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+#keypad4 button{
+    width: 100px;
+    height: 60px;
+    border-radius: 15px;
+    border: none;
+    background-color:lightgrey;
+    color: black;
+    font-size: 30px;
+    transition: 0.3s;
+}
+#keypad5{
+  width: 100%;
+    height: 500px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: white;
+    box-shadow: 0 0 5px crimson;
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    transition: 0.3s;
+}
+#keypad5 button{
+    width: 100px;
+    height: 60px;
+    border-radius: 15px;
+    border: none;
+    background-color:lightgrey;
+    color: black;
+    font-size: 30px;
+    transition: 0.3s;
+}
+        </style>
+        <audio src="bloop.wav" id="bloop"></audio>
+        <div style="width: 100%; height: 100%; position: fixed; background-color: white; top: 0; left: 0px; display: flex; justify-content: center; align-items: center; opacity: 1; transition: 0.3s; z-index: 100;" id="loadScreen">
+            <span class="loader"></span>
+        </div>
+        <h1 style="color: crimson;">SP Paštomatai</h1>
+    <div style="width: 100%; height: 100%; position: fixed; margin-left: 0; bottom: 0; left: 0; right: 0; top: 0; display: flex; justify-content: center; align-items: center;">
+    <div style="width: 95%; border-top: 5px solid white; box-shadow: 0 0 5px crimson; border-bottom: 5px solid white; height: 300px; background-color: crimson; color: white; border-radius: 25px; animation: move1 5s linear infinite;">
+      <p style="font-size: 20px; margin-top: 50px;">Nuo šiol siuntas pristatome per 2 d.d. visoje Lietuvoje!</p>
+      <p style="font-size: 100px; margin-top: 20px;"><i class="fa-solid fa-truck-ramp-box"></i></p>
+    </div>
+    <div style="width: 95%; position: absolute; margin-left: 200%; border-top: 5px solid white; box-shadow: 0 0 5px crimson; border-bottom: 5px solid white; height: 300px; background-color: crimson; color: white; border-radius: 25px; animation: move2 5s linear infinite;">
+      <p style="font-size: 20px; margin-top: 70px;">Paštomatų sistema atsinaujino!</p>
+      <p style="font-size: 100px; margin-top: 20px;"><i class="fa-solid fa-newspaper"></i></p>
+    </div>
+    </div>
+    <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; background-color: crimson; color: white; display: flex; justify-content: center; align-items: center;"><p><i class="fa-solid fa-hand-pointer"></i> Palieskite ekraną norėdami pradėti.</p></div>
+    <div style="width: 100%; height: 100%; position: fixed; top: 0; border-radius: 25px; right: 0; left: 0; bottom: 0; z-index: 15; transition: 0.3s; background-color: white; opacity: 0; transform: scale(0);" id="send">
+        <h1 style="color: crimson;">SP Paštomatai</h1>
+        <p style="color: crimson; font-size: 20px;">Įveskite siuntos numerį:</p>
+        <form>
+        <input type="text" id="siuntosKodas" name="numeris" placeholder="SP**********CC" maxlength="14" style="text-align: center; width: 95%; height: 50px; border-radius: 25px; border: 2px solid crimson; font-size: 30px;">
+        <button style="width: 95%; height: 50px; margin-left: 2.5%; margin-top: 20px; border-radius: 25px; background-color: crimson; color: white; display: flex; justify-content: center; align-items: center; border: none; font-size: 16px;" type="button" onclick="check(this.form)" id="btn"><p><i class="fa-regular fa-circle-check"></i> Patvirtinti</p></button>
+        </form>
+        <p style="color: crimson; opacity: 0; transition: 0.3s;" id="pinNotOk">Siuntos numeris nerastas.</p>
+        <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; background-color: crimson; color: white; display: flex; justify-content: center; align-items: center;" onclick="cancelOperation()"><p><i class="fa-regular fa-circle-xmark"></i> Atšaukti</p></div>
+      </div>
+      <div style="width: 100%; height: 100%; position: fixed; top: 0; border-radius: 25px; right: 0; left: 0; bottom: 0; z-index: 15; transition: 0.3s; background-color: white; opacity: 0; transform: scale(0);" id="reikiaApmoketi">
+        <h1 style="color: crimson;">SP Paštomatai</h1>
+        <p style="color: crimson; font-size: 20px;">Siuntos pristatymas neapmokėtas!</p>
+        <p style="color: crimson; font-size: 20px; padding-left: 10px; padding-right: 10px;">Paspaudę mygtuką "Patvirtinti" jūs apmokėsite už siuntos pristatymą.</p>
+        <div style="width: 100%; height: 100%; position: absolute; left: 0; right: 0; bottom: 0; top: 0; display: flex; justify-content: space-around; align-items: center;">
+            <i style="font-size: 200px; color: crimson;" class="fa-solid fa-bag-shopping"></i>
+          </div>
+        <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; background-color: crimson; color: white; display: flex; justify-content: center; align-items: center;" onclick="startPayment()"><p><i class="fa-regular fa-circle-check"></i> Patvirtinti</p></div>
+      </div>
+      <div style="width: 100%; height: 100%; position: fixed; top: 0; border-radius: 25px; right: 0; left: 0; bottom: 0; z-index: 15; transition: 0.3s; background-color: white; opacity: 0; transform: scale(0);" id="payment">
+        <h1 style="color: crimson;">SP Paštomatai</h1>
+        <p style="color: crimson; font-size: 20px;" id="ideti">Įdėkite kortelę.</p>
+        <p style="color: crimson; font-size: 20px; display: none;" id="pinIvesti">Įveskite PIN kodą.</p>
+        <p style="color: crimson; font-size: 20px; display: none;" id="kraunasi">Kraunasi...</p>
+        <div id="card" onclick="payRightNow()"><p style="bottom: 40px; left: 15px;">1234 0000 5678 0987</p><p style="bottom: 15px; left: 15px;">Kortelės Savininkas</p><p style="bottom: 27px; right: 15px;">09/25</p><img src="contactless.png" alt="Conctactless" width="50px" style="top: 10px; right: 10px; position:absolute;" id="contactNe"><img src="card.png" alt="Card" width="80px" style="position: absolute; top: -1px; left: -1px; background-color: white; border-radius: 25px 0 25px 0;"><i class="fa-solid fa-arrow-left" style="top: 100px; font-size: 20px; left: 15px; position: absolute;"></i></div>
+        <div id="keypad">
+          <div style="display: flex; justify-content: space-around; align-items: center; width: 70%; font-size: 50px;">
+              <p>-</p>
+              <p>-</p>
+              <p>-</p>
+              <p>-</p>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+              <button onclick="key1()">1</button>
+              <button onclick="key1()">2</button>
+              <button onclick="key1()">3</button>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+              <button onclick="key1()">4</button>
+              <button onclick="key1()">5</button>
+              <button onclick="key1()">6</button>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+              <button onclick="key1()">7</button>
+              <button onclick="key1()">8</button>
+              <button onclick="key1()">9</button>
+          </div>
+          <button onclick="key1()">0</button>
+      </div>
+      <div id="keypad2">
+          <div style="display: flex; justify-content: space-around; align-items: center; width: 70%; font-size: 50px;">
+              <p>*</p>
+              <p>-</p>
+              <p>-</p>
+              <p>-</p>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+              <button onclick="key2()">1</button>
+              <button onclick="key2()">2</button>
+              <button onclick="key2()">3</button>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+              <button onclick="key2()">4</button>
+              <button onclick="key2()">5</button>
+              <button onclick="key2()">6</button>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+              <button onclick="key2()">7</button>
+              <button onclick="key2()">8</button>
+              <button onclick="key2()">9</button>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+            <button onclick="closeTransactionYes()" style="background-color: crimson; color: white;"><i class="fa-solid fa-xmark"></i></button>
+            <button onclick="key2()">0</button>
+            <button onclick="payConfirm()" style="background-color: crimson; color: white; opacity: 0;; pointer-events: none;"><i class="fa-regular fa-circle"></i></button>
+        </div>
+      </div>
+      <div id="keypad3">
+          <div style="display: flex; justify-content: space-around; align-items: center; width: 70%; font-size: 50px;">
+              <p>*</p>
+              <p>*</p>
+              <p>-</p>
+              <p>-</p>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+              <button onclick="key3()">1</button>
+              <button onclick="key3()">2</button>
+              <button onclick="key3()">3</button>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+              <button onclick="key3()">4</button>
+              <button onclick="key3()">5</button>
+              <button onclick="key3()">6</button>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+              <button onclick="key3()">7</button>
+              <button onclick="key3()">8</button>
+              <button onclick="key3()">9</button>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+            <button onclick="closeTransactionYes()" style="background-color: crimson; color: white;"><i class="fa-solid fa-xmark"></i></button>
+            <button onclick="key3()">0</button>
+            <button onclick="payConfirm()" style="background-color: crimson; color: white; opacity: 0;; pointer-events: none;"><i class="fa-regular fa-circle"></i></button>
+        </div>
+      </div>
+      <div id="keypad4">
+          <div style="display: flex; justify-content: space-around; align-items: center; width: 70%; font-size: 50px;">
+              <p>*</p>
+              <p>*</p>
+              <p>*</p>
+              <p>-</p>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+              <button onclick="key4()">1</button>
+              <button onclick="key4()">2</button>
+              <button onclick="key4()">3</button>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+              <button onclick="key4()">4</button>
+              <button onclick="key4()">5</button>
+              <button onclick="key4()">6</button>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+              <button onclick="key4()">7</button>
+              <button onclick="key4()">8</button>
+              <button onclick="key4()">9</button>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+            <button onclick="closeTransactionYes()" style="background-color: crimson; color: white;"><i class="fa-solid fa-xmark"></i></button>
+            <button onclick="key4()">0</button>
+            <button onclick="payConfirm()" style="background-color: crimson; color: white; opacity: 0; pointer-events: none;"><i class="fa-regular fa-circle"></i></button>
+        </div>
+      </div>
+      <div id="keypad5">
+          <div style="display: flex; justify-content: space-around; align-items: center; width: 70%; font-size: 50px;">
+              <p>*</p>
+              <p>*</p>
+              <p>*</p>
+              <p>*</p>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+              <button onclick="key5()">1</button>
+              <button onclick="key5()">2</button>
+              <button onclick="key5()">3</button>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+              <button onclick="key5()">4</button>
+              <button onclick="key5()">5</button>
+              <button onclick="key5()">6</button>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+              <button onclick="key5()">7</button>
+              <button onclick="key5()">8</button>
+              <button onclick="key5()">9</button>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+            <button onclick="closeTransactionYes()" style="background-color: crimson; color: white;"><i class="fa-solid fa-xmark"></i></button>
+            <button onclick="key5()">0</button>
+            <button onclick="payConfirm()" style="background-color: crimson; color: white;"><i class="fa-regular fa-circle"></i></button>
+        </div>
+      </div>
+      <div style="width: 100%; height: 100%; position: fixed; left: 0; right: 0; bottom: 0; top: 0; justify-content: space-around; align-items: center; display: none; opacity: 0;" id="ok">
+        <div style="width: 100px; height: 100px; border-radius: 100%; background-color: white; color: crimson; border: 5px solid crimson; font-size: 50px; display: flex; justify-content: center; align-items: center;"><p>ok</p></div>
+      </div>
+      </div>
+
+      <div style="width: 100%; height: 100%; position: fixed; top: 0; border-radius: 25px; right: 0; left: 0; bottom: 0; z-index: 15; transition: 0.3s; background-color: white; opacity: 0; transform: scale(0);" id="etikete">
+        <h1 style="color: crimson;">SP Paštomatai</h1>
+        <p style="color: crimson; font-size: 20px;">Siuntos etiketės spausdinimas.</p>
+        <p style="color: crimson; font-size: 20px; padding-left: 10px; padding-right: 10px;">Paspaudus mygtuką "Patvirtinti" bus atspausdinta siuntos etiketė.</p>
+        <div style="width: 100%; height: 100%; position: absolute; left: 0; right: 0; bottom: 0; top: 0; display: flex; justify-content: space-around; align-items: center;">
+            <i style="font-size: 200px; color: crimson;" class="fa-solid fa-tag"></i>
+          </div>
+        <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; background-color: crimson; color: white; display: flex; justify-content: center; align-items: center;" onclick="print()"><p><i class="fa-regular fa-circle-check"></i> Patvirtinti</p></div>
+      </div>
+      <div style="width: 100%; height: 100%; position: fixed; top: 0; border-radius: 25px; right: 0; left: 0; bottom: 0; z-index: 15; transition: 0.3s; background-color: white; opacity: 0; transform: scale(0);" id="finally">
+        <h1 style="color: crimson;">SP Paštomatai</h1>
+        <p style="color: crimson; font-size: 20px; padding-right: 10px; padding-left: 10px;">Užklijuokite siuntos etiketę ir įdėkite siuntą į paštomatą.</p>
+        <p style="color: crimson; font-size: 20px; transition: 0.3s; padding-left: 10px; padding-right: 10px; opacity: 0;" id="finalStep">Paspaudus mygtuką "Patvirtinti" bus atidarytos paštomato durelės.</p>
+        <div style="width: 100%; height: 100%; position: absolute; left: 0; right: 0; bottom: 0; top: 0; display: flex; justify-content: space-around; align-items: center;">
+            <i style="font-size: 200px; color: crimson;" class="fa-solid fa-note-sticky"></i>
+          </div>
+        <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; background-color: crimson; transition: 0.3s; color: white; display: flex; justify-content: center; align-items: center; opacity: 0;" onclick="enter()" id="enterino"><p><i class="fa-regular fa-circle-check"></i> Patvirtinti</p></div>
+      </div>
+      <div style="width: 100%; height: 100%; position: fixed; top: 0; border-radius: 25px; right: 0; left: 0; bottom: 0; z-index: 15; transition: 0.3s; background-color: white; opacity: 0; transform: scale(0);" id="doorOpen">
+        <h1 style="color: crimson;">SP Paštomatai</h1>
+        <p style="color: crimson; font-size: 20px;">Įdėkite siuntą.</p>
+        <p style="color: crimson; font-size: 20px;">Nepamirškite uždaryti durelių!</p>
+        <div style="width: 100%; height: 100%; position: absolute; left: 0; right: 0; bottom: 0; top: 0; display: flex; justify-content: space-around; align-items: center;">
+          <i style="font-size: 200px; color: crimson;" class="fa-solid fa-boxes-packing"></i>
+        </div>
+      </div>
+        <script src="https://kit.fontawesome.com/a11707644f.js" crossorigin="anonymous"></script>
+        <script>
+          function loadFunction(){
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 1300);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 1000);
+            setTimeout(() => {  
+            document.getElementById("send").style.opacity = "1";
+            document.getElementById("send").style.transform = "scale(1.0)";
+            document.getElementById("send").style.borderRadius = "0"; 
+            }, 1000);
+          }
+          function cancelOperation(){
+            document.getElementById("loadScreen").style.display = "flex";
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 50);
+            setTimeout(() => {  location.replace("index.html"); }, 350);
+            
+          }
+          function check(form)
+        {
+            if(form.numeris.value == "SP8787362738CC")
+                {
+                  document.getElementById("pinNotOk").style.opacity = "0";
+              document.getElementById("loadScreen").style.display = "flex";
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 5000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 5000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 5300);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 5000);
+            setTimeout(() => {  
+            document.getElementById("send").style.opacity = "0";
+            document.getElementById("send").style.transform = "scale(0)";
+            document.getElementById("send").style.borderRadius = "25px"; 
+            form.reset();
+            }, 5000);
+            setTimeout(() => {  
+            document.getElementById("reikiaApmoketi").style.opacity = "1";
+            document.getElementById("reikiaApmoketi").style.transform = "scale(1.0)";
+            document.getElementById("reikiaApmoketi").style.borderRadius = "0"; 
+            }, 5000);
+                }
+            else{
+              document.getElementById("pinNotOk").style.opacity = "0";
+              document.getElementById("loadScreen").style.display = "flex";
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 1300);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 1000);
+            setTimeout(() => {  document.getElementById("pinNotOk").style.opacity = "1"; }, 1300);
+            }
+        }
+        // Get the input field
+var input = document.getElementById("siuntosKodas");
+
+// Execute a function when the user presses a key on the keyboard
+input.addEventListener("keypress", function(event) {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("btn").click();
+  }
+});
+function startPayment(){
+            document.getElementById("loadScreen").style.display = "flex";
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 50);
+            setTimeout(() => {  
+            document.getElementById("payment").style.opacity = "1";
+            document.getElementById("payment").style.transform = "scale(1.0)";
+            document.getElementById("payment").style.borderRadius = "0"; 
+            }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 1300);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 1000);
+            setTimeout(() => {  document.getElementById("reikiaApmoketi").style.opacity = "0"; }, 1000);
+            setTimeout(() => {  document.getElementById("reikiaApmoketi").style.transform = "scale(0)"; }, 1000);
+            setTimeout(() => {  document.getElementById("reikiaApmoketi").style.display = "none"; }, 1300);
+            setTimeout(() => {  document.getElementById("reikiaApmoketi").style.borderRadius = "25px"; }, 1000);
+          }
+          function key1() {
+            document.getElementById("keypad").style.display = "none";
+            document.getElementById("keypad2").style.display = "flex";
+            document.getElementById("bloop").play();
+            document.getElementById('bloop').currentTime = 0;
+        }
+        function key2() {
+            document.getElementById("keypad2").style.display = "none";
+            document.getElementById("keypad3").style.display = "flex";
+            document.getElementById("bloop").play();
+            document.getElementById('bloop').currentTime = 0;
+        }
+        function key3() {
+            document.getElementById("keypad3").style.display = "none";
+            document.getElementById("keypad4").style.display = "flex";
+            document.getElementById("bloop").play();
+            document.getElementById('bloop').currentTime = 0;
+        }
+        function key4() {
+            document.getElementById("keypad4").style.display = "none";
+            document.getElementById("keypad5").style.display = "flex";
+            document.getElementById("bloop").play();
+            document.getElementById('bloop').currentTime = 0;
+        }
+        function key5() {
+            document.getElementById("bloop").play();
+            document.getElementById('bloop').currentTime = 0;
+        }
+        function closeTransactionYes() {
+            document.getElementById("bloop").play();
+            document.getElementById("keypad").style.display = "flex";
+            document.getElementById("keypad2").style.display = "none";
+            document.getElementById("keypad3").style.display = "none";
+            document.getElementById("keypad4").style.display = "none";
+            document.getElementById("keypad5").style.display = "none";
+        }
+        function payRightNow() {
+          document.getElementById("keypad").style.bottom = "0";
+          document.getElementById("card").style.opacity = "0";
+          document.getElementById("card").style.pointerEvents = "none";
+          document.getElementById("ideti").style.display = "none";
+          document.getElementById("pinIvesti").style.display = "block";
+        }
+        function payConfirm() {
+          document.getElementById("keypad5").style.bottom = "-550px";
+          document.getElementById("pinIvesti").style.display = "none";
+          document.getElementById("kraunasi").style.display = "block";
+          document.getElementById("bloop").play();
+          document.getElementById("loadScreen").style.display = "flex";
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 5000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 5000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 5300);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 5000);
+            setTimeout(() => {  document.getElementById("kraunasi").style.display = "none"; }, 5000);
+            setTimeout(() => {  document.getElementById("ok").style.display = "flex"; }, 4950);
+            setTimeout(() => {  document.getElementById("ok").style.opacity = "1"; }, 5000);
+            setTimeout(() => {  document.getElementById("payment").style.opacity = "0"; }, 8000);
+            setTimeout(() => {  document.getElementById("payment").style.transform = "scale(0)"; }, 8000);
+            setTimeout(() => {  document.getElementById("payment").style.display = "none"; }, 8300);
+            setTimeout(() => {  document.getElementById("payment").style.borderRadius = "25px"; }, 8000);
+            setTimeout(() => {  document.getElementById("ok").style.display = "none"; }, 8300);
+            setTimeout(() => {  document.getElementById("etikete").style.opacity = "1"; }, 8000);
+            setTimeout(() => {  document.getElementById("etikete").style.transform = "scale(1.0)"; }, 8000);
+            setTimeout(() => {  document.getElementById("etikete").style.borderRadius = "0"; }, 8000);
+        }
+        function print(){
+            document.getElementById("loadScreen").style.display = "flex";
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 10000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 10000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 10300);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 10000);
+            setTimeout(() => {  document.getElementById("etikete").style.opacity = "0"; }, 10000);
+            setTimeout(() => {  document.getElementById("etikete").style.transform = "scale(0)"; }, 10000);
+            setTimeout(() => {  document.getElementById("etikete").style.display = "none"; }, 13000);
+            setTimeout(() => {  document.getElementById("etikete").style.borderRadius = "25px"; }, 10000);
+            setTimeout(() => {  
+            document.getElementById("finally").style.opacity = "1";
+            document.getElementById("finally").style.transform = "scale(1.0)";
+            document.getElementById("finally").style.borderRadius = "0"; 
+            }, 10000);
+            setTimeout(() => {  
+            document.getElementById("enterino").style.opacity = "1";
+            document.getElementById("finalStep").style.opacity = "1";
+            }, 13000);
+          }
+          function enter() {
+            document.getElementById("loadScreen").style.display = "flex";
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 5000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 5000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 5300);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 5000);
+            setTimeout(() => {  document.getElementById("finally").style.opacity = "0"; }, 5000);
+            setTimeout(() => {  document.getElementById("finally").style.transform = "scale(0)"; }, 5000);
+            setTimeout(() => {  document.getElementById("finally").style.display = "none"; }, 5300);
+            setTimeout(() => {  document.getElementById("finally").style.borderRadius = "25px"; }, 5000);
+            setTimeout(() => {  
+            document.getElementById("etikete").style.opacity = "0";
+            document.getElementById("etikete").style.transform = "scale(0)";
+            document.getElementById("etikete").style.borderRadius = "25px"; 
+            }, 5000);
+            setTimeout(() => {  
+            document.getElementById("doorOpen").style.opacity = "1";
+            document.getElementById("doorOpen").style.transform = "scale(1.0)";
+            document.getElementById("doorOpen").style.borderRadius = "0"; 
+            }, 5000);
+            setTimeout(() => {  
+            document.getElementById("doorOpen").style.opacity = "0";
+            document.getElementById("doorOpen").style.transform = "scale(0)";
+            document.getElementById("doorOpen").style.borderRadius = "25px"; 
+            }, 20000);
+            setTimeout(() => {  
+            location.replace("index.html");
+            }, 20300);
+          }
+        </script>
+</body>
+</html>

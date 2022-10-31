@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SP Paštomatai</title>
+    <link rel="shortcut icon" type="image/png" href="photos/favicon.ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+    <link href="apmokejimas-style.css" type="text/css" rel="stylesheet">
+</head>
+<body onload="loadFunction()">
+    <style>
+      *{
+        font-family: IBM Plex Sans;
+        user-select: none;
+      }
+        body{
+            font-family: IBM Plex Sans;
+            text-align: center;
+            background-color: white;
+        }
+    .loader {
+  width: 48px;
+  height: 48px;
+  border: 3px solid crimson;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loader::after {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 3px solid;
+  border-color: crimson transparent;
+}
+input{
+        transition: 0.3s;
+    }
+input:focus{
+  outline: none;
+  box-shadow: 0 0 5px crimson;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg) scale(2.0);
+  }
+  100% {
+    transform: rotate(360deg) scale(2.0);
+  }
+} 
+@keyframes move1{
+  0%{
+    margin-left: 0;
+  }
+  47%{
+    margin-left: 0;
+  }
+  50%{
+    margin-left: -200%;
+  }
+  97%{
+    margin-left: -200%;
+  }
+  100%{
+    margin-left: 0;
+  }
+}
+@keyframes move2{
+  0%{
+    margin-left: 200%;
+  }
+  47%{
+    margin-left: 200%;
+  }
+  50%{
+    margin-left: 0;
+  }
+  97%{
+    margin-left: 0;
+  }
+  100%{
+    margin-left: 200%;
+  }
+}
+    </style>
+    <div style="width: 100%; height: 100%; position: fixed; background-color: white; top: 0; left: 0px; display: flex; justify-content: center; align-items: center; opacity: 1; transition: 0.3s; z-index: 100;" id="loadScreen">
+      <span class="loader"></span>
+    </div>
+    <h1 style="color: crimson;">SP Paštomatai</h1>
+    <div style="width: 100%; height: 100%; position: fixed; margin-left: 0; bottom: 0; left: 0; right: 0; top: 0; display: flex; justify-content: center; align-items: center;">
+    <div style="width: 95%; border-top: 5px solid white; box-shadow: 0 0 5px crimson; border-bottom: 5px solid white; height: 300px; background-color: crimson; color: white; border-radius: 25px; animation: move1 5s linear infinite;">
+      <p style="font-size: 20px; margin-top: 50px;">Nuo šiol siuntas pristatome per 2 d.d. visoje Lietuvoje!</p>
+      <p style="font-size: 100px; margin-top: 20px;"><i class="fa-solid fa-truck-ramp-box"></i></p>
+    </div>
+    <div style="width: 95%; position: absolute; margin-left: 200%; border-top: 5px solid white; box-shadow: 0 0 5px crimson; border-bottom: 5px solid white; height: 300px; background-color: crimson; color: white; border-radius: 25px; animation: move2 5s linear infinite;">
+      <p style="font-size: 20px; margin-top: 70px;">Paštomatų sistema atsinaujino!</p>
+      <p style="font-size: 100px; margin-top: 20px;"><i class="fa-solid fa-newspaper"></i></p>
+    </div>
+    </div>
+    <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; background-color: crimson; color: white; display: flex; justify-content: center; align-items: center;"><p><i class="fa-solid fa-hand-pointer"></i> Palieskite ekraną norėdami pradėti.</p></div>
+    <div style="width: 100%; height: 100%; position: fixed; top: 0; right: 0; left: 0; bottom: 0; z-index: 15; transition: 0.3s;" id="starter" onclick="startOperation()"></div>
+    <div style="width: 100%; height: 100%; position: fixed; top: 0; border-radius: 25px; right: 0; left: 0; bottom: 0; z-index: 15; transition: 0.3s; background-color: white; opacity: 0; transform: scale(0);" id="operation">
+      <h1 style="color: crimson;">SP Paštomatai</h1>
+      <p style="color: crimson; font-size: 20px;">Pasirinkite, ką norite daryti:</p>
+      <div style="width: 100%; height: 100%; position: absolute; left: 0; right: 0; bottom: 0; top: 0; display: flex; justify-content: space-around; align-items: center;">
+        <div style="width: 45%; height: 300px; background-color: crimson; color: white; border-top: 5px solid white; border-bottom: 5px solid white; box-shadow: 0 0 5px crimson; border-radius: 25px; display: flex; justify-content: center; align-items: center; flex-direction: column;" onclick="sendParcel()"><p style="font-size: 20px;">Išsiųsti siuntą</p><i style="font-size: 100px;" class="fa-solid fa-paper-plane"></i></div>
+        <div style="width: 45%; height: 300px; background-color: crimson; color: white; border-top: 5px solid white; border-bottom: 5px solid white; box-shadow: 0 0 5px crimson; border-radius: 25px; display: flex; justify-content: center; align-items: center; flex-direction: column;" onclick="collectParcel()"><p style="font-size: 20px;">Atsiimti siuntą</p><i style="font-size: 100px;" class="fa-solid fa-box"></i></div>
+      </div>
+      <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; background-color: crimson; color: white; display: flex; justify-content: center; align-items: center;" onclick="cancelOperation()"><p><i class="fa-regular fa-circle-xmark"></i> Atšaukti</p></div>
+    </div>
+    <div style="width: 100%; height: 100%; position: fixed; top: 0; border-radius: 25px; right: 0; left: 0; bottom: 0; z-index: 15; transition: 0.3s; background-color: white; opacity: 0; transform: scale(0);" id="collect">
+      <h1 style="color: crimson;">SP Paštomatai</h1>
+      <p style="color: crimson; font-size: 20px;">Įveskite PIN kodą:</p>
+      <form>
+      <input type="number" id="pinKodas" name="pin" placeholder="******" style="text-align: center; width: 95%; height: 50px; border-radius: 25px; border: 2px solid crimson; font-size: 30px;">
+      <button style="width: 95%; height: 50px; margin-left: 2.5%; margin-top: 20px; border-radius: 25px; background-color: crimson; color: white; display: flex; justify-content: center; align-items: center; border: none; font-size: 16px;" type="button" onclick="check(this.form)" id="btn"><p><i class="fa-regular fa-circle-check"></i> Patvirtinti</p></button>
+      </form>
+      <p style="color: crimson; opacity: 0; transition: 0.3s;" id="pinNotOk">PIN kodas nerastas.</p>
+      <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; background-color: crimson; color: white; display: flex; justify-content: center; align-items: center;" onclick="cancelOperation2()"><p><i class="fa-regular fa-circle-xmark"></i> Atšaukti</p></div>
+    </div>
+    <div style="width: 100%; height: 100%; position: fixed; top: 0; border-radius: 25px; right: 0; left: 0; bottom: 0; z-index: 15; transition: 0.3s; background-color: white; opacity: 0; transform: scale(0);" id="doorOpen">
+      <h1 style="color: crimson;">SP Paštomatai</h1>
+      <p style="color: crimson; font-size: 20px;">Atsiimkite siuntą.</p>
+      <p style="color: crimson; font-size: 20px;">Nepamirškite uždaryti durelių!</p>
+      <div style="width: 100%; height: 100%; position: absolute; left: 0; right: 0; bottom: 0; top: 0; display: flex; justify-content: space-around; align-items: center;">
+        <i style="font-size: 200px; color: crimson;" class="fa-solid fa-parachute-box"></i>
+      </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a11707644f.js" crossorigin="anonymous"></script>
+        <script>
+          function loadFunction(){
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 1300);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 1000);
+          }
+          function startOperation(){
+            document.getElementById("loadScreen").style.display = "flex";
+            document.getElementById("starter").style.display = "none";
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 50);
+            setTimeout(() => {  
+            document.getElementById("operation").style.opacity = "1";
+            document.getElementById("operation").style.transform = "scale(1.0)";
+            document.getElementById("operation").style.borderRadius = "0"; 
+            }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 1300);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 1000);
+          }
+          function cancelOperation(){
+            setTimeout(() => {  document.getElementById("starter").style.display = "block"; }, 1300);
+            setTimeout(() => {  
+            document.getElementById("operation").style.opacity = "0";
+            document.getElementById("operation").style.transform = "scale(0)";
+            document.getElementById("operation").style.borderRadius = "25px"; 
+            }, 1250);
+            setTimeout(() => {  document.getElementById("loadScreen").style.display = "flex"; }, 250);
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 300);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 300);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 300);
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 1250);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 1250);
+            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 1550);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 1250);
+          }
+          function collectParcel(){
+            document.getElementById("loadScreen").style.display = "flex";
+            document.getElementById("starter").style.display = "none";
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 50);
+            setTimeout(() => {  
+            document.getElementById("collect").style.opacity = "1";
+            document.getElementById("collect").style.transform = "scale(1.0)";
+            document.getElementById("collect").style.borderRadius = "0"; 
+            }, 1000);
+            setTimeout(() => {  
+            document.getElementById("operation").style.opacity = "0";
+            document.getElementById("operation").style.transform = "scale(0)";
+            document.getElementById("operation").style.borderRadius = "25px"; 
+            }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 1300);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 1000);
+          }
+          function cancelOperation2(){
+            setTimeout(() => {  document.getElementById("starter").style.display = "block"; }, 1300);
+            setTimeout(() => {  
+            document.getElementById("collect").style.opacity = "0";
+            document.getElementById("collect").style.transform = "scale(0)";
+            document.getElementById("collect").style.borderRadius = "25px"; 
+            }, 1000);
+            document.getElementById("loadScreen").style.display = "flex";
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 1300);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 1000);
+          }
+          function check(form)
+        {
+            if(form.pin.value == "565845")
+                {
+                  document.getElementById("pinNotOk").style.opacity = "0";
+              document.getElementById("loadScreen").style.display = "flex";
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 5000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 5000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 5300);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 5000);
+            setTimeout(() => {  
+            document.getElementById("collect").style.opacity = "0";
+            document.getElementById("collect").style.transform = "scale(0)";
+            document.getElementById("collect").style.borderRadius = "25px"; 
+            form.reset();
+            }, 5000);
+            setTimeout(() => {  
+            document.getElementById("doorOpen").style.opacity = "1";
+            document.getElementById("doorOpen").style.transform = "scale(1.0)";
+            document.getElementById("doorOpen").style.borderRadius = "0"; 
+            }, 5000);
+            setTimeout(() => {  
+            document.getElementById("doorOpen").style.opacity = "0";
+            document.getElementById("doorOpen").style.transform = "scale(0)";
+            document.getElementById("doorOpen").style.borderRadius = "25px"; 
+            }, 20000);
+            setTimeout(() => {  location.replace("index.html"); }, 20300);
+                }
+            else{
+              document.getElementById("pinNotOk").style.opacity = "0";
+              document.getElementById("loadScreen").style.display = "flex";
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 1300);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 1000);
+            setTimeout(() => {  document.getElementById("pinNotOk").style.opacity = "1"; }, 1300);
+            }
+        }
+        // Get the input field
+var input = document.getElementById("pinKodas");
+
+// Execute a function when the user presses a key on the keyboard
+input.addEventListener("keypress", function(event) {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("btn").click();
+  }
+});
+          function sendParcel(){
+            document.getElementById("loadScreen").style.display = "flex";
+            document.getElementById("starter").style.display = "none";
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 50);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 50);
+            setTimeout(() => {  location.replace("siuntos-siuntimas.html"); }, 350);
+          }
+        </script>
+</body>
+</html>
