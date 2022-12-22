@@ -51,6 +51,34 @@ input:focus{
   outline: none;
   box-shadow: 0 0 5px crimson;
 }
+button {
+             -webkit-tap-highlight-color: transparent;
+        }
+        #keypad input{
+            width: 70%;
+            height: 50px;
+            border-radius: 50px;
+            border: 2px solid crimson;
+            color: crimson;
+            background-color: white;
+            font-size: 30px;
+            user-select: none;
+            cursor: default;
+            pointer-events: none;
+            padding-left: 15px;
+            padding-right: 15px;
+            transition: 0.1s;
+            text-align: center;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        ::placeholder {
+            color: crimson;
+            opacity: 1;
+        } 
 @keyframes rotation {
   0% {
     transform: rotate(0deg) scale(2.0);
@@ -93,6 +121,33 @@ input:focus{
     margin-left: 200%;
   }
 }
+#keypad{
+            width: 270px; 
+            height: 450px; 
+            border-radius: 30px; 
+            border: 2px solid crimson; 
+            background-color: white; 
+            color: white; 
+            font-size: 25px;
+            margin: 10px auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            margin-top: 100px;
+        }
+        #keypad button{
+            width: 70px;
+            height: 70px;
+            border-radius: 50px;
+            border: 2px solid crimson;
+            font-size: 30px;
+            background-color: white;
+            cursor: pointer;
+            transition: 0.1s;
+            color: crimson;
+        }
     </style>
     <div style="width: 100%; height: 100%; position: fixed; background-color: white; top: 0; left: 0px; display: flex; justify-content: center; align-items: center; opacity: 1; transition: 0.3s; z-index: 100;" id="loadScreen">
       <span class="loader"></span>
@@ -123,10 +178,42 @@ input:focus{
       <h1 style="color: crimson;">SP Paštomatai</h1>
       <p style="color: crimson; font-size: 20px;">Įveskite PIN kodą:</p>
       <form>
-      <input type="number" id="pinKodas" name="pin" placeholder="******" style="text-align: center; width: 95%; height: 50px; border-radius: 25px; border: 2px solid crimson; font-size: 30px;">
-      <button style="width: 95%; height: 50px; margin-left: 2.5%; margin-top: 20px; border-radius: 25px; background-color: crimson; color: white; display: flex; justify-content: center; align-items: center; border: none; font-size: 16px;" type="button" onclick="check(this.form)" id="btn"><p><i class="fa-regular fa-circle-check"></i> Patvirtinti</p></button>
+        <div id="keypad">
+          <form style="width: 100%; height: 100%; display: flex; justify-content: space-around; align-items: center; flex-direction: column;">
+          <input type="text" name="pin" maxlength="5" placeholder="....." id="inputas">
+          <div>
+              <button type="button" onclick="pirmas()" id="vienasY">1</button>
+              <button type="button" onclick="antras()" id="duY">2</button>
+              <button type="button" onclick="trecias()" id="trysY">3</button>
+          </div>
+          <div>
+              <button type="button" onclick="ketvirtas()" id="keturiY">4</button>
+              <button type="button" onclick="penktas()" id="penkiY">5</button>
+              <button type="button" onclick="sestas()" id="sesiY">6</button>
+          </div>
+          <div>
+              <button type="button" onclick="septintas()" id="septyniY">7</button>
+              <button type="button" onclick="astuntas()" id="astuoniY">8</button>
+              <button type="button" onclick="devintas()" id="devyniY">9</button>
+          </div>
+          <div>
+              <button type="button" onclick="istrinti()"  id="istrinimas"><i class="fa-solid fa-xmark"></i></button>
+              <button type="button" onclick="nulinis()" id="nulisY">0</button>
+              <button type="button" onclick="check(this.form)" id="checkBtn"><i class="fa-solid fa-check"></i></button>
+          </div>
+          </form>
+      </div>
+      <input type="number" value="1" id="vienetas" style="display: none;">
+        <input type="number" value="2" id="dvejetas" style="display: none;">
+        <input type="number" value="3" id="trejetas" style="display: none;">
+        <input type="number" value="4" id="ketvertas" style="display: none;">
+        <input type="number" value="5" id="penketas" style="display: none;">
+        <input type="number" value="6" id="sesetas" style="display: none;">
+        <input type="number" value="7" id="septynetas" style="display: none;">
+        <input type="number" value="8" id="astuonetas" style="display: none;">
+        <input type="number" value="9" id="devynetas" style="display: none;">
+        <input type="number" value="0" id="nulis" style="display: none;">
       </form>
-      <p style="color: crimson; opacity: 0; transition: 0.3s;" id="pinNotOk">PIN kodas nerastas.</p>
       <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; background-color: crimson; color: white; display: flex; justify-content: center; align-items: center;" onclick="cancelOperation2()"><p><i class="fa-regular fa-circle-xmark"></i> Atšaukti</p></div>
     </div>
     <div style="width: 100%; height: 100%; position: fixed; top: 0; border-radius: 25px; right: 0; left: 0; bottom: 0; z-index: 15; transition: 0.3s; background-color: white; opacity: 0; transform: scale(0);" id="doorOpen">
@@ -140,11 +227,136 @@ input:focus{
 
     <script src="https://kit.fontawesome.com/a11707644f.js" crossorigin="anonymous"></script>
         <script>
+          function pirmas() {
+            document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("vienetas").value;
+            document.getElementById("vienasY").style.backgroundColor = "crimson";
+            document.getElementById("vienasY").style.color = "white";
+            document.getElementById("vienasY").style.borderRadius = "30px";
+            setTimeout(() => {
+                document.getElementById("vienasY").style.backgroundColor = "white";
+                document.getElementById("vienasY").style.color = "crimson";
+                document.getElementById("vienasY").style.borderRadius = "50px";
+            }, 100);
+        }
+        function antras() {
+            document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("dvejetas").value;
+            document.getElementById("duY").style.backgroundColor = "crimson";
+            document.getElementById("duY").style.color = "white";
+            document.getElementById("duY").style.borderRadius = "30px";
+            setTimeout(() => {
+                document.getElementById("duY").style.backgroundColor = "white";
+                document.getElementById("duY").style.color = "crimson";
+                document.getElementById("duY").style.borderRadius = "50px";
+            }, 100);
+        }
+        function trecias() {
+            document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("trejetas").value;
+            document.getElementById("trysY").style.backgroundColor = "crimson";
+            document.getElementById("trysY").style.color = "white";
+            document.getElementById("trysY").style.borderRadius = "30px";
+            setTimeout(() => {
+                document.getElementById("trysY").style.backgroundColor = "white";
+                document.getElementById("trysY").style.color = "crimson";
+                document.getElementById("trysY").style.borderRadius = "50px";
+            }, 100);
+        }
+        function ketvirtas() {
+            document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("ketvertas").value;
+            document.getElementById("keturiY").style.backgroundColor = "crimson";
+            document.getElementById("keturiY").style.color = "white";
+            document.getElementById("keturiY").style.borderRadius = "30px";
+            setTimeout(() => {
+                document.getElementById("keturiY").style.backgroundColor = "white";
+                document.getElementById("keturiY").style.color = "crimson";
+                document.getElementById("keturiY").style.borderRadius = "50px";
+            }, 100);
+        }
+        function penktas() {
+            document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("penketas").value;
+            document.getElementById("penkiY").style.backgroundColor = "crimson";
+            document.getElementById("penkiY").style.color = "white";
+            document.getElementById("penkiY").style.borderRadius = "30px";
+            setTimeout(() => {
+                document.getElementById("penkiY").style.backgroundColor = "white";
+                document.getElementById("penkiY").style.color = "crimson";
+                document.getElementById("penkiY").style.borderRadius = "50px";
+            }, 100);
+        }
+        function sestas() {
+            document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("sesetas").value;
+            document.getElementById("sesiY").style.backgroundColor = "crimson";
+            document.getElementById("sesiY").style.color = "white";
+            document.getElementById("sesiY").style.borderRadius = "30px";
+            setTimeout(() => {
+                document.getElementById("sesiY").style.backgroundColor = "white";
+                document.getElementById("sesiY").style.color = "crimson";
+                document.getElementById("sesiY").style.borderRadius = "50px";
+            }, 100);
+        }
+        function septintas() {
+            document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("septynetas").value;
+            document.getElementById("septyniY").style.backgroundColor = "crimson";
+            document.getElementById("septyniY").style.color = "white";
+            document.getElementById("septyniY").style.borderRadius = "30px";
+            setTimeout(() => {
+                document.getElementById("septyniY").style.backgroundColor = "white";
+                document.getElementById("septyniY").style.color = "crimson";
+                document.getElementById("septyniY").style.borderRadius = "50px";
+            }, 100);
+        }
+        function astuntas() {
+            document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("astuonetas").value;
+            document.getElementById("astuoniY").style.backgroundColor = "crimson";
+            document.getElementById("astuoniY").style.color = "white";
+            document.getElementById("astuoniY").style.borderRadius = "30px";
+            setTimeout(() => {
+                document.getElementById("astuoniY").style.backgroundColor = "white";
+                document.getElementById("astuoniY").style.color = "crimson";
+                document.getElementById("astuoniY").style.borderRadius = "50px";
+            }, 100);
+        }
+        function devintas() {
+            document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("devynetas").value;
+            document.getElementById("devyniY").style.backgroundColor = "crimson";
+            document.getElementById("devyniY").style.color = "white";
+            document.getElementById("devyniY").style.borderRadius = "30px";
+            setTimeout(() => {
+                document.getElementById("devyniY").style.backgroundColor = "white";
+                document.getElementById("devyniY").style.color = "crimson";
+                document.getElementById("devyniY").style.borderRadius = "50px";
+            }, 100);
+        }
+        function nulinis() {
+            document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("nulis").value;
+            document.getElementById("nulisY").style.backgroundColor = "crimson";
+            document.getElementById("nulisY").style.color = "white";
+            document.getElementById("nulisY").style.borderRadius = "30px";
+            setTimeout(() => {
+                document.getElementById("nulisY").style.backgroundColor = "white";
+                document.getElementById("nulisY").style.color = "crimson";
+                document.getElementById("nulisY").style.borderRadius = "50px";
+            }, 100);
+        }
+        function istrinti() {
+            document.getElementById("inputas").value = '.';
+            document.getElementById("istrinimas").style.backgroundColor = "crimson";
+            document.getElementById("istrinimas").style.color = "white";
+            document.getElementById("istrinimas").style.borderRadius = "30px";
+            setTimeout(() => {
+                document.getElementById("istrinimas").style.backgroundColor = "white";
+                document.getElementById("istrinimas").style.color = "crimson";
+                document.getElementById("inputas").value = '...';
+                document.getElementById("istrinimas").style.borderRadius = "50px";
+            }, 100);
+            setTimeout(() => {
+                document.getElementById("inputas").value = '';
+            }, 200);
+        }
           function loadFunction(){
             setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 1000);
             setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 1000);
             setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 1300);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "200px"; }, 1000);
           }
           function startOperation(){
             document.getElementById("loadScreen").style.display = "flex";
@@ -160,14 +372,14 @@ input:focus{
             setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 1000);
             setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 1000);
             setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 1300);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "200px"; }, 1000);
           }
           function cancelOperation(){
             setTimeout(() => {  document.getElementById("starter").style.display = "block"; }, 1300);
             setTimeout(() => {  
             document.getElementById("operation").style.opacity = "0";
             document.getElementById("operation").style.transform = "scale(0)";
-            document.getElementById("operation").style.borderRadius = "25px"; 
+            document.getElementById("operation").style.borderRadius = "200px"; 
             }, 1250);
             setTimeout(() => {  document.getElementById("loadScreen").style.display = "flex"; }, 250);
             setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 300);
@@ -192,19 +404,19 @@ input:focus{
             setTimeout(() => {  
             document.getElementById("operation").style.opacity = "0";
             document.getElementById("operation").style.transform = "scale(0)";
-            document.getElementById("operation").style.borderRadius = "25px"; 
+            document.getElementById("operation").style.borderRadius = "200px"; 
             }, 1000);
             setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 1000);
             setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 1000);
             setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 1300);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "200px"; }, 1000);
           }
           function cancelOperation2(){
             setTimeout(() => {  document.getElementById("starter").style.display = "block"; }, 1300);
             setTimeout(() => {  
             document.getElementById("collect").style.opacity = "0";
             document.getElementById("collect").style.transform = "scale(0)";
-            document.getElementById("collect").style.borderRadius = "25px"; 
+            document.getElementById("collect").style.borderRadius = "200px"; 
             }, 1000);
             document.getElementById("loadScreen").style.display = "flex";
             setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 50);
@@ -213,50 +425,242 @@ input:focus{
             setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 1000);
             setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 1000);
             setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 1300);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 1000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "200px"; }, 1000);
           }
           function check(form)
         {
-            if(form.pin.value == "565845")
+                if(form.pin.value == "89729")
                 {
-                  document.getElementById("pinNotOk").style.opacity = "0";
-              document.getElementById("loadScreen").style.display = "flex";
-            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 50);
-            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 50);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 50);
-            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 5000);
-            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 5000);
-            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 5300);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 5000);
+                  document.getElementById("checkBtn").style.backgroundColor = "crimson";
+                document.getElementById("checkBtn").style.color = "white";
+                document.getElementById("checkBtn").style.borderRadius = "30px";
+                setTimeout(() => {
+                    document.getElementById("checkBtn").style.backgroundColor = "white";
+                    document.getElementById("checkBtn").style.color = "crimson";
+                    document.getElementById("checkBtn").style.borderRadius = "50px";
+                }, 100);
+                document.getElementById("loadScreen").style.display = "flex";
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 300);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 300);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 300);
+            document.getElementById("vienasY").style.opacity = "0";
+                setTimeout(() => {
+                    document.getElementById("duY").style.opacity = "0";
+                    document.getElementById("keturiY").style.opacity = "0";
+                }, 100);
+                setTimeout(() => {
+                    document.getElementById("trysY").style.opacity = "0";
+                    document.getElementById("penkiY").style.opacity = "0";
+                    document.getElementById("septyniY").style.opacity = "0";
+                }, 200);
+                setTimeout(() => {
+                    document.getElementById("sesiY").style.opacity = "0";
+                    document.getElementById("astuoniY").style.opacity = "0";
+                    document.getElementById("istrinimas").style.opacity = "0";
+                }, 300);
+                setTimeout(() => {
+                    document.getElementById("devyniY").style.opacity = "0";
+                    document.getElementById("nulisY").style.opacity = "0";
+                }, 400);
+                setTimeout(() => {
+                    document.getElementById("checkBtn").style.opacity = "0";
+                }, 500);
+            setTimeout(() => {
+                document.getElementById("vienasY").style.opacity = "1";
+            }, 3000);
+            setTimeout(() => {
+                    document.getElementById("duY").style.opacity = "1";
+                    document.getElementById("keturiY").style.opacity = "1";
+                }, 3100);
+                setTimeout(() => {
+                    document.getElementById("trysY").style.opacity = "1";
+                    document.getElementById("penkiY").style.opacity = "1";
+                    document.getElementById("septyniY").style.opacity = "1";
+                }, 3200);
+                setTimeout(() => {
+                    document.getElementById("sesiY").style.opacity = "1";
+                    document.getElementById("astuoniY").style.opacity = "1";
+                    document.getElementById("istrinimas").style.opacity = "1";
+                }, 3300);
+                setTimeout(() => {
+                    document.getElementById("devyniY").style.opacity = "1";
+                    document.getElementById("nulisY").style.opacity = "1";
+                }, 3400);
+                setTimeout(() => {
+                    document.getElementById("checkBtn").style.opacity = "1";
+                }, 3500);
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 2700);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 2700);
+            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 3000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "200px"; }, 2700);
             setTimeout(() => {  
             document.getElementById("collect").style.opacity = "0";
             document.getElementById("collect").style.transform = "scale(0)";
             document.getElementById("collect").style.borderRadius = "25px"; 
             form.reset();
-            }, 5000);
+            }, 3500);
             setTimeout(() => {  
             document.getElementById("doorOpen").style.opacity = "1";
             document.getElementById("doorOpen").style.transform = "scale(1.0)";
             document.getElementById("doorOpen").style.borderRadius = "0"; 
-            }, 5000);
+            }, 3500);
             setTimeout(() => {  
             document.getElementById("doorOpen").style.opacity = "0";
             document.getElementById("doorOpen").style.transform = "scale(0)";
             document.getElementById("doorOpen").style.borderRadius = "25px"; 
-            }, 20000);
-            setTimeout(() => {  location.replace("index.html"); }, 20300);
-                }
+            }, 17500);
+          }
+                else if(form.pin.value == '')
+            {
+                document.getElementById("checkBtn").style.backgroundColor = "crimson";
+                document.getElementById("checkBtn").style.color = "white";
+                document.getElementById("checkBtn").style.borderRadius = "30px";
+
+                document.getElementById("vienasY").style.opacity = "0";
+                setTimeout(() => {
+                    document.getElementById("duY").style.opacity = "0";
+                    document.getElementById("keturiY").style.opacity = "0";
+                }, 100);
+                setTimeout(() => {
+                    document.getElementById("trysY").style.opacity = "0";
+                    document.getElementById("penkiY").style.opacity = "0";
+                    document.getElementById("septyniY").style.opacity = "0";
+                }, 200);
+                setTimeout(() => {
+                    document.getElementById("sesiY").style.opacity = "0";
+                    document.getElementById("astuoniY").style.opacity = "0";
+                    document.getElementById("istrinimas").style.opacity = "0";
+                }, 300);
+                setTimeout(() => {
+                    document.getElementById("devyniY").style.opacity = "0";
+                    document.getElementById("nulisY").style.opacity = "0";
+                }, 400);
+                setTimeout(() => {
+                    document.getElementById("checkBtn").style.opacity = "0";
+                }, 500);
+                setTimeout(() => {
+                    document.getElementById("vienasY").style.opacity = "1";
+                }, 600);
+                setTimeout(() => {
+                    document.getElementById("duY").style.opacity = "1";
+                    document.getElementById("keturiY").style.opacity = "1";
+                }, 700);
+                setTimeout(() => {
+                    document.getElementById("trysY").style.opacity = "1";
+                    document.getElementById("penkiY").style.opacity = "1";
+                    document.getElementById("septyniY").style.opacity = "1";
+                }, 800);
+                setTimeout(() => {
+                    document.getElementById("sesiY").style.opacity = "1";
+                    document.getElementById("astuoniY").style.opacity = "1";
+                    document.getElementById("istrinimas").style.opacity = "1";
+                }, 900);
+                setTimeout(() => {
+                    document.getElementById("devyniY").style.opacity = "1";
+                    document.getElementById("nulisY").style.opacity = "1";
+                }, 1000);
+                setTimeout(() => {
+                    document.getElementById("checkBtn").style.opacity = "1";
+                    document.getElementById("disableClick").style.display = "none";
+                }, 1100);
+
+                setTimeout(() => {
+                    document.getElementById("checkBtn").style.backgroundColor = "white";
+                    document.getElementById("checkBtn").style.color = "crimson";
+                    document.getElementById("checkBtn").style.borderRadius = "50px";
+                }, 100);
+                setTimeout(() => {
+                    document.getElementById("inputas").style.marginLeft = "-30px";
+                }, 600);
+                setTimeout(() => {
+                    document.getElementById("inputas").style.marginLeft = "30px";
+                }, 700);
+                setTimeout(() => {
+                    document.getElementById("inputas").style.marginLeft = "-30px";
+                }, 800);
+                setTimeout(() => {
+                    document.getElementById("inputas").style.marginLeft = "30px";
+                }, 900);
+                setTimeout(() => {
+                    document.getElementById("inputas").style.marginLeft = "0";
+                }, 1000);
+            }
             else{
-              document.getElementById("pinNotOk").style.opacity = "0";
-              document.getElementById("loadScreen").style.display = "flex";
-            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 50);
-            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 50);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 50);
-            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 1000);
-            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 1000);
-            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 1300);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 1000);
-            setTimeout(() => {  document.getElementById("pinNotOk").style.opacity = "1"; }, 1300);
+                document.getElementById("checkBtn").style.backgroundColor = "crimson";
+                document.getElementById("checkBtn").style.color = "white";
+                document.getElementById("checkBtn").style.borderRadius = "30px";
+                setTimeout(() => {
+                    document.getElementById("checkBtn").style.backgroundColor = "white";
+                    document.getElementById("checkBtn").style.color = "crimson";
+                    document.getElementById("checkBtn").style.borderRadius = "50px";
+                }, 100);
+                document.getElementById("loadScreen").style.display = "flex";
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 300);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 300);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 300);
+            document.getElementById("vienasY").style.opacity = "0";
+                setTimeout(() => {
+                    document.getElementById("duY").style.opacity = "0";
+                    document.getElementById("keturiY").style.opacity = "0";
+                }, 100);
+                setTimeout(() => {
+                    document.getElementById("trysY").style.opacity = "0";
+                    document.getElementById("penkiY").style.opacity = "0";
+                    document.getElementById("septyniY").style.opacity = "0";
+                }, 200);
+                setTimeout(() => {
+                    document.getElementById("sesiY").style.opacity = "0";
+                    document.getElementById("astuoniY").style.opacity = "0";
+                    document.getElementById("istrinimas").style.opacity = "0";
+                }, 300);
+                setTimeout(() => {
+                    document.getElementById("devyniY").style.opacity = "0";
+                    document.getElementById("nulisY").style.opacity = "0";
+                }, 400);
+                setTimeout(() => {
+                    document.getElementById("checkBtn").style.opacity = "0";
+                }, 500);
+            setTimeout(() => {
+                document.getElementById("inputas").style.marginLeft = "-30px";
+                document.getElementById("vienasY").style.opacity = "1";
+            }, 3000);
+            setTimeout(() => {
+                    document.getElementById("duY").style.opacity = "1";
+                    document.getElementById("keturiY").style.opacity = "1";
+                }, 3100);
+                setTimeout(() => {
+                    document.getElementById("trysY").style.opacity = "1";
+                    document.getElementById("penkiY").style.opacity = "1";
+                    document.getElementById("septyniY").style.opacity = "1";
+                }, 3200);
+                setTimeout(() => {
+                    document.getElementById("sesiY").style.opacity = "1";
+                    document.getElementById("astuoniY").style.opacity = "1";
+                    document.getElementById("istrinimas").style.opacity = "1";
+                }, 3300);
+                setTimeout(() => {
+                    document.getElementById("devyniY").style.opacity = "1";
+                    document.getElementById("nulisY").style.opacity = "1";
+                }, 3400);
+                setTimeout(() => {
+                    document.getElementById("checkBtn").style.opacity = "1";
+                }, 3500);
+                setTimeout(() => {
+                    document.getElementById("inputas").style.marginLeft = "30px";
+            }, 3100);
+            setTimeout(() => {
+                    document.getElementById("inputas").style.marginLeft = "-30px";
+            }, 3200);
+            setTimeout(() => {
+                    document.getElementById("inputas").style.marginLeft = "30px";
+            }, 3300);
+            setTimeout(() => {
+                    document.getElementById("inputas").style.marginLeft = "0";
+            }, 3400);
+            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 2700);
+            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 2700);
+            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 3000);
+            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "200px"; }, 2700);
             }
         }
         // Get the input field
