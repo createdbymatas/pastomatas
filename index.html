@@ -180,7 +180,7 @@ button {
       <form>
         <div id="keypad">
           <form style="width: 100%; height: 100%; display: flex; justify-content: space-around; align-items: center; flex-direction: column;">
-          <input type="text" name="pin" maxlength="5" placeholder="....." id="inputas">
+          <input type="text" name="pin" maxlength="5" placeholder="......" id="inputas">
           <div>
               <button type="button" onclick="pirmas()" id="vienasY">1</button>
               <button type="button" onclick="antras()" id="duY">2</button>
@@ -338,14 +338,14 @@ button {
             }, 100);
         }
         function istrinti() {
-            document.getElementById("inputas").value = '.';
+            document.getElementById("inputas").value = '..';
             document.getElementById("istrinimas").style.backgroundColor = "crimson";
             document.getElementById("istrinimas").style.color = "white";
             document.getElementById("istrinimas").style.borderRadius = "30px";
             setTimeout(() => {
                 document.getElementById("istrinimas").style.backgroundColor = "white";
                 document.getElementById("istrinimas").style.color = "crimson";
-                document.getElementById("inputas").value = '...';
+                document.getElementById("inputas").value = '....';
                 document.getElementById("istrinimas").style.borderRadius = "50px";
             }, 100);
             setTimeout(() => {
@@ -429,7 +429,7 @@ button {
           }
           function check(form)
         {
-                if(form.pin.value == "89729")
+                if(form.pin.value == "847384")
                 {
                   document.getElementById("checkBtn").style.backgroundColor = "crimson";
                 document.getElementById("checkBtn").style.color = "white";
