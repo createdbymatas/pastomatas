@@ -21,78 +21,35 @@
                 text-align: center;
                 background-color: white;
             }
-        .loader {
-      width: 48px;
-      height: 48px;
-      border: 3px solid crimson;
-      border-radius: 50%;
-      display: inline-block;
-      position: relative;
-      box-sizing: border-box;
-      animation: rotation 1s linear infinite;
-    }
-    .loader::after {
-      content: '';  
-      box-sizing: border-box;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      border: 3px solid;
-      border-color: crimson transparent;
-    }
     input{
         transition: 0.3s;
     }
     input:focus{
       outline: none;
-      box-shadow: 0 0 5px crimson;
     }
     @keyframes rotation {
-      0% {
-        transform: rotate(0deg) scale(2.0);
-      }
-      100% {
-        transform: rotate(360deg) scale(2.0);
-      }
-    } 
-    @keyframes move1{
-      0%{
-        margin-left: 0;
-      }
-      45%{
-        margin-left: 0;
-      }
-      50%{
-        margin-left: -200%;
-      }
-      95%{
-        margin-left: -200%;
-      }
-      100%{
-        margin-left: 0;
-      }
-    }
-    @keyframes move2{
-      0%{
-        margin-left: 200%;
-      }
-      45%{
-        margin-left: 200%;
-      }
-      50%{
-        margin-left: 0;
-      }
-      95%{
-        margin-left: 0;
-      }
-      100%{
-        margin-left: 200%;
-      }
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(10deg);
+  }
+  20% {
+    transform: rotate(-10deg);
+  }
+  30% {
+    transform: rotate(10deg);
+  }
+  40% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+} 
     #card{
               width: 300px;
               height: 200px;
@@ -243,32 +200,36 @@
     font-size: 30px;
     transition: 0.3s;
 }
+::placeholder {
+  color: crimson;
+  opacity: 1;
+}
         </style>
         <audio src="bloop.wav" id="bloop"></audio>
-        <div style="width: 100%; height: 100%; position: fixed; background-color: white; top: 0; left: 0px; display: flex; justify-content: center; align-items: center; opacity: 1; transition: 0.3s; z-index: 100;" id="loadScreen">
-            <span class="loader"></span>
+        <div style="width: 100%; height: 100%; position: fixed; background-color: white; top: 0; left: 0px; display: flex; justify-content: center; align-items: center; flex-direction: column; opacity: 1; transition: 0.3s; z-index: 100; color: crimson;" id="loadScreen">
+          <i class="fa-regular fa-hourglass-half" style="font-size: 100px; animation: rotation 1s ease-in-out infinite;"></i>
         </div>
         <h1 style="color: crimson;">SP Paštomatai</h1>
     <div style="width: 100%; height: 100%; position: fixed; margin-left: 0; bottom: 0; left: 0; right: 0; top: 0; display: flex; justify-content: center; align-items: center;">
-    <div style="width: 95%; border-top: 5px solid white; box-shadow: 0 0 5px crimson; border-bottom: 5px solid white; height: 300px; background-color: crimson; color: white; border-radius: 25px; animation: move1 5s linear infinite;">
+    <div style="width: 95%; border: 2px solid crimson; height: 300px; color: crimson; border-radius: 25px; animation: move1 5s linear infinite;">
       <p style="font-size: 20px; margin-top: 50px;">Nuo šiol siuntas pristatome per 2 d.d. visoje Lietuvoje!</p>
       <p style="font-size: 100px; margin-top: 20px;"><i class="fa-solid fa-truck-ramp-box"></i></p>
     </div>
-    <div style="width: 95%; position: absolute; margin-left: 200%; border-top: 5px solid white; box-shadow: 0 0 5px crimson; border-bottom: 5px solid white; height: 300px; background-color: crimson; color: white; border-radius: 25px; animation: move2 5s linear infinite;">
+    <div style="width: 95%; position: absolute; margin-left: 200%; height: 300px; color: crimson; border: 2px solid crimson; border-radius: 25px; animation: move2 5s linear infinite;">
       <p style="font-size: 20px; margin-top: 70px;">Paštomatų sistema atsinaujino!</p>
       <p style="font-size: 100px; margin-top: 20px;"><i class="fa-solid fa-newspaper"></i></p>
     </div>
     </div>
-    <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; background-color: crimson; color: white; display: flex; justify-content: center; align-items: center;"><p><i class="fa-solid fa-hand-pointer"></i> Palieskite ekraną norėdami pradėti.</p></div>
+    <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; color: crimson; display: flex; border: 2px solid crimson; justify-content: center; align-items: center;"><p><i class="fa-solid fa-hand-pointer"></i> Palieskite ekraną norėdami pradėti.</p></div>
     <div style="width: 100%; height: 100%; position: fixed; top: 0; border-radius: 25px; right: 0; left: 0; bottom: 0; z-index: 15; transition: 0.3s; background-color: white; opacity: 0; transform: scale(0);" id="send">
         <h1 style="color: crimson;">SP Paštomatai</h1>
         <p style="color: crimson; font-size: 20px;">Įveskite siuntos numerį:</p>
         <form>
-        <input type="text" id="siuntosKodas" name="numeris" placeholder="SP**********CC" maxlength="14" style="text-align: center; width: 95%; height: 50px; border-radius: 25px; border: 2px solid crimson; font-size: 30px;">
-        <button style="width: 95%; height: 50px; margin-left: 2.5%; margin-top: 20px; border-radius: 25px; background-color: crimson; color: white; display: flex; justify-content: center; align-items: center; border: none; font-size: 16px;" type="button" onclick="check(this.form)" id="btn"><p><i class="fa-regular fa-circle-check"></i> Patvirtinti</p></button>
+        <input type="text" id="siuntosKodas" name="numeris" placeholder="SP**********CC" maxlength="14" style="text-align: center; width: 95%; height: 50px; border-radius: 25px; border: 2px solid crimson; font-size: 30px; color: crimson;">
+        <button style="width: 95%; height: 50px; margin-left: 2.5%; margin-top: 20px; border-radius: 25px; color: crimson; background-color: white; display: flex; justify-content: center; align-items: center; border: 2px solid crimson; font-size: 16px;" type="button" onclick="check(this.form)" id="btn"><p><i class="fa-regular fa-circle-check"></i> Patvirtinti</p></button>
         </form>
         <p style="color: crimson; opacity: 0; transition: 0.3s;" id="pinNotOk">Siuntos numeris nerastas.</p>
-        <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; background-color: crimson; color: white; display: flex; justify-content: center; align-items: center;" onclick="cancelOperation()"><p><i class="fa-regular fa-circle-xmark"></i> Atšaukti</p></div>
+        <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; color: crimson; border: 2px solid crimson; display: flex; justify-content: center; align-items: center;" onclick="cancelOperation()"><p><i class="fa-regular fa-circle-xmark"></i> Atšaukti</p></div>
       </div>
       <div style="width: 100%; height: 100%; position: fixed; top: 0; border-radius: 25px; right: 0; left: 0; bottom: 0; z-index: 15; transition: 0.3s; background-color: white; opacity: 0; transform: scale(0);" id="reikiaApmoketi">
         <h1 style="color: crimson;">SP Paštomatai</h1>
@@ -277,7 +238,7 @@
         <div style="width: 100%; height: 100%; position: absolute; left: 0; right: 0; bottom: 0; top: 0; display: flex; justify-content: space-around; align-items: center;">
             <i style="font-size: 200px; color: crimson;" class="fa-solid fa-bag-shopping"></i>
           </div>
-        <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; background-color: crimson; color: white; display: flex; justify-content: center; align-items: center;" onclick="startPayment()"><p><i class="fa-regular fa-circle-check"></i> Patvirtinti</p></div>
+        <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; color: crimson; border: 2px solid crimson; display: flex; justify-content: center; align-items: center;" onclick="startPayment()"><p><i class="fa-regular fa-circle-check"></i> Patvirtinti</p></div>
       </div>
       <div style="width: 100%; height: 100%; position: fixed; top: 0; border-radius: 25px; right: 0; left: 0; bottom: 0; z-index: 15; transition: 0.3s; background-color: white; opacity: 0; transform: scale(0);" id="payment">
         <h1 style="color: crimson;">SP Paštomatai</h1>
@@ -433,7 +394,7 @@
         <div style="width: 100%; height: 100%; position: absolute; left: 0; right: 0; bottom: 0; top: 0; display: flex; justify-content: space-around; align-items: center;">
             <i style="font-size: 200px; color: crimson;" class="fa-solid fa-tag"></i>
           </div>
-        <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; background-color: crimson; color: white; display: flex; justify-content: center; align-items: center;" onclick="print()"><p><i class="fa-regular fa-circle-check"></i> Patvirtinti</p></div>
+        <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; color: crimson; border: 2px solid crimson; display: flex; justify-content: center; align-items: center;" onclick="print()"><p><i class="fa-regular fa-circle-check"></i> Patvirtinti</p></div>
       </div>
       <div style="width: 100%; height: 100%; position: fixed; top: 0; border-radius: 25px; right: 0; left: 0; bottom: 0; z-index: 15; transition: 0.3s; background-color: white; opacity: 0; transform: scale(0);" id="finally">
         <h1 style="color: crimson;">SP Paštomatai</h1>
@@ -442,7 +403,7 @@
         <div style="width: 100%; height: 100%; position: absolute; left: 0; right: 0; bottom: 0; top: 0; display: flex; justify-content: space-around; align-items: center;">
             <i style="font-size: 200px; color: crimson;" class="fa-solid fa-note-sticky"></i>
           </div>
-        <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; background-color: crimson; transition: 0.3s; color: white; display: flex; justify-content: center; align-items: center; opacity: 0;" onclick="enter()" id="enterino"><p><i class="fa-regular fa-circle-check"></i> Patvirtinti</p></div>
+        <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; transition: 0.3s; color: crimson; border: 2px solid crimson; display: flex; justify-content: center; align-items: center; opacity: 0;" onclick="enter()" id="enterino"><p><i class="fa-regular fa-circle-check"></i> Patvirtinti</p></div>
       </div>
       <div style="width: 100%; height: 100%; position: fixed; top: 0; border-radius: 25px; right: 0; left: 0; bottom: 0; z-index: 15; transition: 0.3s; background-color: white; opacity: 0; transform: scale(0);" id="doorOpen">
         <h1 style="color: crimson;">SP Paštomatai</h1>
