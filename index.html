@@ -4,38 +4,150 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SP Paštomatai</title>
-    <link rel="shortcut icon" type="image/png" href="photos/favicon.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
-    <link href="apmokejimas-style.css" type="text/css" rel="stylesheet">
+    <title>LS Paštomatai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet">
 </head>
 <body onload="loadFunction()">
     <style>
-      *{
-        font-family: IBM Plex Sans;
-        user-select: none;
-      }
-        body{
-            font-family: IBM Plex Sans;
-            text-align: center;
-            background-color: white;
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: 0.3s;
+            font-family: 'IBM Plex Sans', sans-serif;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
-input{
-        transition: 0.3s;
-    }
-input:focus{
-  outline: none;
-}
-button {
-             -webkit-tap-highlight-color: transparent;
+        body{
+            height: 100vh;
+            overflow: hidden;
+            background-color: #fafaf9;
+        }
+        #ad1Top{
+            width: 100%;
+            height: auto;
+            position: fixed;
+            top: 45.5px;
+            left: 0;
+            right: 0;
+            background-color: #0a0a29;
+            color: white;
+            font-size: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 0 25px #0a0a29;
+            z-index: 29;
+        }
+        #click{
+            width: 100%;
+            height: 70px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #0a0a29;
+            background-color: transparent;
+            font-size: 17px;
+            z-index: 5;
+        }
+        #select{
+            background-color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+        }
+        #select button{
+            width: 95%;
+            height: 150px;
+            background-color: white;
+            color: #0a0a29;
+            border: 1px solid #0a0a29;
+            font-size: 25px;
+            border-radius: 25px;
+        }
+        @keyframes dot1Add{
+            0%{
+                width: 30px;
+                height: 30px;
+            }
+            50%{
+                width: 20px;
+                height: 20px;
+            }
+            100%{
+                width: 30px;
+                height: 30px;
+            }
+        }
+        @keyframes dot2Add{
+            0%{
+                width: 44px;
+                height: 44px;
+            }
+            50%{
+                width: 56px;
+                height: 56px;
+            }
+            100%{
+                width: 44px;
+                height: 44px;
+            }
+        }
+        #collect{
+            background-color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+        }
+        #keypad{
+            width: 280px; 
+            height: 450px; 
+            border-radius: 25px; 
+            border: 2px solid #0a0a29; 
+            background-color: white; 
+            color: white; 
+            font-size: 25px;
+            margin: 10px auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            opacity: 0;
+        }
+        #keypad button{
+            width: 70px;
+            height: 70px;
+            border-radius: 50px;
+            border: 2px solid #0a0a29;
+            font-size: 30px;
+            background-color: white;
+            cursor: pointer;
+            transition: 0.15s;
+            color: #0a0a29;
         }
         #keypad input{
             width: 70%;
             height: 50px;
             border-radius: 50px;
-            border: 2px solid crimson;
-            color: crimson;
+            border: 2px solid #0a0a29;
+            color: #0a0a29;
             background-color: white;
             font-size: 30px;
             user-select: none;
@@ -46,365 +158,416 @@ button {
             transition: 0.1s;
             text-align: center;
         }
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-        }
         ::placeholder {
-            color: crimson;
-            opacity: 1;
-        } 
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  10% {
-    transform: rotate(10deg);
-  }
-  20% {
-    transform: rotate(-10deg);
-  }
-  30% {
-    transform: rotate(10deg);
-  }
-  40% {
-    transform: rotate(-10deg);
-  }
-  50% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-} 
-#keypad{
-            width: 270px; 
-            height: 450px; 
-            border-radius: 30px; 
-            border: 2px solid crimson; 
-            background-color: white; 
-            color: white; 
-            font-size: 25px;
-            margin: 10px auto;
+  color: #0a0a29;
+  opacity: 1;
+}
+#pickUp{
+            background-color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
             flex-direction: column;
             position: relative;
-            margin-top: 100px;
         }
-        #keypad button{
-            width: 70px;
-            height: 70px;
-            border-radius: 50px;
-            border: 2px solid crimson;
-            font-size: 30px;
-            background-color: white;
-            cursor: pointer;
-            transition: 0.1s;
-            color: crimson;
+        @keyframes spin {
+            0%{
+                transform: rotate(0);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
         }
-        ::placeholder {
-  color: crimson;
-  opacity: 1;
-}
     </style>
-    <div style="width: 100%; height: 100%; position: fixed; background-color: white; top: 0; left: 0px; display: flex; justify-content: center; align-items: center; flex-direction: column; opacity: 1; transition: 0.3s; z-index: 100; color: crimson;" id="loadScreen">
-      <i class="fa-regular fa-hourglass-half" style="font-size: 100px; animation: rotation 1s ease-in-out infinite;"></i>
+    <div style="background-color: black; width: 100%; height: 100%; position: fixed; top: 0; right: 0; left: 0; bottom: 0; z-index: 99; opacity: 0.1;" id="loadBlack"></div>
+    <div style="background-color: white; width: 100%; height: 100%; position: fixed; top: 0; right: 0; left: 0; bottom: 0; z-index: 100; display: flex; justify-content: center; align-items: center;" id="loadBackground"><div style="width: 70px; height: 70px; border-radius: 100%; background-color: white; display: flex; justify-content: center; align-items: center;"><div style="position: absolute; width: 15px; height: 15px; background-color: #0a0a29; border-radius: 100%; animation: dot1Add 1.2s ease-in-out infinite;"></div><div style="position: absolute; box-shadow: 0 0 5px #0a0a29; width: 15px; height: 15px; background-color: #0a0a29; border-radius: 100%; opacity: 0.15; animation: dot2Add 1.2s ease-in-out infinite;"></div></div></div>
+
+        <div style="width: 100%; height: 46px; position: fixed; top: -1px; left: 0; background-color: #0a0a29; z-index: 35; border-bottom: 1px solid #fafaf9; color: white;" id="navigation">
+            <img src="logo.jpg" alt="LS" style="height: 35px; position: absolute; left: 5px; top: 5px;" id="LSimg">
+        </div>
+        <div id="ad1Top">
+            <p>Nuo šiol siuntas pristatome per 2 darbo dienas!</p>
+        </div>
+        <img src="truck.gif" alt="Pristatymas" style="width: 100%; position: fixed; top: 35%; z-index: -1;" id="gif">
+        <div id="click" onclick="start()">
+            <p><i class="fa-regular fa-hand-pointer" style="margin-right: 5px;"></i> Palieskite ekraną norėdami pradėti</p>
+        </div>
+
+    <div style="background-color: transparent; width: 100%; height: 100%; position: fixed; top: 0; right: 0; left: 0; bottom: 0; z-index: 1;" onclick="start()"></div>
+
+    <div style="background-color: black; width: 100%; height: 100%; position: fixed; top: 0; right: 0; left: 0; bottom: 0; z-index: 30; opacity: 0; display: none;" id="backgroundSelect"></div>
+    <div style="background-color: transparent; width: 100%; height: 100%; position: fixed; top: 70%; right: 0; left: 0; z-index: -1; display: flex; justify-content: center; align-items: center;" id="backSelect">
+        <div id="select">
+            <i class="fa-solid fa-compress" style="position: absolute; font-size: 25px; right: 20px; bottom: 20px; color: #0a0a29; opacity: 0;" id="selectCloseBtn" onclick="startClose()"></i>
+            <p style="font-size: 25px; text-align: center; margin-bottom: 50px; opacity: 0;" id="pasirinkite">Pasirinkite, ką norite daryti:</p>
+            <button style="border-radius: 25px 25px 5px 5px; margin-bottom: 5px; opacity: 0;" id="atsiimtiBtn" onclick="atsiimtiSiunta()"><i class="fa-solid fa-box-open" style="font-size: 50px;"></i><p>Atsiimti siuntą</p></button>
+            <button style="border-radius: 5px 5px 25px 25px; opacity: 0;" id="siustiBtn" onclick="siustiSiunta()"><i class="fa-solid fa-dolly" style="font-size: 50px;"></i><p>Išsiųsti siuntą</p></button>
+        </div>
     </div>
-    <h1 style="color: crimson;">SP Paštomatai</h1>
-    <div style="width: 100%; height: 100%; position: fixed; margin-left: 0; bottom: 0; left: 0; right: 0; top: 0; display: flex; justify-content: center; align-items: center;">
-    <div style="width: 95%; border: 2px solid crimson; height: 300px; color: crimson; border-radius: 25px; animation: move1 5s linear infinite;">
-      <p style="font-size: 20px; margin-top: 50px;">Nuo šiol siuntas pristatome per 2 d.d. visoje Lietuvoje!</p>
-      <p style="font-size: 100px; margin-top: 20px;"><i class="fa-solid fa-truck-ramp-box"></i></p>
+
+    <div style="background-color: transparent; width: 100%; height: 100%; position: fixed; top: 0; right: 0; left: 0; z-index: 33; display: flex; justify-content: center; align-items: center; transform: scale(0);" id="backCollect">
+        <div id="collect">
+            <i class="fa-solid fa-compress" style="position: absolute; font-size: 25px; right: 20px; bottom: 20px; color: #0a0a29; opacity: 0;" id="keypadCloseBtn" onclick="keypadClose()"></i>
+            <p style="font-size: 25px; text-align: center; margin-bottom: 50px; opacity: 0;" id="iveskitePin">Įveskite PIN:</p>
+            <form>
+                <div id="keypad">
+                  <form style="width: 100%; height: 100%; display: flex; justify-content: space-around; align-items: center; flex-direction: column;">
+                  <input type="text" name="pin" maxlength="5" placeholder="......" id="inputas">
+                  <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+                      <button type="button" onclick="pirmas()" id="vienasY">1<i class="fa-solid fa-voicemail" style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;"></i></button>
+                      <button type="button" onclick="antras()" id="duY">2<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">A B C</p></button>
+                      <button type="button" onclick="trecias()" id="trysY">3<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">D E F</p></button>
+                  </div>
+                  <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+                      <button type="button" onclick="ketvirtas()" id="keturiY">4<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">G H I</p></button>
+                      <button type="button" onclick="penktas()" id="penkiY">5<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">J K L</p></button>
+                      <button type="button" onclick="sestas()" id="sesiY">6<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">M N O</p></button>
+                  </div>
+                  <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+                      <button type="button" onclick="septintas()" id="septyniY">7<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">P Q R S</p></button>
+                      <button type="button" onclick="astuntas()" id="astuoniY">8<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">T U V</p></button>
+                      <button type="button" onclick="devintas()" id="devyniY">9<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">W X Y Z</p></button>
+                  </div>
+                  <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;">
+                      <button type="button" onclick="istrinti()"  id="istrinimas"><i class="fa-solid fa-xmark" style=" transition: 0.01s;"></i></button>
+                      <button type="button" onclick="nulinis()" id="nulisY">0<i class="fa-solid fa-plus" style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;"></i></button>
+                      <button type="button" onclick="check(this.form)" id="checkBtn"><i class="fa-solid fa-check" style=" transition: 0.01s;"></i></button>
+                  </div>
+                  </form>
+              </div>
+              <input type="number" value="1" id="vienetas" style="display: none;">
+                <input type="number" value="2" id="dvejetas" style="display: none;">
+                <input type="number" value="3" id="trejetas" style="display: none;">
+                <input type="number" value="4" id="ketvertas" style="display: none;">
+                <input type="number" value="5" id="penketas" style="display: none;">
+                <input type="number" value="6" id="sesetas" style="display: none;">
+                <input type="number" value="7" id="septynetas" style="display: none;">
+                <input type="number" value="8" id="astuonetas" style="display: none;">
+                <input type="number" value="9" id="devynetas" style="display: none;">
+                <input type="number" value="0" id="nulis" style="display: none;">
+              </form>
+        </div>
     </div>
-    <div style="width: 95%; position: absolute; margin-left: 200%; border: 2px solid crimson; height: 300px; color: crimson; border-radius: 25px; animation: move2 5s linear infinite;">
-      <p style="font-size: 20px; margin-top: 70px;">Paštomatų sistema atsinaujino!</p>
-      <p style="font-size: 100px; margin-top: 20px;"><i class="fa-solid fa-newspaper"></i></p>
+
+    <div style="background-color: transparent; width: 100%; height: 100%; position: fixed; top: 0; right: 0; left: 0; z-index: 34; display: flex; justify-content: center; align-items: center; transform: scale(0);" id="backPickUp">
+        <div id="pickUp">
+            <p style="font-size: 25px; text-align: center; margin-bottom: 20px; opacity: 0;" id="atsiimkiteSiunta">Atsiimkite siuntą.</p>
+            <p style="font-size: 20px; text-align: center; margin-bottom: 50px; opacity: 0;" id="uzdarykiteDureles">Nepamirškite uždaryti durelių!</p>
+            <i class="fa-solid fa-parachute-box" style="font-size: 100px; opacity: 0;" id="parachute"></i>
+        </div>
     </div>
-    </div>
-    <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; border: 2px solid crimson; color: crimson; display: flex; justify-content: center; align-items: center;"><p><i class="fa-solid fa-hand-pointer"></i> Palieskite ekraną norėdami pradėti.</p></div>
-    <div style="width: 100%; height: 100%; position: fixed; top: 0; right: 0; left: 0; bottom: 0; z-index: 15; transition: 0.3s;" id="starter" onclick="startOperation()"></div>
-    <div style="width: 100%; height: 100%; position: fixed; top: 0; border-radius: 25px; right: 0; left: 0; bottom: 0; z-index: 15; transition: 0.3s; background-color: white; opacity: 0; transform: scale(0);" id="operation">
-      <h1 style="color: crimson;">SP Paštomatai</h1>
-      <p style="color: crimson; font-size: 20px;">Pasirinkite, ką norite daryti:</p>
-      <div style="width: 100%; height: 100%; position: absolute; left: 0; right: 0; bottom: 0; top: 0; display: flex; justify-content: space-around; align-items: center;">
-        <div style="width: 45%; height: 300px; border: 2px solid crimson; color: crimson; border-radius: 25px; display: flex; justify-content: center; align-items: center; flex-direction: column;" onclick="sendParcel()"><p style="font-size: 20px;">Išsiųsti siuntą</p><i style="font-size: 100px;" class="fa-solid fa-paper-plane"></i></div>
-        <div style="width: 45%; height: 300px; border: 2px solid crimson; color: crimson; border-radius: 25px; display: flex; justify-content: center; align-items: center; flex-direction: column;" onclick="collectParcel()"><p style="font-size: 20px;">Atsiimti siuntą</p><i style="font-size: 100px;" class="fa-solid fa-box"></i></div>
-      </div>
-      <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; color: crimson; border: 2px solid crimson; display: flex; justify-content: center; align-items: center;" onclick="cancelOperation()"><p><i class="fa-regular fa-circle-xmark"></i> Atšaukti</p></div>
-    </div>
-    <div style="width: 100%; height: 100%; position: fixed; top: 0; border-radius: 25px; right: 0; left: 0; bottom: 0; z-index: 15; transition: 0.3s; background-color: white; opacity: 0; transform: scale(0);" id="collect">
-      <h1 style="color: crimson;">SP Paštomatai</h1>
-      <p style="color: crimson; font-size: 20px;">Įveskite PIN kodą:</p>
-      <form>
-        <div id="keypad">
-          <form style="width: 100%; height: 100%; display: flex; justify-content: space-around; align-items: center; flex-direction: column;">
-          <input type="text" name="pin" maxlength="5" placeholder="......" id="inputas">
-          <div>
-              <button type="button" onclick="pirmas()" id="vienasY">1</button>
-              <button type="button" onclick="antras()" id="duY">2</button>
-              <button type="button" onclick="trecias()" id="trysY">3</button>
-          </div>
-          <div>
-              <button type="button" onclick="ketvirtas()" id="keturiY">4</button>
-              <button type="button" onclick="penktas()" id="penkiY">5</button>
-              <button type="button" onclick="sestas()" id="sesiY">6</button>
-          </div>
-          <div>
-              <button type="button" onclick="septintas()" id="septyniY">7</button>
-              <button type="button" onclick="astuntas()" id="astuoniY">8</button>
-              <button type="button" onclick="devintas()" id="devyniY">9</button>
-          </div>
-          <div>
-              <button type="button" onclick="istrinti()"  id="istrinimas"><i class="fa-solid fa-xmark"></i></button>
-              <button type="button" onclick="nulinis()" id="nulisY">0</button>
-              <button type="button" onclick="check(this.form)" id="checkBtn"><i class="fa-solid fa-check"></i></button>
-          </div>
-          </form>
-      </div>
-      <input type="number" value="1" id="vienetas" style="display: none;">
-        <input type="number" value="2" id="dvejetas" style="display: none;">
-        <input type="number" value="3" id="trejetas" style="display: none;">
-        <input type="number" value="4" id="ketvertas" style="display: none;">
-        <input type="number" value="5" id="penketas" style="display: none;">
-        <input type="number" value="6" id="sesetas" style="display: none;">
-        <input type="number" value="7" id="septynetas" style="display: none;">
-        <input type="number" value="8" id="astuonetas" style="display: none;">
-        <input type="number" value="9" id="devynetas" style="display: none;">
-        <input type="number" value="0" id="nulis" style="display: none;">
-      </form>
-      <div style="width: 95%; height: 50px; position: fixed; bottom: 15px; left: 2.5%; right: 2.5%; border-radius: 25px; color: crimson; border: 2px solid crimson; display: flex; justify-content: center; align-items: center;" onclick="cancelOperation2()"><p><i class="fa-regular fa-circle-xmark"></i> Atšaukti</p></div>
-    </div>
-    <div style="width: 100%; height: 100%; position: fixed; top: 0; border-radius: 25px; right: 0; left: 0; bottom: 0; z-index: 15; transition: 0.3s; background-color: white; opacity: 0; transform: scale(0);" id="doorOpen">
-      <h1 style="color: crimson;">SP Paštomatai</h1>
-      <p style="color: crimson; font-size: 20px;">Atsiimkite siuntą.</p>
-      <p style="color: crimson; font-size: 20px;">Nepamirškite uždaryti durelių!</p>
-      <div style="width: 100%; height: 100%; position: absolute; left: 0; right: 0; bottom: 0; top: 0; display: flex; justify-content: space-around; align-items: center;">
-        <i style="font-size: 200px; color: crimson;" class="fa-solid fa-parachute-box"></i>
-      </div>
+
+    <div style="background-color: black; width: 100%; height: 100%; position: fixed; top: 0; right: 0; left: 0; z-index: 70; font-family: 'Source Code Pro', monospace; color: yellow; padding: 5px; transition: none; display: none;" id="recoveryWindow">
+        <p style="font-size: 17px; transition: none; display: none;" id="recover1">Installation recovery</p>
+        <p style="font-size: 15px; transition: none; display: none;" id="recover2">ls-pastomatas_komoda/parcels/send</p>
+        <p style="font-size: 15px; transition: none; display: none;" id="recover3">2.0.1/ls-pastomatai/komoda</p>
+        <p style="font-size: 15px; transition: none; display: none;" id="recover4">user/consumer</p>
+        <p style="font-size: 15px; transition: none; display: none;" id="recover5">ls/sendParcel()</p>
+        <p style="font-size: 15px; transition: none; display: none;" id="recover6">system failure</p>
+        <p style="font-size: 15px; transition: none; display: none;" id="recover7">Use arrow and OK keys to proceed</p>
+        <div style="width: 100%; height: 50%; position: absolute; top: 25%; bottom: 25%; left: 0; right: 0; display: none; justify-content: center; align-items: center;" id="powerScreen"><i class="fa-solid fa-ghost" style="color: white; font-size: 100px; transition: 1s;" id="ghost"></i><p style="position: absolute; color: white; margin-top: 150px; display: none; text-align: center; width: 100%;" id="loadingLS">Loading D: /ls.pastomatas...</p></div>
+        <div style="width: 100%; height: 50%; position: absolute; top: 25%; bottom: 25%; left: 0; right: 0; display: flex; justify-content: center; align-items: center;" id="hazardScreen"><div style="width: 100px; height: 100px; border-radius: 100%; border: 5px solid orange; border-top-color: transparent; border-bottom-color: transparent; position: absolute; margin-top: 5px; animation: spin 1s linear infinite;"></div><i class="fa-solid fa-triangle-exclamation" style="color: orange; font-size: 50px;"></i></div>
+        <button id="btn1" style="width: 100%; height: 23px; transition: none; position: absolute; left: 0; background-color: transparent; border: none; border-top: 1px solid royalblue; font-size: 15px; color: white; margin-top: 5px; background-color: turquoise; text-align: left; padding-left: 5px; display: none; align-items: center;">Reboot system into D: /ls.pastomatas</button>
+        <button id="btn2" style="width: 100%; height: 23px; transition: none; position: absolute; left: 0; background-color: transparent; border: none; font-size: 15px; color: royalblue; margin-top: 28px; text-align: left; padding-left: 5px; display: none; align-items: center;">Close installation recovery</button>
+        <button id="btn3" style="width: 100%; height: 23px; transition: none; position: absolute; left: 0; background-color: transparent; border: none; border-bottom: 1px solid royalblue; font-size: 15px; color: royalblue; margin-top: 51px; text-align: left; padding-left: 5px; display: none; align-items: center;">Retry system command run</button>
+        <button style="position: absolute; transition: none; background-color: lightgrey; border: none; width: 30px; height: 30px; bottom: 105px; right: 15px; display: none;" id="up"><i class="fa-solid fa-arrow-up"></i></button>
+        <button style="position: absolute; transition: none; background-color: lightgrey; border: none; width: 30px; height: 30px; bottom: 60px; right: 15px; display: none;" id="down" onclick="down()"><i class="fa-solid fa-arrow-down"></i></button>
+        <button style="position: absolute; transition: none; background-color: lightgrey; border: none; width: 30px; height: 30px; bottom: 15px; right: 15px; display: none;" onclick="failOk()" id="ok">OK</button>
+        <button style="position: absolute; transition: none; background-color: lightgrey; border: none; width: 30px; height: 30px; bottom: 105px; right: 15px; display: none;" id="up2" onclick="up2()"><i class="fa-solid fa-arrow-up"></i></button>
+        <button style="position: absolute; transition: none; background-color: lightgrey; border: none; width: 30px; height: 30px; bottom: 60px; right: 15px; display: none;" id="down2" onclick="down2()"><i class="fa-solid fa-arrow-down"></i></button>
+        <button style="position: absolute; transition: none; background-color: lightgrey; border: none; width: 30px; height: 30px; bottom: 15px; right: 15px; display: none;" id="ok2" onclick="failOk2()">OK</button>
+        <button style="position: absolute; transition: none; background-color: lightgrey; border: none; width: 30px; height: 30px; bottom: 105px; right: 15px; display: none;" id="up3" onclick="up3()"><i class="fa-solid fa-arrow-up"></i></button>
+        <button style="position: absolute; transition: none; background-color: lightgrey; border: none; width: 30px; height: 30px; bottom: 60px; right: 15px; display: none;" id="down3"><i class="fa-solid fa-arrow-down"></i></button>
+        <button style="position: absolute; transition: none; background-color: lightgrey; border: none; width: 30px; height: 30px; bottom: 15px; right: 15px; display: none;" id="ok3" onclick="failOk3()">OK</button>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="reboot1">-- Checking rights...</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="reboot2">Rights OK.</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="reboot3">-- Checking device status...</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="reboot4">Device status idle.</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="reboot5">-- Checking system...</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="reboot6">System OK.</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="reboot7">-- Checking memory...</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="reboot8">7.09/8.00GB full.</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="reboot9">-- Rebooting system...</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="reboot10">D: /ls.pastomatas</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="closeRec1">-- Checking rights...</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="closeRec2">Rights prohibited: administrator account required.</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="retryRec1">-- Checking rights...</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="retryRec2">Rights OK.</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="retryRec3">-- Running system command...</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="retryRec4">F: ls/sendParcel()</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="retryRec5">-- Checking device status...</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="retryRec6">Device status idle.</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="retryRec7">-- Checking system...</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="retryRec8">System OK.</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="retryRec9">-- Checking memory...</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="retryRec10">7.09/8.00GB full.</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="retryRec11">-- Rebooting system...</p>
+        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none;" id="retryRec12">D: /ls.pastomatas</p>
     </div>
 
     <script src="https://kit.fontawesome.com/a11707644f.js" crossorigin="anonymous"></script>
-        <script>
-          function pirmas() {
+    <script>
+        function loadFunction() {
+            setTimeout(() => {  
+                document.getElementById("loadBackground").style.backgroundColor = "transparent";
+            }, 1000);
+            setTimeout(() => {  
+                document.getElementById("loadBackground").style.opacity = "0";
+                document.getElementById("loadBlack").style.opacity = "0";
+            }, 2000);
+            setTimeout(() => {  
+                document.getElementById("loadBackground").style.display = "none";
+                document.getElementById("loadBlack").style.display = "none";
+            }, 2300);
+        }
+        function start() {
+            document.getElementById("loadBackground").style.display = "flex";
+            document.getElementById("loadBlack").style.display = "block";
+            setTimeout(() => {  
+                document.getElementById("loadBackground").style.opacity = "1";
+                document.getElementById("loadBlack").style.opacity = "0.1";
+            }, 50);
+            setTimeout(() => {  
+                document.getElementById("backSelect").style.top = "0";
+                document.getElementById("backSelect").style.zIndex = "31";
+                document.getElementById("backgroundSelect").style.display = "block";
+            }, 2000);
+            setTimeout(() => {  
+                document.getElementById("backgroundSelect").style.opacity = "0.1";
+            }, 2050);
+            setTimeout(() => {  
+                document.getElementById("select").style.width = "90%"; 
+                document.getElementById("select").style.height = "95%";
+                document.getElementById("select").style.borderRadius = "25px";
+            }, 2300);
+            setTimeout(() => {  
+                document.getElementById("selectCloseBtn").style.opacity = "1"; 
+                document.getElementById("pasirinkite").style.opacity = "1";
+                document.getElementById("atsiimtiBtn").style.opacity = "1";
+                document.getElementById("siustiBtn").style.opacity = "1";
+                document.getElementById("click").style.opacity = "0";
+                document.getElementById("ad1Top").style.opacity = "0";
+                document.getElementById("gif").style.opacity = "0";
+                document.getElementById("navigation").style.width = "90%";
+                document.getElementById("navigation").style.top = "2.5%";
+                document.getElementById("navigation").style.left = "5%";
+                document.getElementById("navigation").style.borderRadius = "25px 25px 0 0";
+                document.getElementById("LSimg").style.left = "15px";
+            }, 2600);
+            setTimeout(() => {  
+                document.getElementById("loadBackground").style.opacity = "0";
+                document.getElementById("loadBlack").style.opacity = "0";
+            }, 3000);
+            setTimeout(() => {  
+                document.getElementById("loadBackground").style.display = "none";
+                document.getElementById("loadBlack").style.display = "none";
+            }, 3300);
+        }
+        function startClose() {
+            document.getElementById("selectCloseBtn").style.transform = "scale(0.5)";
+            document.getElementById("selectCloseBtn").style.opacity = "0"; 
+                document.getElementById("pasirinkite").style.opacity = "0";
+                document.getElementById("atsiimtiBtn").style.opacity = "0";
+                document.getElementById("siustiBtn").style.opacity = "0";
+            setTimeout(() => {  
+                document.getElementById("selectCloseBtn").style.transform = "scale(1)";
+            }, 150);
+            setTimeout(() => {  
+                document.getElementById("select").style.width = "50px"; 
+                document.getElementById("select").style.height = "50px";
+                document.getElementById("select").style.borderRadius = "50px";
+                document.getElementById("click").style.opacity = "1";
+                document.getElementById("ad1Top").style.opacity = "1";
+                document.getElementById("gif").style.opacity = "1";
+                document.getElementById("navigation").style.width = "100%";
+                document.getElementById("navigation").style.top = "0";
+                document.getElementById("navigation").style.left = "0";
+                document.getElementById("navigation").style.borderRadius = "0";
+                document.getElementById("LSimg").style.left = "5px";
+            }, 300);
+            setTimeout(() => {  
+                document.getElementById("backSelect").style.top = "70%";
+                document.getElementById("backSelect").style.zIndex = "-1";
+                document.getElementById("backgroundSelect").style.opacity = "0";
+            }, 600);
+            setTimeout(() => {  
+                document.getElementById("backgroundSelect").style.display = "none";
+            }, 900);
+        }
+        function atsiimtiSiunta() {
+            document.getElementById("loadBackground").style.display = "flex";
+            document.getElementById("loadBlack").style.display = "block";
+            document.getElementById("atsiimtiBtn").style.transform = "scale(0.9)";
+            setTimeout(() => {  
+                document.getElementById("loadBackground").style.opacity = "1";
+                document.getElementById("loadBlack").style.opacity = "0.1";
+            }, 50);
+            setTimeout(() => {  
+                document.getElementById("atsiimtiBtn").style.transform = "scale(1)";
+            }, 150);
+            setTimeout(() => {  
+                document.getElementById("backCollect").style.transform = "scale(1)";
+            }, 2000);
+            setTimeout(() => {  
+                document.getElementById("collect").style.width = "90%"; 
+                document.getElementById("collect").style.height = "95%";
+                document.getElementById("collect").style.borderRadius = "25px";
+            }, 2300);
+            setTimeout(() => {  
+                document.getElementById("keypadCloseBtn").style.opacity = "1"; 
+                document.getElementById("iveskitePin").style.opacity = "1";
+                document.getElementById("keypad").style.opacity = "1";
+            }, 2600);
+            setTimeout(() => {  
+                document.getElementById("loadBackground").style.opacity = "0";
+                document.getElementById("loadBlack").style.opacity = "0";
+            }, 3000);
+            setTimeout(() => {  
+                document.getElementById("loadBackground").style.display = "none";
+                document.getElementById("loadBlack").style.display = "none";
+            }, 3300);
+        }
+        function keypadClose() {
+            document.getElementById("keypadCloseBtn").style.transform = "scale(0.5)";
+            document.getElementById("keypadCloseBtn").style.opacity = "0"; 
+                document.getElementById("iveskitePin").style.opacity = "0";
+                document.getElementById("keypad").style.opacity = "0";
+            setTimeout(() => {  
+                document.getElementById("keypadCloseBtn").style.transform = "scale(1)";
+            }, 150);
+            setTimeout(() => {  
+                document.getElementById("collect").style.width = "50px"; 
+                document.getElementById("collect").style.height = "50px";
+                document.getElementById("collect").style.borderRadius = "50px";
+                document.getElementById("inputas").value = '';
+            }, 300);
+            setTimeout(() => {  
+                document.getElementById("backCollect").style.transform = "scale(0)";
+            }, 600);
+        }
+        function pirmas() {
             document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("vienetas").value;
-            document.getElementById("vienasY").style.backgroundColor = "crimson";
+            document.getElementById("vienasY").style.backgroundColor = "#0a0a29";
             document.getElementById("vienasY").style.color = "white";
-            document.getElementById("vienasY").style.borderRadius = "30px";
             setTimeout(() => {
                 document.getElementById("vienasY").style.backgroundColor = "white";
-                document.getElementById("vienasY").style.color = "crimson";
-                document.getElementById("vienasY").style.borderRadius = "50px";
-            }, 100);
+                document.getElementById("vienasY").style.color = "#0a0a29";
+            }, 150);
         }
         function antras() {
             document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("dvejetas").value;
-            document.getElementById("duY").style.backgroundColor = "crimson";
+            document.getElementById("duY").style.backgroundColor = "#0a0a29";
             document.getElementById("duY").style.color = "white";
-            document.getElementById("duY").style.borderRadius = "30px";
             setTimeout(() => {
                 document.getElementById("duY").style.backgroundColor = "white";
-                document.getElementById("duY").style.color = "crimson";
-                document.getElementById("duY").style.borderRadius = "50px";
-            }, 100);
+                document.getElementById("duY").style.color = "#0a0a29";
+            }, 150);
         }
         function trecias() {
             document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("trejetas").value;
-            document.getElementById("trysY").style.backgroundColor = "crimson";
+            document.getElementById("trysY").style.backgroundColor = "#0a0a29";
             document.getElementById("trysY").style.color = "white";
-            document.getElementById("trysY").style.borderRadius = "30px";
             setTimeout(() => {
                 document.getElementById("trysY").style.backgroundColor = "white";
-                document.getElementById("trysY").style.color = "crimson";
-                document.getElementById("trysY").style.borderRadius = "50px";
-            }, 100);
+                document.getElementById("trysY").style.color = "#0a0a29";
+            }, 150);
         }
         function ketvirtas() {
             document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("ketvertas").value;
-            document.getElementById("keturiY").style.backgroundColor = "crimson";
+            document.getElementById("keturiY").style.backgroundColor = "#0a0a29";
             document.getElementById("keturiY").style.color = "white";
-            document.getElementById("keturiY").style.borderRadius = "30px";
             setTimeout(() => {
                 document.getElementById("keturiY").style.backgroundColor = "white";
-                document.getElementById("keturiY").style.color = "crimson";
-                document.getElementById("keturiY").style.borderRadius = "50px";
-            }, 100);
+                document.getElementById("keturiY").style.color = "#0a0a29";
+            }, 150);
         }
         function penktas() {
             document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("penketas").value;
-            document.getElementById("penkiY").style.backgroundColor = "crimson";
+            document.getElementById("penkiY").style.backgroundColor = "#0a0a29";
             document.getElementById("penkiY").style.color = "white";
-            document.getElementById("penkiY").style.borderRadius = "30px";
             setTimeout(() => {
                 document.getElementById("penkiY").style.backgroundColor = "white";
-                document.getElementById("penkiY").style.color = "crimson";
-                document.getElementById("penkiY").style.borderRadius = "50px";
-            }, 100);
+                document.getElementById("penkiY").style.color = "#0a0a29";
+            }, 150);
         }
         function sestas() {
             document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("sesetas").value;
-            document.getElementById("sesiY").style.backgroundColor = "crimson";
+            document.getElementById("sesiY").style.backgroundColor = "#0a0a29";
             document.getElementById("sesiY").style.color = "white";
-            document.getElementById("sesiY").style.borderRadius = "30px";
             setTimeout(() => {
                 document.getElementById("sesiY").style.backgroundColor = "white";
-                document.getElementById("sesiY").style.color = "crimson";
-                document.getElementById("sesiY").style.borderRadius = "50px";
-            }, 100);
+                document.getElementById("sesiY").style.color = "#0a0a29";
+            }, 150);
         }
         function septintas() {
             document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("septynetas").value;
-            document.getElementById("septyniY").style.backgroundColor = "crimson";
+            document.getElementById("septyniY").style.backgroundColor = "#0a0a29";
             document.getElementById("septyniY").style.color = "white";
-            document.getElementById("septyniY").style.borderRadius = "30px";
             setTimeout(() => {
                 document.getElementById("septyniY").style.backgroundColor = "white";
-                document.getElementById("septyniY").style.color = "crimson";
-                document.getElementById("septyniY").style.borderRadius = "50px";
-            }, 100);
+                document.getElementById("septyniY").style.color = "#0a0a29";
+            }, 150);
         }
         function astuntas() {
             document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("astuonetas").value;
-            document.getElementById("astuoniY").style.backgroundColor = "crimson";
+            document.getElementById("astuoniY").style.backgroundColor = "#0a0a29";
             document.getElementById("astuoniY").style.color = "white";
-            document.getElementById("astuoniY").style.borderRadius = "30px";
             setTimeout(() => {
                 document.getElementById("astuoniY").style.backgroundColor = "white";
-                document.getElementById("astuoniY").style.color = "crimson";
-                document.getElementById("astuoniY").style.borderRadius = "50px";
-            }, 100);
+                document.getElementById("astuoniY").style.color = "#0a0a29";
+            }, 150);
         }
         function devintas() {
             document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("devynetas").value;
-            document.getElementById("devyniY").style.backgroundColor = "crimson";
+            document.getElementById("devyniY").style.backgroundColor = "#0a0a29";
             document.getElementById("devyniY").style.color = "white";
-            document.getElementById("devyniY").style.borderRadius = "30px";
             setTimeout(() => {
                 document.getElementById("devyniY").style.backgroundColor = "white";
-                document.getElementById("devyniY").style.color = "crimson";
-                document.getElementById("devyniY").style.borderRadius = "50px";
-            }, 100);
+                document.getElementById("devyniY").style.color = "#0a0a29";
+            }, 150);
         }
         function nulinis() {
             document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("nulis").value;
-            document.getElementById("nulisY").style.backgroundColor = "crimson";
+            document.getElementById("nulisY").style.backgroundColor = "#0a0a29";
             document.getElementById("nulisY").style.color = "white";
-            document.getElementById("nulisY").style.borderRadius = "30px";
             setTimeout(() => {
                 document.getElementById("nulisY").style.backgroundColor = "white";
-                document.getElementById("nulisY").style.color = "crimson";
-                document.getElementById("nulisY").style.borderRadius = "50px";
-            }, 100);
+                document.getElementById("nulisY").style.color = "#0a0a29";
+            }, 150);
         }
         function istrinti() {
             document.getElementById("inputas").value = '..';
-            document.getElementById("istrinimas").style.backgroundColor = "crimson";
+            document.getElementById("istrinimas").style.backgroundColor = "#0a0a29";
             document.getElementById("istrinimas").style.color = "white";
-            document.getElementById("istrinimas").style.borderRadius = "30px";
             setTimeout(() => {
                 document.getElementById("istrinimas").style.backgroundColor = "white";
-                document.getElementById("istrinimas").style.color = "crimson";
+                document.getElementById("istrinimas").style.color = "#0a0a29";
                 document.getElementById("inputas").value = '....';
-                document.getElementById("istrinimas").style.borderRadius = "50px";
-            }, 100);
+            }, 150);
             setTimeout(() => {
                 document.getElementById("inputas").value = '';
             }, 200);
         }
-          function loadFunction(){
-            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 1000);
-            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 1000);
-            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 1300);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "200px"; }, 1000);
-          }
-          function startOperation(){
-            document.getElementById("loadScreen").style.display = "flex";
-            document.getElementById("starter").style.display = "none";
-            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 50);
-            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 50);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 50);
-            setTimeout(() => {  
-            document.getElementById("operation").style.opacity = "1";
-            document.getElementById("operation").style.transform = "scale(1.0)";
-            document.getElementById("operation").style.borderRadius = "0"; 
-            }, 1000);
-            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 1000);
-            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 1000);
-            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 1300);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "200px"; }, 1000);
-          }
-          function cancelOperation(){
-            setTimeout(() => {  document.getElementById("starter").style.display = "block"; }, 1300);
-            setTimeout(() => {  
-            document.getElementById("operation").style.opacity = "0";
-            document.getElementById("operation").style.transform = "scale(0)";
-            document.getElementById("operation").style.borderRadius = "200px"; 
-            }, 1250);
-            setTimeout(() => {  document.getElementById("loadScreen").style.display = "flex"; }, 250);
-            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 300);
-            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 300);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 300);
-            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 1250);
-            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 1250);
-            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 1550);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "25px"; }, 1250);
-          }
-          function collectParcel(){
-            document.getElementById("loadScreen").style.display = "flex";
-            document.getElementById("starter").style.display = "none";
-            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 50);
-            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 50);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 50);
-            setTimeout(() => {  
-            document.getElementById("collect").style.opacity = "1";
-            document.getElementById("collect").style.transform = "scale(1.0)";
-            document.getElementById("collect").style.borderRadius = "0"; 
-            }, 1000);
-            setTimeout(() => {  
-            document.getElementById("operation").style.opacity = "0";
-            document.getElementById("operation").style.transform = "scale(0)";
-            document.getElementById("operation").style.borderRadius = "200px"; 
-            }, 1000);
-            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 1000);
-            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 1000);
-            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 1300);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "200px"; }, 1000);
-          }
-          function cancelOperation2(){
-            setTimeout(() => {  document.getElementById("starter").style.display = "block"; }, 1300);
-            setTimeout(() => {  
-            document.getElementById("collect").style.opacity = "0";
-            document.getElementById("collect").style.transform = "scale(0)";
-            document.getElementById("collect").style.borderRadius = "200px"; 
-            }, 1000);
-            document.getElementById("loadScreen").style.display = "flex";
-            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 50);
-            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 50);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 50);
-            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 1000);
-            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 1000);
-            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 1300);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "200px"; }, 1000);
-          }
-          function check(form)
+        function check(form)
         {
-                if(form.pin.value == "746283")
+                if(form.pin.value == "222857")
                 {
-                  document.getElementById("checkBtn").style.backgroundColor = "crimson";
+                        document.getElementById("loadBackground").style.display = "flex";
+                document.getElementById("loadBlack").style.display = "block";
+                document.getElementById("checkBtn").style.backgroundColor = "#0a0a29";
                 document.getElementById("checkBtn").style.color = "white";
-                document.getElementById("checkBtn").style.borderRadius = "30px";
+                setTimeout(() => {  
+                    document.getElementById("loadBackground").style.opacity = "1";
+                    document.getElementById("loadBlack").style.opacity = "0.1";
+                }, 50);
                 setTimeout(() => {
                     document.getElementById("checkBtn").style.backgroundColor = "white";
-                    document.getElementById("checkBtn").style.color = "crimson";
-                    document.getElementById("checkBtn").style.borderRadius = "50px";
+                    document.getElementById("checkBtn").style.color = "#0a0a29";
                 }, 100);
-                document.getElementById("loadScreen").style.display = "flex";
-            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 300);
-            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 300);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 300);
-            document.getElementById("vienasY").style.opacity = "0";
+                    document.getElementById("vienasY").style.opacity = "0";
                 setTimeout(() => {
                     document.getElementById("duY").style.opacity = "0";
                     document.getElementById("keturiY").style.opacity = "0";
@@ -426,59 +589,101 @@ button {
                 setTimeout(() => {
                     document.getElementById("checkBtn").style.opacity = "0";
                 }, 500);
-            setTimeout(() => {
-                document.getElementById("vienasY").style.opacity = "1";
-            }, 3000);
-            setTimeout(() => {
+                setTimeout(() => {
+                    document.getElementById("vienasY").style.opacity = "1";
+                }, 2000);
+                setTimeout(() => {
                     document.getElementById("duY").style.opacity = "1";
                     document.getElementById("keturiY").style.opacity = "1";
-                }, 3100);
+                }, 2100);
                 setTimeout(() => {
                     document.getElementById("trysY").style.opacity = "1";
                     document.getElementById("penkiY").style.opacity = "1";
                     document.getElementById("septyniY").style.opacity = "1";
-                }, 3200);
+                }, 2200);
                 setTimeout(() => {
                     document.getElementById("sesiY").style.opacity = "1";
                     document.getElementById("astuoniY").style.opacity = "1";
                     document.getElementById("istrinimas").style.opacity = "1";
-                }, 3300);
+                }, 2300);
                 setTimeout(() => {
                     document.getElementById("devyniY").style.opacity = "1";
                     document.getElementById("nulisY").style.opacity = "1";
-                }, 3400);
+                }, 2400);
                 setTimeout(() => {
                     document.getElementById("checkBtn").style.opacity = "1";
-                }, 3500);
-            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 2700);
-            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 2700);
-            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 3000);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "200px"; }, 2700);
+                }, 2500);
+                setTimeout(() => {  
+                document.getElementById("loadBackground").style.opacity = "0";
+                document.getElementById("loadBlack").style.opacity = "0";
+            }, 3000);
             setTimeout(() => {  
-            document.getElementById("collect").style.opacity = "0";
-            document.getElementById("collect").style.transform = "scale(0)";
-            document.getElementById("collect").style.borderRadius = "25px"; 
-            form.reset();
-            }, 3500);
+                document.getElementById("backPickUp").style.transform = "scale(1)";
+            }, 2000);
             setTimeout(() => {  
-            document.getElementById("doorOpen").style.opacity = "1";
-            document.getElementById("doorOpen").style.transform = "scale(1.0)";
-            document.getElementById("doorOpen").style.borderRadius = "0"; 
-            }, 3500);
+                document.getElementById("pickUp").style.width = "90%"; 
+                document.getElementById("pickUp").style.height = "95%";
+                document.getElementById("pickUp").style.borderRadius = "25px";
+            }, 2300);
             setTimeout(() => {  
-            document.getElementById("doorOpen").style.opacity = "0";
-            document.getElementById("doorOpen").style.transform = "scale(0)";
-            document.getElementById("doorOpen").style.borderRadius = "25px"; 
-            }, 17500);
+                document.getElementById("atsiimkiteSiunta").style.opacity = "1";
+                document.getElementById("uzdarykiteDureles").style.opacity = "1";
+                document.getElementById("parachute").style.opacity = "1";
+            }, 2600);
+            setTimeout(() => {  
+                document.getElementById("loadBackground").style.opacity = "0";
+                document.getElementById("loadBlack").style.opacity = "0";
+            }, 3000);
+            setTimeout(() => {  
+                document.getElementById("loadBackground").style.display = "none";
+                document.getElementById("loadBlack").style.display = "none";
+            }, 3300);
+            setTimeout(() => {  
+                document.getElementById("atsiimkiteSiunta").style.opacity = "0";
+                document.getElementById("uzdarykiteDureles").style.opacity = "0";
+                document.getElementById("parachute").style.opacity = "0";
+                document.getElementById("keypadCloseBtn").style.opacity = "0"; 
+                document.getElementById("iveskitePin").style.opacity = "0";
+                document.getElementById("keypad").style.opacity = "0";
+                document.getElementById("selectCloseBtn").style.opacity = "0"; 
+                document.getElementById("pasirinkite").style.opacity = "0";
+                document.getElementById("atsiimtiBtn").style.opacity = "0";
+                document.getElementById("siustiBtn").style.opacity = "0";
+            }, 13000);
+            setTimeout(() => {  
+                document.getElementById("collect").style.width = "50px"; 
+                document.getElementById("collect").style.height = "50px";
+                document.getElementById("collect").style.borderRadius = "50px";
+                document.getElementById("inputas").value = '';
+                document.getElementById("select").style.width = "50px"; 
+                document.getElementById("select").style.height = "50px";
+                document.getElementById("select").style.borderRadius = "50px";
+                document.getElementById("pickUp").style.width = "50px"; 
+                document.getElementById("pickUp").style.height = "50px";
+                document.getElementById("pickUp").style.borderRadius = "50px";
+                document.getElementById("navigation").style.width = "100%";
+                document.getElementById("navigation").style.top = "0";
+                document.getElementById("navigation").style.left = "0";
+                document.getElementById("navigation").style.borderRadius = "0";
+                document.getElementById("LSimg").style.left = "5px";
+            }, 13300);
+            setTimeout(() => {  
+                document.getElementById("backSelect").style.transform = "scale(0)";
+                document.getElementById("backPickUp").style.transform = "scale(0)";
+                document.getElementById("backgroundSelect").style.opacity = "0";
+                document.getElementById("backCollect").style.transform = "scale(0)";
+            }, 13600);
+            setTimeout(() => {  
+                document.getElementById("navigation").style.opacity = "0";
+            }, 14000);
             setTimeout(() => {  
               location.replace("index.html");
-            }, 17800);
+            }, 15000);
           }
                 else if(form.pin.value == '')
             {
-                document.getElementById("checkBtn").style.backgroundColor = "crimson";
+                document.getElementById("checkBtn").style.backgroundColor = "#0a0a29";
                 document.getElementById("checkBtn").style.color = "white";
-                document.getElementById("checkBtn").style.borderRadius = "30px";
 
                 document.getElementById("vienasY").style.opacity = "0";
                 setTimeout(() => {
@@ -525,13 +730,11 @@ button {
                 }, 1000);
                 setTimeout(() => {
                     document.getElementById("checkBtn").style.opacity = "1";
-                    document.getElementById("disableClick").style.display = "none";
                 }, 1100);
 
                 setTimeout(() => {
                     document.getElementById("checkBtn").style.backgroundColor = "white";
-                    document.getElementById("checkBtn").style.color = "crimson";
-                    document.getElementById("checkBtn").style.borderRadius = "50px";
+                    document.getElementById("checkBtn").style.color = "#0a0a29";
                 }, 100);
                 setTimeout(() => {
                     document.getElementById("inputas").style.marginLeft = "-30px";
@@ -550,19 +753,19 @@ button {
                 }, 1000);
             }
             else{
-                document.getElementById("checkBtn").style.backgroundColor = "crimson";
+                document.getElementById("loadBackground").style.display = "flex";
+                document.getElementById("loadBlack").style.display = "block";
+                document.getElementById("checkBtn").style.backgroundColor = "#0a0a29";
                 document.getElementById("checkBtn").style.color = "white";
-                document.getElementById("checkBtn").style.borderRadius = "30px";
+                setTimeout(() => {  
+                    document.getElementById("loadBackground").style.opacity = "1";
+                    document.getElementById("loadBlack").style.opacity = "0.1";
+                }, 50);
                 setTimeout(() => {
                     document.getElementById("checkBtn").style.backgroundColor = "white";
-                    document.getElementById("checkBtn").style.color = "crimson";
-                    document.getElementById("checkBtn").style.borderRadius = "50px";
+                    document.getElementById("checkBtn").style.color = "#0a0a29";
                 }, 100);
-                document.getElementById("loadScreen").style.display = "flex";
-            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 300);
-            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 300);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 300);
-            document.getElementById("vienasY").style.opacity = "0";
+                    document.getElementById("vienasY").style.opacity = "0";
                 setTimeout(() => {
                     document.getElementById("duY").style.opacity = "0";
                     document.getElementById("keturiY").style.opacity = "0";
@@ -584,11 +787,10 @@ button {
                 setTimeout(() => {
                     document.getElementById("checkBtn").style.opacity = "0";
                 }, 500);
-            setTimeout(() => {
-                document.getElementById("inputas").style.marginLeft = "-30px";
-                document.getElementById("vienasY").style.opacity = "1";
-            }, 3000);
-            setTimeout(() => {
+                setTimeout(() => {
+                    document.getElementById("vienasY").style.opacity = "1";
+                }, 3000);
+                setTimeout(() => {
                     document.getElementById("duY").style.opacity = "1";
                     document.getElementById("keturiY").style.opacity = "1";
                 }, 3100);
@@ -610,44 +812,438 @@ button {
                     document.getElementById("checkBtn").style.opacity = "1";
                 }, 3500);
                 setTimeout(() => {
-                    document.getElementById("inputas").style.marginLeft = "30px";
-            }, 3100);
-            setTimeout(() => {
                     document.getElementById("inputas").style.marginLeft = "-30px";
-            }, 3200);
-            setTimeout(() => {
+                }, 3000);
+                setTimeout(() => {
                     document.getElementById("inputas").style.marginLeft = "30px";
-            }, 3300);
-            setTimeout(() => {
+                }, 3100);
+                setTimeout(() => {
+                    document.getElementById("inputas").style.marginLeft = "-30px";
+                }, 3200);
+                setTimeout(() => {
+                    document.getElementById("inputas").style.marginLeft = "30px";
+                }, 3300);
+                setTimeout(() => {
                     document.getElementById("inputas").style.marginLeft = "0";
-            }, 3400);
-            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "0"; }, 2700);
-            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(0)"; }, 2700);
-            setTimeout(() => {  document.getElementById("loadScreen").style.display = "none"; }, 3000);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "200px"; }, 2700);
+                }, 3400);
+                setTimeout(() => {  
+                document.getElementById("loadBackground").style.opacity = "0";
+                document.getElementById("loadBlack").style.opacity = "0";
+            }, 3000);
+            setTimeout(() => {  
+                document.getElementById("loadBackground").style.display = "none";
+                document.getElementById("loadBlack").style.display = "none";
+            }, 3300);
             }
         }
-        // Get the input field
-var input = document.getElementById("pinKodas");
-
-// Execute a function when the user presses a key on the keyboard
-input.addEventListener("keypress", function(event) {
-  // If the user presses the "Enter" key on the keyboard
-  if (event.key === "Enter") {
-    // Cancel the default action, if needed
-    event.preventDefault();
-    // Trigger the button element with a click
-    document.getElementById("btn").click();
-  }
-});
-          function sendParcel(){
-            document.getElementById("loadScreen").style.display = "flex";
-            document.getElementById("starter").style.display = "none";
-            setTimeout(() => {  document.getElementById("loadScreen").style.opacity = "1"; }, 50);
-            setTimeout(() => {  document.getElementById("loadScreen").style.transform = "scale(1.0)"; }, 50);
-            setTimeout(() => {  document.getElementById("loadScreen").style.borderRadius = "0"; }, 50);
-            setTimeout(() => {  location.replace("siuntos-siuntimas.html"); }, 350);
-          }
-        </script>
+        function siustiSiunta() {
+            document.getElementById("loadBackground").style.display = "flex";
+            document.getElementById("loadBlack").style.display = "block";
+            document.getElementById("siustiBtn").style.transform = "scale(0.9)";
+            setTimeout(() => {  
+                document.getElementById("loadBackground").style.opacity = "1";
+                document.getElementById("loadBlack").style.opacity = "0.1";
+            }, 50);
+            setTimeout(() => {  
+                document.getElementById("siustiBtn").style.transform = "scale(1)";
+            }, 150);
+            setTimeout(() => {  
+                document.getElementById("recoveryWindow").style.display = "block";
+                document.getElementById("loadBackground").style.opacity = "0";
+                document.getElementById("loadBlack").style.opacity = "0";
+                document.getElementById("loadBackground").style.display = "none";
+                document.getElementById("loadBlack").style.display = "none";
+            }, 2000);
+            setTimeout(() => {  
+                document.getElementById("up").style.display = "inline";
+                document.getElementById("down").style.display = "inline";
+                document.getElementById("ok").style.display = "inline";
+                document.getElementById("hazardScreen").style.display = "none";
+            }, 2500);
+            setTimeout(() => {  
+                document.getElementById("recover1").style.display = "block";
+                document.getElementById("recover2").style.display = "block";
+                document.getElementById("recover3").style.display = "block";
+                document.getElementById("recover4").style.display = "block";
+                document.getElementById("recover5").style.display = "block";
+                document.getElementById("recover6").style.display = "block";
+                document.getElementById("recover7").style.display = "block";
+                document.getElementById("btn1").style.display = "flex";
+                document.getElementById("btn2").style.display = "flex";
+                document.getElementById("btn3").style.display = "flex";
+            }, 3000);
+        }
+        function down() {
+            document.getElementById("btn1").style.color = "royalblue";
+            document.getElementById("btn1").style.backgroundColor = "transparent";
+            document.getElementById("btn2").style.color = "white";
+            document.getElementById("btn2").style.backgroundColor = "turquoise";
+            document.getElementById("ok").style.display = "none";
+            document.getElementById("up").style.display = "none";
+            document.getElementById("down").style.display = "none";
+            document.getElementById("ok2").style.display = "inline";
+            document.getElementById("up2").style.display = "inline";
+            document.getElementById("down2").style.display = "inline";
+        }
+        function failOk() {
+            document.getElementById("ok").style.display = "none";
+            document.getElementById("up").style.display = "none";
+            document.getElementById("down").style.display = "none";
+            document.getElementById("btn1").style.display = "none";
+            document.getElementById("btn2").style.display = "none";
+            document.getElementById("btn3").style.display = "none";
+            document.getElementById("recover1").style.display = "none";
+            document.getElementById("recover2").style.display = "none";
+            document.getElementById("recover3").style.display = "none";
+            document.getElementById("recover4").style.display = "none";
+            document.getElementById("recover5").style.display = "none";
+            document.getElementById("recover6").style.display = "none";
+            document.getElementById("recover7").style.display = "none";
+            document.getElementById("reboot1").style.display = "block";
+            setTimeout(() => {  
+                document.getElementById("reboot1").style.bottom = "25px";
+                document.getElementById("reboot2").style.display = "block";
+            }, 2000);
+            setTimeout(() => {  
+                document.getElementById("reboot1").style.bottom = "45px";
+                document.getElementById("reboot2").style.bottom = "25px";
+                document.getElementById("reboot3").style.display = "block";
+            }, 2100);
+            setTimeout(() => {  
+                document.getElementById("reboot1").style.bottom = "65px";
+                document.getElementById("reboot2").style.bottom = "45px";
+                document.getElementById("reboot3").style.bottom = "25px";
+                document.getElementById("reboot4").style.display = "block";
+            }, 3100);
+            setTimeout(() => {  
+                document.getElementById("reboot1").style.bottom = "85px";
+                document.getElementById("reboot2").style.bottom = "65px";
+                document.getElementById("reboot3").style.bottom = "45px";
+                document.getElementById("reboot4").style.bottom = "25px";
+                document.getElementById("reboot5").style.display = "block";
+            }, 3200);
+            setTimeout(() => {  
+                document.getElementById("reboot1").style.bottom = "105px";
+                document.getElementById("reboot2").style.bottom = "85px";
+                document.getElementById("reboot3").style.bottom = "65px";
+                document.getElementById("reboot4").style.bottom = "45px";
+                document.getElementById("reboot5").style.bottom = "25px";
+                document.getElementById("reboot6").style.display = "block";
+            }, 6200);
+            setTimeout(() => {  
+                document.getElementById("reboot1").style.bottom = "125px";
+                document.getElementById("reboot2").style.bottom = "105px";
+                document.getElementById("reboot3").style.bottom = "85px";
+                document.getElementById("reboot4").style.bottom = "65px";
+                document.getElementById("reboot5").style.bottom = "45px";
+                document.getElementById("reboot6").style.bottom = "25px";
+                document.getElementById("reboot7").style.display = "block";
+            }, 6300);
+            setTimeout(() => {  
+                document.getElementById("reboot1").style.bottom = "145px";
+                document.getElementById("reboot2").style.bottom = "125px";
+                document.getElementById("reboot3").style.bottom = "105px";
+                document.getElementById("reboot4").style.bottom = "85px";
+                document.getElementById("reboot5").style.bottom = "65px";
+                document.getElementById("reboot6").style.bottom = "45px";
+                document.getElementById("reboot7").style.bottom = "25px";
+                document.getElementById("reboot8").style.display = "block";
+            }, 7300);
+            setTimeout(() => {  
+                document.getElementById("reboot1").style.bottom = "185px";
+                document.getElementById("reboot2").style.bottom = "165px";
+                document.getElementById("reboot3").style.bottom = "145px";
+                document.getElementById("reboot4").style.bottom = "125px";
+                document.getElementById("reboot5").style.bottom = "105px";
+                document.getElementById("reboot6").style.bottom = "85px";
+                document.getElementById("reboot7").style.bottom = "65px";
+                document.getElementById("reboot8").style.bottom = "45px";
+                document.getElementById("reboot9").style.display = "block";
+                document.getElementById("reboot9").style.bottom = "25px";
+                document.getElementById("reboot10").style.display = "block";
+            }, 7400);
+            setTimeout(() => {  
+                document.getElementById("reboot1").style.display = "none";
+                document.getElementById("reboot2").style.display = "none";
+                document.getElementById("reboot3").style.display = "none";
+                document.getElementById("reboot4").style.display = "none";
+                document.getElementById("reboot5").style.display = "none";
+                document.getElementById("reboot6").style.display = "none";
+                document.getElementById("reboot7").style.display = "none";
+                document.getElementById("reboot8").style.display = "none";
+                document.getElementById("reboot9").style.display = "none";
+                document.getElementById("reboot10").style.display = "none";
+            }, 10400);
+            setTimeout(() => {  
+                document.getElementById("powerScreen").style.display = "flex";
+            }, 13000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "-20px";
+                document.getElementById("loadingLS").style.display = "block";
+            }, 18000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "20px";
+            }, 19000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "-20px";
+            }, 20000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "20px";
+            }, 21000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "-20px";
+            }, 22000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "20px";
+            }, 23000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "-20px";
+            }, 24000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "20px";
+            }, 25000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "-20px";
+            }, 26000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "20px";
+            }, 27000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "-20px";
+            }, 28000);
+            setTimeout(() => {  
+              location.replace("index.html");
+              document.getElementById("ghost").style.marginTop = "20px";
+            }, 29000);
+        }
+        function up2() {
+            document.getElementById("btn2").style.color = "royalblue";
+            document.getElementById("btn2").style.backgroundColor = "transparent";
+            document.getElementById("btn1").style.color = "white";
+            document.getElementById("btn1").style.backgroundColor = "turquoise";
+            document.getElementById("ok2").style.display = "none";
+            document.getElementById("up2").style.display = "none";
+            document.getElementById("down2").style.display = "none";
+            document.getElementById("ok").style.display = "inline";
+            document.getElementById("up").style.display = "inline";
+            document.getElementById("down").style.display = "inline";
+        }
+        function down2() {
+            document.getElementById("btn2").style.color = "royalblue";
+            document.getElementById("btn2").style.backgroundColor = "transparent";
+            document.getElementById("btn3").style.color = "white";
+            document.getElementById("btn3").style.backgroundColor = "turquoise";
+            document.getElementById("ok2").style.display = "none";
+            document.getElementById("up2").style.display = "none";
+            document.getElementById("down2").style.display = "none";
+            document.getElementById("ok3").style.display = "inline";
+            document.getElementById("up3").style.display = "inline";
+            document.getElementById("down3").style.display = "inline";
+        }
+        function failOk2() {
+            document.getElementById("ok2").style.display = "none";
+            document.getElementById("up2").style.display = "none";
+            document.getElementById("down2").style.display = "none";
+            document.getElementById("btn1").style.display = "none";
+            document.getElementById("btn2").style.display = "none";
+            document.getElementById("btn3").style.display = "none";
+            document.getElementById("recover1").style.display = "none";
+            document.getElementById("recover2").style.display = "none";
+            document.getElementById("recover3").style.display = "none";
+            document.getElementById("recover4").style.display = "none";
+            document.getElementById("recover5").style.display = "none";
+            document.getElementById("recover6").style.display = "none";
+            document.getElementById("recover7").style.display = "none";
+            document.getElementById("closeRec1").style.display = "block";
+            setTimeout(() => {  
+                document.getElementById("closeRec1").style.bottom = "25px";
+                document.getElementById("closeRec2").style.display = "block";
+            }, 2000);
+            setTimeout(() => {  
+                document.getElementById("ok2").style.display = "inline";
+                document.getElementById("up2").style.display = "inline";
+                document.getElementById("down2").style.display = "inline";
+                document.getElementById("btn1").style.display = "flex";
+                document.getElementById("btn2").style.display = "flex";
+                document.getElementById("btn3").style.display = "flex";
+                document.getElementById("recover1").style.display = "block";
+                document.getElementById("recover2").style.display = "block";
+                document.getElementById("recover3").style.display = "block";
+                document.getElementById("recover4").style.display = "block";
+                document.getElementById("recover5").style.display = "block";
+                document.getElementById("recover6").style.display = "block";
+                document.getElementById("recover7").style.display = "block";
+                document.getElementById("closeRec1").style.display = "none";
+                document.getElementById("closeRec1").style.bottom = "5px";
+                document.getElementById("closeRec2").style.display = "none";
+            }, 5000);
+        }
+        function up3() {
+            document.getElementById("btn3").style.color = "royalblue";
+            document.getElementById("btn3").style.backgroundColor = "transparent";
+            document.getElementById("btn2").style.color = "white";
+            document.getElementById("btn2").style.backgroundColor = "turquoise";
+            document.getElementById("ok3").style.display = "none";
+            document.getElementById("up3").style.display = "none";
+            document.getElementById("down3").style.display = "none";
+            document.getElementById("ok2").style.display = "inline";
+            document.getElementById("up2").style.display = "inline";
+            document.getElementById("down2").style.display = "inline";
+        }
+        function failOk3() {
+            document.getElementById("ok3").style.display = "none";
+            document.getElementById("up3").style.display = "none";
+            document.getElementById("down3").style.display = "none";
+            document.getElementById("btn1").style.display = "none";
+            document.getElementById("btn2").style.display = "none";
+            document.getElementById("btn3").style.display = "none";
+            document.getElementById("recover1").style.display = "none";
+            document.getElementById("recover2").style.display = "none";
+            document.getElementById("recover3").style.display = "none";
+            document.getElementById("recover4").style.display = "none";
+            document.getElementById("recover5").style.display = "none";
+            document.getElementById("recover6").style.display = "none";
+            document.getElementById("recover7").style.display = "none";
+            document.getElementById("retryRec1").style.display = "block";
+            setTimeout(() => {  
+                document.getElementById("retryRec1").style.bottom = "25px";
+                document.getElementById("retryRec2").style.display = "block";
+            }, 2000);
+            setTimeout(() => {  
+                document.getElementById("retryRec1").style.bottom = "65px";
+                document.getElementById("retryRec2").style.bottom = "45px";
+                document.getElementById("retryRec3").style.display = "block";
+                document.getElementById("retryRec3").style.bottom = "25px";
+                document.getElementById("retryRec4").style.display = "block";
+            }, 2100);
+            setTimeout(() => {  
+                document.getElementById("retryRec1").style.bottom = "85px";
+                document.getElementById("retryRec2").style.bottom = "65px";
+                document.getElementById("retryRec3").style.bottom = "45px";
+                document.getElementById("retryRec4").style.bottom = "25px";
+                document.getElementById("retryRec5").style.display = "block";
+            }, 5100);
+            setTimeout(() => {  
+                document.getElementById("retryRec1").style.bottom = "105px";
+                document.getElementById("retryRec2").style.bottom = "85px";
+                document.getElementById("retryRec3").style.bottom = "65px";
+                document.getElementById("retryRec4").style.bottom = "45px";
+                document.getElementById("retryRec5").style.bottom = "25px";
+                document.getElementById("retryRec6").style.display = "block";
+            }, 6100);
+            setTimeout(() => {  
+                document.getElementById("retryRec1").style.bottom = "125px";
+                document.getElementById("retryRec2").style.bottom = "105px";
+                document.getElementById("retryRec3").style.bottom = "85px";
+                document.getElementById("retryRec4").style.bottom = "65px";
+                document.getElementById("retryRec5").style.bottom = "45px";
+                document.getElementById("retryRec6").style.bottom = "25px";
+                document.getElementById("retryRec7").style.display = "block";
+            }, 6200);
+            setTimeout(() => {  
+                document.getElementById("retryRec1").style.bottom = "145px";
+                document.getElementById("retryRec2").style.bottom = "125px";
+                document.getElementById("retryRec3").style.bottom = "105px";
+                document.getElementById("retryRec4").style.bottom = "85px";
+                document.getElementById("retryRec5").style.bottom = "65px";
+                document.getElementById("retryRec6").style.bottom = "45px";
+                document.getElementById("retryRec7").style.bottom = "25px";
+                document.getElementById("retryRec8").style.display = "block";
+            }, 9200);
+            setTimeout(() => {  
+                document.getElementById("retryRec1").style.bottom = "165px";
+                document.getElementById("retryRec2").style.bottom = "145px";
+                document.getElementById("retryRec3").style.bottom = "125px";
+                document.getElementById("retryRec4").style.bottom = "105px";
+                document.getElementById("retryRec5").style.bottom = "85px";
+                document.getElementById("retryRec6").style.bottom = "65px";
+                document.getElementById("retryRec7").style.bottom = "45px";
+                document.getElementById("retryRec8").style.bottom = "25px";
+                document.getElementById("retryRec9").style.display = "block";
+            }, 9300);
+            setTimeout(() => {  
+                document.getElementById("retryRec1").style.bottom = "185px";
+                document.getElementById("retryRec2").style.bottom = "165px";
+                document.getElementById("retryRec3").style.bottom = "145px";
+                document.getElementById("retryRec4").style.bottom = "125px";
+                document.getElementById("retryRec5").style.bottom = "105px";
+                document.getElementById("retryRec6").style.bottom = "85px";
+                document.getElementById("retryRec7").style.bottom = "65px";
+                document.getElementById("retryRec8").style.bottom = "45px";
+                document.getElementById("retryRec9").style.bottom = "25px";
+                document.getElementById("retryRec10").style.display = "block";
+            }, 10300);
+            setTimeout(() => {  
+                document.getElementById("retryRec1").style.bottom = "225px";
+                document.getElementById("retryRec2").style.bottom = "205px";
+                document.getElementById("retryRec3").style.bottom = "185px";
+                document.getElementById("retryRec4").style.bottom = "165px";
+                document.getElementById("retryRec5").style.bottom = "145px";
+                document.getElementById("retryRec6").style.bottom = "125px";
+                document.getElementById("retryRec7").style.bottom = "105px";
+                document.getElementById("retryRec8").style.bottom = "85px";
+                document.getElementById("retryRec9").style.bottom = "65px";
+                document.getElementById("retryRec10").style.bottom = "45px";
+                document.getElementById("retryRec11").style.display = "block";
+                document.getElementById("retryRec11").style.bottom = "25px";
+                document.getElementById("retryRec12").style.display = "block";
+            }, 10400);
+            setTimeout(() => {  
+                document.getElementById("retryRec1").style.display = "none";
+                document.getElementById("retryRec2").style.display = "none";
+                document.getElementById("retryRec3").style.display = "none";
+                document.getElementById("retryRec4").style.display = "none";
+                document.getElementById("retryRec5").style.display = "none";
+                document.getElementById("retryRec6").style.display = "none";
+                document.getElementById("retryRec7").style.display = "none";
+                document.getElementById("retryRec8").style.display = "none";
+                document.getElementById("retryRec9").style.display = "none";
+                document.getElementById("retryRec10").style.display = "none";
+                document.getElementById("retryRec11").style.display = "none";
+                document.getElementById("retryRec12").style.display = "none";
+            }, 13400);
+            setTimeout(() => {  
+                document.getElementById("powerScreen").style.display = "flex";
+            }, 16000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "-20px";
+                document.getElementById("loadingLS").style.display = "block";
+            }, 19000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "20px";
+            }, 20000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "-20px";
+            }, 21000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "20px";
+            }, 22000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "-20px";
+            }, 23000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "20px";
+            }, 24000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "-20px";
+            }, 25000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "20px";
+            }, 26000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "-20px";
+            }, 27000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "20px";
+            }, 28000);
+            setTimeout(() => {  
+                document.getElementById("ghost").style.marginTop = "-20px";
+            }, 29000);
+            setTimeout(() => {  
+              location.replace("index.html");
+              document.getElementById("ghost").style.marginTop = "20px";
+            }, 30000);
+        }
+      </script>
 </body>
 </html>
