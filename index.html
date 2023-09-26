@@ -181,7 +181,37 @@
                 transform: rotate(360deg);
             }
         }
+        @keyframes blink {
+            0%{
+                opacity: 1;
+            }
+            69.99%{
+                opacity: 1;
+            }
+            70%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 0;
+            }
+        }
+        @keyframes blink2 {
+            0%{
+                opacity: 1;
+            }
+            49.99%{
+                opacity: 1;
+            }
+            50%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 0;
+            }
+        }
     </style>
+    <audio src="error.wav" id="error-audio"></audio>
+    <audio src="klaida.mp3" id="klaida-audio"></audio>
     <div style="background-color: black; width: 100%; height: 100%; position: fixed; top: 0; right: 0; left: 0; bottom: 0; z-index: 99; opacity: 0.1;" id="loadBlack"></div>
     <div style="background-color: white; width: 100%; height: 100%; position: fixed; top: 0; right: 0; left: 0; bottom: 0; z-index: 100; display: flex; justify-content: center; align-items: center;" id="loadBackground"><div style="width: 70px; height: 70px; border-radius: 100%; background-color: white; display: flex; justify-content: center; align-items: center;"><div style="position: absolute; width: 15px; height: 15px; background-color: #0a0a29; border-radius: 100%; animation: dot1Add 1.2s ease-in-out infinite;"></div><div style="position: absolute; box-shadow: 0 0 5px #0a0a29; width: 15px; height: 15px; background-color: #0a0a29; border-radius: 100%; opacity: 0.15; animation: dot2Add 1.2s ease-in-out infinite;"></div></div></div>
 
@@ -260,52 +290,18 @@
         </div>
     </div>
 
-    <div style="background-color: black; width: 100%; height: 100%; position: fixed; top: 0; right: 0; left: 0; z-index: 70; font-family: 'Source Code Pro', monospace; color: yellow; padding: 5px; transition: none; display: none;" id="recoveryWindow">
-        <p style="font-size: 17px; transition: none; display: none; font-family: 'Source Code Pro', monospace;" id="recover1">Installation recovery</p>
-        <p style="font-size: 15px; transition: none; display: none; font-family: 'Source Code Pro', monospace;" id="recover2">ls-pastomatas_komoda/parcels/send</p>
-        <p style="font-size: 15px; transition: none; display: none; font-family: 'Source Code Pro', monospace;" id="recover3">2.0.1/ls-pastomatai/komoda</p>
-        <p style="font-size: 15px; transition: none; display: none; font-family: 'Source Code Pro', monospace;" id="recover4">user/consumer</p>
-        <p style="font-size: 15px; transition: none; display: none; font-family: 'Source Code Pro', monospace;" id="recover5">ls/sendParcel()</p>
-        <p style="font-size: 15px; transition: none; display: none; font-family: 'Source Code Pro', monospace;" id="recover6">system command run failure</p>
-        <p style="font-size: 15px; transition: none; display: none; font-family: 'Source Code Pro', monospace;" id="recover7">Use arrow and OK keys to proceed</p>
-        <div style="width: 100%; height: 50%; position: absolute; top: 25%; bottom: 25%; left: 0; right: 0; display: none; justify-content: center; align-items: center;" id="powerScreen"><i class="fa-regular fa-folder-closed" style="color: white; font-size: 100px; transition: 1s;"></i><p style="position: absolute; color: white; margin-top: 150px; display: none; text-align: center; width: 100%; font-family: 'Source Code Pro', monospace;" id="loadingLS">Loading D: /ls.pastomatas...</p></div>
-        <div style="width: 100%; height: 50%; position: absolute; top: 25%; bottom: 25%; left: 0; right: 0; display: flex; justify-content: center; align-items: center;" id="hazardScreen"><div style="width: 100px; height: 100px; border-radius: 100%; border: 5px solid orange; border-top-color: transparent; border-bottom-color: transparent; position: absolute; margin-top: 5px; animation: spin 1s linear infinite;"></div><i class="fa-solid fa-triangle-exclamation" style="color: orange; font-size: 50px;"></i></div>
-        <button id="btn1" style="width: 100%; height: 23px; transition: none; position: absolute; left: 0; background-color: transparent; border: none; border-top: 1px solid royalblue; font-size: 15px; color: white; margin-top: 5px; background-color: blue; text-align: left; padding-left: 5px; display: none; align-items: center; font-family: 'Source Code Pro', monospace;">Reboot system into D: /ls.pastomatas</button>
-        <button id="btn2" style="width: 100%; height: 23px; transition: none; position: absolute; left: 0; background-color: transparent; border: none; font-size: 15px; color: royalblue; margin-top: 28px; text-align: left; padding-left: 5px; display: none; align-items: center; font-family: 'Source Code Pro', monospace;">Close installation recovery</button>
-        <button id="btn3" style="width: 100%; height: 23px; transition: none; position: absolute; left: 0; background-color: transparent; border: none; border-bottom: 1px solid royalblue; font-size: 15px; color: royalblue; margin-top: 51px; text-align: left; padding-left: 5px; display: none; align-items: center; font-family: 'Source Code Pro', monospace;">Retry system command run</button>
-        <button style="position: absolute; transition: none; background-color: lightgrey; border: none; width: 30px; height: 30px; bottom: 105px; right: 15px; display: none; font-family: 'Source Code Pro', monospace;" id="up"><i class="fa-solid fa-arrow-up"></i></button>
-        <button style="position: absolute; transition: none; background-color: lightgrey; border: none; width: 30px; height: 30px; bottom: 60px; right: 15px; display: none; font-family: 'Source Code Pro', monospace;" id="down" onclick="down()"><i class="fa-solid fa-arrow-down"></i></button>
-        <button style="position: absolute; transition: none; background-color: lightgrey; border: none; width: 30px; height: 30px; bottom: 15px; right: 15px; display: none; font-family: 'Source Code Pro', monospace;" onclick="failOk()" id="ok">OK</button>
-        <button style="position: absolute; transition: none; background-color: lightgrey; border: none; width: 30px; height: 30px; bottom: 105px; right: 15px; display: none; font-family: 'Source Code Pro', monospace;" id="up2" onclick="up2()"><i class="fa-solid fa-arrow-up"></i></button>
-        <button style="position: absolute; transition: none; background-color: lightgrey; border: none; width: 30px; height: 30px; bottom: 60px; right: 15px; display: none; font-family: 'Source Code Pro', monospace;" id="down2" onclick="down2()"><i class="fa-solid fa-arrow-down"></i></button>
-        <button style="position: absolute; transition: none; background-color: lightgrey; border: none; width: 30px; height: 30px; bottom: 15px; right: 15px; display: none; font-family: 'Source Code Pro', monospace;" id="ok2" onclick="failOk2()">OK</button>
-        <button style="position: absolute; transition: none; background-color: lightgrey; border: none; width: 30px; height: 30px; bottom: 105px; right: 15px; display: none; font-family: 'Source Code Pro', monospace;" id="up3" onclick="up3()"><i class="fa-solid fa-arrow-up"></i></button>
-        <button style="position: absolute; transition: none; background-color: lightgrey; border: none; width: 30px; height: 30px; bottom: 60px; right: 15px; display: none; font-family: 'Source Code Pro', monospace;" id="down3"><i class="fa-solid fa-arrow-down"></i></button>
-        <button style="position: absolute; transition: none; background-color: lightgrey; border: none; width: 30px; height: 30px; bottom: 15px; right: 15px; display: none; font-family: 'Source Code Pro', monospace;" id="ok3" onclick="failOk3()">OK</button>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="reboot1">-- Checking rights...</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="reboot2">Rights OK.</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="reboot3">-- Checking device status...</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="reboot4">Device status idle.</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="reboot5">-- Checking system...</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="reboot6">System OK.</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="reboot7">-- Checking memory...</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="reboot8">7.09/8.00GB full.</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="reboot9">-- Rebooting system...</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="reboot10">D: /ls.pastomatas</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="closeRec1">-- Checking rights...</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="closeRec2">This user is prohibited to this action.</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="retryRec1">-- Checking rights...</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="retryRec2">Rights OK.</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="retryRec3">-- Running system command...</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="retryRec4">F: ls/sendParcel()</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="retryRec5">-- Checking device status...</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="retryRec6">Device status idle.</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="retryRec7">-- Checking system...</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="retryRec8">System OK.</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="retryRec9">-- Checking memory...</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="retryRec10">7.09/8.00GB full.</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="retryRec11">-- Rebooting system...</p>
-        <p style="font-size: 15px; transition: none; position: absolute; left: 5px; bottom: 5px; color: white; display: none; font-family: 'Source Code Pro', monospace;" id="retryRec12">D: /ls.pastomatas</p>
+    <div style="background-color: black; width: 100%; height: 100%; position: fixed; top: 0; right: 0; left: 0; z-index: 70; font-family: 'Source Code Pro', monospace; padding: 5px; transition: none; display: none; justify-content: center; align-items: center; flex-direction: column; transition: none;" id="recoveryWindow">
+        <i class="fa-solid fa-triangle-exclamation" style="color: white; font-size: 100px; animation: blink 2s linear infinite; display: none;" id="exclamation"></i>
+        <p style="color: white; font-size: 17px; font-family: 'Source Code Pro', monospace; text-align: center; padding: 10%; padding-top: 20px; display: none;" id="textError">An error has occured while running command 'ls/sendParcel()'. <br><span style="font-size: 18px; font-family: 'Source Code Pro', monospace;">Use the emergency power button on screen.</span></p>
+        <p style="color: white; font-size: 17px; font-family: 'Source Code Pro', monospace; text-align: center; padding: 10%; padding-top: 20px; display: none;" id="textError2">An error has occured while opening BIOS boot menu. <br><span style="font-size: 18px; font-family: 'Source Code Pro', monospace;">Visit nearest repair center.</span></p>
+        <button style=" font-family: 'Source Code Pro', monospace; background-color: lightgrey; color: black; border: 2px solid black; width: 100px; height: 50px; font-size: 20px; transform: scale(0.7); position: absolute; top: 0; right: -8px; transition: none;" onclick="stopCommand()" id="stopBtn">STOP</button>
+        <p style="color: white; font-size: 15px; font-family: 'Source Code Pro', monospace; text-align: center; display: none; justify-content: center; align-items: center; border: 2px solid black; width: 215px; height: 30px; background-color: lightgrey; color: red; position: absolute; top: 10px; right: 85px;" id="failedToStop">Failed to stop command</p>
+        <button style=" font-family: 'Source Code Pro', monospace; background-color: lightgrey; color: black; border: 2px solid black; width: 100px; height: 50px; font-size: 20px; transform: scale(0.7); position: absolute; top: 0; right: -8px; display: none; transition: none;" onclick="runPower()" id="powerBtn">POWER</button>
+
+        <i class="fa-solid fa-power-off" style="color: white; font-size: 70px; animation: blink2 1s linear infinite; display: none;" id="powerI"></i>
+        <i class="fa-solid fa-mosquito" style="color: white; font-size: 70px; display: none;" id="mosquito"></i>
+        <p style="color: white; font-size: 20px; font-family: 'Source Code Pro', monospace; text-align: center; display: none; margin-top: 30px;" id="restartInProgress">Restart in progress...</p>
+        <p style="color: white; font-size: 20px; font-family: 'Source Code Pro', monospace; text-align: center; display: none; margin-top: 30px;" id="noBootFiles">No boot files found.</p>
     </div>
 
     <script src="https://kit.fontawesome.com/a11707644f.js" crossorigin="anonymous"></script>
@@ -553,7 +549,7 @@
         }
         function check(form)
         {
-                if(form.pin.value == "764409")
+                if(form.pin.value == "222857")
                 {
                         document.getElementById("loadBackground").style.display = "flex";
                 document.getElementById("loadBlack").style.display = "block";
@@ -848,42 +844,174 @@
                 document.getElementById("siustiBtn").style.transform = "scale(1)";
             }, 150);
             setTimeout(() => {  
-                document.getElementById("recoveryWindow").style.display = "block";
+                document.getElementById("recoveryWindow").style.display = "flex";
                 document.getElementById("loadBackground").style.opacity = "0";
                 document.getElementById("loadBlack").style.opacity = "0";
                 document.getElementById("loadBackground").style.display = "none";
                 document.getElementById("loadBlack").style.display = "none";
             }, 2000);
-            setTimeout(() => {  
-                document.getElementById("up").style.display = "inline";
-                document.getElementById("down").style.display = "inline";
-                document.getElementById("ok").style.display = "inline";
-                document.getElementById("hazardScreen").style.display = "none";
-            }, 3000);
-            setTimeout(() => {  
-                document.getElementById("recover1").style.display = "block";
-                document.getElementById("recover2").style.display = "block";
-                document.getElementById("recover3").style.display = "block";
-                document.getElementById("recover4").style.display = "block";
-                document.getElementById("recover5").style.display = "block";
-                document.getElementById("recover6").style.display = "block";
-                document.getElementById("recover7").style.display = "block";
-                document.getElementById("btn1").style.display = "flex";
-                document.getElementById("btn2").style.display = "flex";
-                document.getElementById("btn3").style.display = "flex";
-            }, 3500);
+            setTimeout(() => { 
+                document.getElementById("recoveryWindow").style.backgroundColor = "orange";
+                document.getElementById("exclamation").style.display = "block";
+                document.getElementById("textError").style.display = "block";
+                document.getElementById("powerBtn").style.display = "block";
+                document.getElementById("stopBtn").style.display = "none";
+                document.getElementById("error-audio").play();
+                document.getElementById('error-audio').currentTime = 0;
+                document.getElementById("klaida-audio").play();
+                document.getElementById('klaida-audio').currentTime = 0;
+            }, 5000);
         }
-        function down() {
-            document.getElementById("btn1").style.color = "royalblue";
-            document.getElementById("btn1").style.backgroundColor = "transparent";
-            document.getElementById("btn2").style.color = "white";
-            document.getElementById("btn2").style.backgroundColor = "blue";
-            document.getElementById("ok").style.display = "none";
-            document.getElementById("up").style.display = "none";
-            document.getElementById("down").style.display = "none";
-            document.getElementById("ok2").style.display = "inline";
-            document.getElementById("up2").style.display = "inline";
-            document.getElementById("down2").style.display = "inline";
+        var audioError = document.getElementById("error-audio");
+        audioError.onended = function() {
+            document.getElementById("error-audio").play();
+            document.getElementById('error-audio').currentTime = 0;
+        };
+        var klaidaError = document.getElementById("klaida-audio");
+        klaidaError.onended = function() {
+            setTimeout(() => { 
+                document.getElementById("klaida-audio").play();
+                document.getElementById('klaida-audio').currentTime = 0;
+            }, 1000);
+        };
+        function stopCommand() {
+            document.getElementById("stopBtn").style.color = "transparent";
+            document.getElementById("stopBtn").style.pointerEvents = "none";
+            document.getElementById("failedToStop").style.display = "none";
+            setTimeout(() => { 
+                document.getElementById("stopBtn").style.color = "black";
+                document.getElementById("stopBtn").style.pointerEvents = "all";
+                document.getElementById("failedToStop").style.display = "flex";
+            }, 1000);
+            setTimeout(() => { 
+                document.getElementById("failedToStop").style.display = "none";
+            }, 4000);
+        }
+        function runPower() {
+            document.getElementById("powerBtn").style.color = "transparent";
+            document.getElementById("powerBtn").style.pointerEvents = "none";
+            setTimeout(() => { 
+                document.getElementById("recoveryWindow").style.backgroundColor = "black";
+                document.getElementById("exclamation").style.display = "none";
+                document.getElementById("textError").style.display = "none";
+                document.getElementById("powerBtn").style.display = "none";
+                document.getElementById("powerBtn").style.pointerEvents = "all";
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 1000);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 1050);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 1100);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 1150);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 1200);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 1250);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 1300);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 1350);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 1400);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 1450);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 1500);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 1550);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 1600);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 1650);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 1700);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 1750);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 1800);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 1850);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 1900);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 1950);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 2000);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 2050);
+            setTimeout(() => { 
+                document.getElementById("error-audio").pause();
+                document.getElementById("klaida-audio").pause();
+            }, 2100);
+            setTimeout(() => { 
+                document.getElementById("powerI").style.display = "block";
+                document.getElementById("restartInProgress").style.display = "block";
+            }, 4000);
+            setTimeout(() => { 
+                document.getElementById("powerI").style.display = "none";
+                document.getElementById("restartInProgress").style.display = "none";
+            }, 14000);
+            setTimeout(() => { 
+                document.getElementById("mosquito").style.display = "block";
+                document.getElementById("noBootFiles").style.display = "block";
+            }, 17000);
+            setTimeout(() => { 
+                document.getElementById("mosquito").style.display = "none";
+                document.getElementById("noBootFiles").style.display = "none";
+            }, 27000);
+            setTimeout(() => { 
+                document.getElementById("recoveryWindow").style.backgroundColor = "orange";
+                document.getElementById("exclamation").style.display = "block";
+                document.getElementById("textError2").style.display = "block";
+                document.getElementById("error-audio").play();
+                document.getElementById('error-audio').currentTime = 0;
+                document.getElementById("klaida-audio").play();
+                document.getElementById('klaida-audio').currentTime = 0;
+            }, 30000);
         }
         function failOk() {
             document.getElementById("ok").style.display = "none";
