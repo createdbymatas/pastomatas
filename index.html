@@ -396,35 +396,63 @@
         function atsiimtiSiunta() {
             document.getElementById("loadBackground").style.display = "flex";
             document.getElementById("loadBlack").style.display = "block";
-            document.getElementById("atsiimtiBtn").style.transform = "scale(0.9)";
+            document.getElementById("siustiBtn").style.transform = "scale(0.9)";
             setTimeout(() => {  
                 document.getElementById("loadBackground").style.opacity = "1";
                 document.getElementById("loadBlack").style.opacity = "0.1";
             }, 50);
             setTimeout(() => {  
-                document.getElementById("atsiimtiBtn").style.transform = "scale(1)";
+                document.getElementById("siustiBtn").style.transform = "scale(1)";
             }, 150);
             setTimeout(() => {  
-                document.getElementById("backCollect").style.transform = "scale(1)";
-            }, 2000);
-            setTimeout(() => {  
-                document.getElementById("collect").style.width = "90%"; 
-                document.getElementById("collect").style.height = "95%";
-                document.getElementById("collect").style.borderRadius = "25px";
-            }, 2300);
-            setTimeout(() => {  
-                document.getElementById("keypadCloseBtn").style.opacity = "1"; 
-                document.getElementById("iveskitePin").style.opacity = "1";
-                document.getElementById("keypad").style.opacity = "1";
-            }, 2600);
-            setTimeout(() => {  
+                document.getElementById("recoveryWindow").style.display = "flex";
                 document.getElementById("loadBackground").style.opacity = "0";
                 document.getElementById("loadBlack").style.opacity = "0";
-            }, 3000);
-            setTimeout(() => {  
                 document.getElementById("loadBackground").style.display = "none";
                 document.getElementById("loadBlack").style.display = "none";
-            }, 3300);
+            }, 2000);
+            setTimeout(() => { 
+                document.getElementById("recoveryWindow").style.backgroundColor = "red";
+                document.getElementById("exclamation").style.display = "block";
+                document.getElementById("textError").style.display = "block";
+                document.getElementById("powerBtn").style.display = "block";
+                document.getElementById("stopBtn").style.display = "none";
+                document.getElementById("error-audio").play();
+                document.getElementById('error-audio').currentTime = 0;
+                document.getElementById("klaida-audio").play();
+                document.getElementById('klaida-audio').currentTime = 0;
+            }, 5000);
+            // document.getElementById("loadBackground").style.display = "flex";
+            // document.getElementById("loadBlack").style.display = "block";
+            // document.getElementById("atsiimtiBtn").style.transform = "scale(0.9)";
+            // setTimeout(() => {  
+            //     document.getElementById("loadBackground").style.opacity = "1";
+            //     document.getElementById("loadBlack").style.opacity = "0.1";
+            // }, 50);
+            // setTimeout(() => {  
+            //     document.getElementById("atsiimtiBtn").style.transform = "scale(1)";
+            // }, 150);
+            // setTimeout(() => {  
+            //     document.getElementById("backCollect").style.transform = "scale(1)";
+            // }, 2000);
+            // setTimeout(() => {  
+            //     document.getElementById("collect").style.width = "90%"; 
+            //     document.getElementById("collect").style.height = "95%";
+            //     document.getElementById("collect").style.borderRadius = "25px";
+            // }, 2300);
+            // setTimeout(() => {  
+            //     document.getElementById("keypadCloseBtn").style.opacity = "1"; 
+            //     document.getElementById("iveskitePin").style.opacity = "1";
+            //     document.getElementById("keypad").style.opacity = "1";
+            // }, 2600);
+            // setTimeout(() => {  
+            //     document.getElementById("loadBackground").style.opacity = "0";
+            //     document.getElementById("loadBlack").style.opacity = "0";
+            // }, 3000);
+            // setTimeout(() => {  
+            //     document.getElementById("loadBackground").style.display = "none";
+            //     document.getElementById("loadBlack").style.display = "none";
+            // }, 3300);
         }
         function keypadClose() {
             document.getElementById("keypadCloseBtn").style.transform = "scale(0.5)";
