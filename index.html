@@ -339,8 +339,9 @@
         <div style="background-color: black; width: 100%; height: 100%; position: fixed; top: 0; right: 0; left: 0; z-index: 70; font-family: 'Source Code Pro', monospace; padding: 5px; transition: none; display: none; justify-content: center; align-items: center; flex-direction: column; transition: none;" id="recoveryWindow">
             <i class="fa-solid fa-triangle-exclamation" style="color: white; font-size: 100px; animation: blink 2s linear infinite; display: none;" id="exclamation"></i>
             <p style="color: white; font-size: 17px; font-family: 'Source Code Pro', monospace; text-align: center; padding: 10%; padding-top: 20px; display: none;" id="textError">命令 'ls/sendParcel()' 未經授權。 系統鎖定。 <br><span style="font-size: 18px; font-family: 'Source Code Pro', monospace;">透過 USB 使用恢復裝置。</span></p>
-    
-            <i class="fa-solid fa-mosquito" style="color: white; font-size: 50px; display: none;" id="mosquito"></i>
+            <p style="color: white; font-size: 17px; font-family: 'Source Code Pro', monospace; display: none;" id="rebootingSystem">正在重啟系統...</p>
+            <p style="color: white; font-size: 17px; font-family: 'Source Code Pro', monospace; display: none;" id="loadingFiles">正在加載檔案...</p>
+            <p style="color: white; font-size: 17px; font-family: 'Source Code Pro', monospace; display: none;" id="mosquito"><i class="fa-solid fa-mosquito"></i> Mosquito</p>
         </div>
         
     <script src="https://kit.fontawesome.com/a11707644f.js" crossorigin="anonymous"></script>
@@ -517,91 +518,31 @@
                 document.getElementById("klaida-audio").pause();
             }, 13100);
             setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 13150);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 13200);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 13250);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 13300);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 13350);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 13400);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 13450);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 13500);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 13550);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 13600);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 13650);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 13700);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 13750);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 13800);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 13850);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 13900);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 13950);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 14000);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 14050);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 14100);
-            setTimeout(() => { 
-                document.getElementById("mosquito").style.display = "block";
+                document.getElementById("recoveryWindow").style.display = "block";
+                document.getElementById("recoveryWindow").style.backgroundColor = "blue";
             }, 15000);
             setTimeout(() => { 
+                document.getElementById("rebootingSystem").style.display = "block";
+            }, 15500);
+            setTimeout(() => { 
+                document.getElementById("rebootingSystem").style.display = "none";
+                document.getElementById("recoveryWindow").style.backgroundColor = "black";
+            }, 17500);
+            setTimeout(() => { 
+                document.getElementById("recoveryWindow").style.backgroundColor = "blue";
+            }, 27500);
+            setTimeout(() => { 
+                document.getElementById("loadingFiles").style.display = "block";
+            }, 28000);
+            setTimeout(() => { 
+                document.getElementById("mosquito").style.display = "block";
+            }, 30000);
+            setTimeout(() => { 
                 document.getElementById("mosquito").style.display = "none";
-            }, 25000);
+                document.getElementById("loadingFiles").style.display = "none";
+                document.getElementById("recoveryWindow").style.backgroundColor = "black";
+                document.getElementById("recoveryWindow").style.display = "flex";
+            }, 32000);
             setTimeout(() => { 
                 document.getElementById("recoveryWindow").style.backgroundColor = "red";
                 document.getElementById("exclamation").style.display = "block";
@@ -610,7 +551,7 @@
                 document.getElementById('error-audio').currentTime = 0;
                 document.getElementById("klaida-audio").play();
                 document.getElementById('klaida-audio').currentTime = 0;
-            }, 27000);
+            }, 34000);
         }
         var audioError = document.getElementById("error-audio");
         audioError.onended = function() {
