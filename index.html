@@ -194,21 +194,28 @@
             transition: 0.15s;
             color: #000033;
         }
+        #keypad button:active{
+            background-color: #000033;
+        }
         #keypad input{
-            width: 90%;
-            height: 50px;
-            border-radius: 50px;
-            border: none;
-            color: #000033;
-            background-color: white;
-            font-size: 30px;
-            user-select: none;
-            cursor: default;
-            pointer-events: none;
-            padding-left: 15px;
-            padding-right: 15px;
-            transition: 0.1s;
-            text-align: center;
+            width: 0;
+            height: 0;
+            display: none;
+        }
+        #taskeliai{
+            width: 80%;
+            height: 30px;
+            background-color: transparent;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        #taskeliai div{
+            width: 15px;
+            height: 15px;
+            border: 2px solid #000033;
+            border-radius: 100%;
+            transition: 0.15s;
         }
         #completeCollect{
             width: 100%; 
@@ -239,6 +246,37 @@
                 opacity: 0;
             }
         }
+        #cancelLanguageBtn{
+            width: 100%;
+            height: 50px;
+            background-color: transparent;
+            color: white;
+            border: none;
+            border-top: 1px solid white;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            font-size: 17px;
+        }
+        #languageBtn:active{
+            transform: scale(0.8);
+        }
+        #backSelect:active{
+            transform: scale(0.8);
+        }
+        #cancelLanguageBtn:active{
+            background-color: white;
+        }
+        #collectBtn:active{
+            transform: scale(0.9);
+        }
+        #backCollect:active{
+            transform: scale(0.8);
+        }
+        #sendBtn:active{
+            transform: scale(0.9);
+        }
         @media only screen and (max-width: 750px){
             #screenSize{
                 display: none;
@@ -266,7 +304,7 @@
             <p style="font-size: 20px; margin-top: 20px; margin-left: 20px;">Kalbos pasirinkimas</p>
             <button style="margin-left: 20px; background-color: transparent; border: none; font-size: 17px; color: white; margin-top: 20px; font-weight: 600; display: block;"><i class="fa-regular fa-circle-check"></i> Lietuvių (Lithuanian)</button>
             <button style="margin-left: 20px; background-color: transparent; border: none; font-size: 17px; color: white; margin-top: 20px; font-weight: 400; display: block;"><i class="fa-regular fa-circle"></i> English (Anglų)</button>
-            <button style="width: 100%; height: 50px; background-color: transparent; color: white; border: none; border-top: 1px solid white; position: absolute; left: 0; right: 0; bottom: 0; font-size: 17px;" id="cancelLanguageBtn" onclick="cancelLanguage()">Atšaukti</button>
+            <button id="cancelLanguageBtn" onclick="cancelLanguage()">Atšaukti</button>
         </div>
     </div>
 
@@ -295,7 +333,15 @@
             <form>
                 <div id="keypad">
                   <form style="width: 100%; height: 100%; display: flex; justify-content: space-around; align-items: center; flex-direction: column;">
-                  <input type="text" name="pin" maxlength="6" id="inputas">
+                    <input type="text" name="pin" id="kodas">
+                    <div id="taskeliai">
+                        <div id="taskelis1"></div>
+                        <div id="taskelis2"></div>
+                        <div id="taskelis3"></div>
+                        <div id="taskelis4"></div>
+                        <div id="taskelis5"></div>
+                        <div id="taskelis6"></div>
+                    </div>
                   <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;" id="key1">
                       <button type="button" onclick="pirmas()" id="vienasY">1<i class="fa-solid fa-voicemail" style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;"></i></button>
                       <button type="button" onclick="antras()" id="duY">2<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">a b c</p></button>
@@ -312,9 +358,9 @@
                       <button type="button" onclick="devintas()" id="devyniY">9<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">w x y z</p></button>
                   </div>
                   <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;" id="key4">
-                      <button type="button" onclick="istrinti()"  id="istrinimas" style="border: none;"><i class="fa-regular fa-trash-can" style="transition: none;"></i></button>
+                      <button type="button" onclick="check(this.form)" id="checkBtn" style="opacity: 0; pointer-events: none;">OK</button>
                       <button type="button" onclick="nulinis()" id="nulisY">0<i class="fa-solid fa-plus" style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;"></i></button>
-                      <button type="button" onclick="check(this.form)" id="checkBtn" style="border: none; font-size: 25px;">OK</button>
+                      <button type="button" onclick="istrinti()"  id="istrinimas" style="border: none;"><i class="fa-regular fa-trash-can" style="transition: none;"></i></button>
                   </div>
                   </form>
               </div>
@@ -397,28 +443,24 @@
             // }, 10300);
         }
         function language() {
-            document.getElementById("languageBtn").style.transform = "scale(0.8)";
             document.getElementById("blurWindow").style.display = "block";
             document.getElementById("languageWindow").style.display = "flex";
             setTimeout(() => {  
-                document.getElementById("languageBtn").style.transform = "scale(1)";
                 document.getElementById("blurWindow").style.opacity = "1";
                 document.getElementById("languageWindow").style.opacity = "1";
                 document.getElementById("languageWindow").style.transform = "scale(1.0)";
-            }, 150);
+            }, 100);
         }
         function cancelLanguage() {
-            document.getElementById("cancelLanguageBtn").style.backgroundColor = "white";
             setTimeout(() => {  
-                document.getElementById("cancelLanguageBtn").style.backgroundColor = "transparent";
                 document.getElementById("blurWindow").style.opacity = "0";
                 document.getElementById("languageWindow").style.opacity = "0";
-            }, 150);
+            }, 10);
             setTimeout(() => {
                 document.getElementById("languageWindow").style.transform = "scale(1.3)";
                 document.getElementById("blurWindow").style.display = "none";
                 document.getElementById("languageWindow").style.display = "none";
-            }, 450);
+            }, 310);
         }
         function start() {
             document.getElementById("screen").style.display = "flex";
@@ -440,23 +482,19 @@
             }, 2300);
         }
         function selectBack() {
-            document.getElementById("backSelect").style.transform = "scale(0.8)";
             setTimeout(() => {
-                document.getElementById("backSelect").style.transform = "scale(1)";
                 document.getElementById("ekranas").style.marginLeft = "0";
                 document.getElementById("reklamosTekstas").style.marginLeft = "0";
                 document.getElementById("options").style.left = "100%";
                 document.getElementById("logoMenu").style.marginLeft = "0";
                 document.getElementById("backSelect").style.left = "-50px";
-            }, 150);
+            }, 10);
         }
         function collect() {
-            document.getElementById("collectBtn").style.transform = "scale(0.9)";
             document.getElementById("screen").style.display = "flex";
             setTimeout(() => {  
-                document.getElementById("collectBtn").style.transform = "scale(1)";
                 document.getElementById("screen").style.opacity = "1";
-            }, 150);
+            }, 10);
             setTimeout(() => {  
                 document.getElementById("collect").style.left = "0";
                 document.getElementById("options").style.marginLeft = "-100%";
@@ -471,23 +509,17 @@
             }, 2300);
         }
         function collectBack() {
-            document.getElementById("backCollect").style.transform = "scale(0.8)";
             setTimeout(() => {
-                document.getElementById("backCollect").style.transform = "scale(1)";
                 document.getElementById("options").style.marginLeft = "0";
                 document.getElementById("collect").style.left = "100%";
-            }, 150);
+            }, 10);
             setTimeout(() => {
                 document.getElementById("backCollect").style.display = "none";
                 document.getElementById("backSelect").style.display = "flex";
                 document.getElementById("inputas").value = '';
-            }, 450);
+            }, 310);
         }
         function send() {
-            document.getElementById("sendBtn").style.transform = "scale(0.9)";
-            setTimeout(() => {  
-                document.getElementById("sendBtn").style.transform = "scale(1)";
-            }, 150);
             setTimeout(() => {  
                 document.getElementById("recoveryWindow").style.display = "flex";
             }, 1000);
@@ -567,174 +599,371 @@
         {
             if(form.pin.value == "222857")
             {
-                document.getElementById("checkBtn").style.backgroundColor = "#0a0a29";
-                document.getElementById("checkBtn").style.color = "white";
                 document.getElementById("backCollect").style.pointerEvents = "none";
                 setTimeout(() => {
-                    document.getElementById("checkBtn").style.backgroundColor = "white";
-                    document.getElementById("checkBtn").style.color = "#0a0a29";
                     document.getElementById("key1").style.opacity = "0.2";
                     document.getElementById("key2").style.opacity = "0.2";
                     document.getElementById("key3").style.opacity = "0.2";
                     document.getElementById("key4").style.opacity = "0.2";
+                    document.getElementById("taskeliai").style.opacity = "0.2";
                     document.getElementById("keypad").style.pointerEvents = "none";
-                }, 150);
+                }, 10);
                 setTimeout(() => {
                     document.getElementById("key1").style.opacity = "1";
                     document.getElementById("key2").style.opacity = "1";
                     document.getElementById("key3").style.opacity = "1";
                     document.getElementById("key4").style.opacity = "1";
+                    document.getElementById("taskeliai").style.opacity = "1";
                     document.getElementById("keypad").style.pointerEvents = "all";
                     document.getElementById("collect").style.left = "-100%";
                     document.getElementById("completeCollect").style.left = "0";
                     document.getElementById("backCollect").style.left = "-50px";
                     document.getElementById("logoMenu").style.marginLeft = "0";
-                }, 3100);
+                }, 3000);
                 setTimeout(() => {  
                     location.replace("index.html");
                 }, 13000);
             }
-            else if(form.pin.value == '')
-            {
-                document.getElementById("checkBtn").style.backgroundColor = "#0a0a29";
-                document.getElementById("checkBtn").style.color = "white";
-                setTimeout(() => {
-                    document.getElementById("checkBtn").style.backgroundColor = "white";
-                    document.getElementById("checkBtn").style.color = "#0a0a29";
-                }, 150);
-            }
             else{
-                document.getElementById("checkBtn").style.backgroundColor = "#0a0a29";
-                document.getElementById("checkBtn").style.color = "white";
                 setTimeout(() => {
-                    document.getElementById("checkBtn").style.backgroundColor = "white";
-                    document.getElementById("checkBtn").style.color = "#0a0a29";
                     document.getElementById("key1").style.opacity = "0.2";
                     document.getElementById("key2").style.opacity = "0.2";
                     document.getElementById("key3").style.opacity = "0.2";
                     document.getElementById("key4").style.opacity = "0.2";
+                    document.getElementById("taskeliai").style.opacity = "0.2";
                     document.getElementById("keypad").style.pointerEvents = "none";
-                }, 150);
+                }, 10);
                 setTimeout(() => {
-                    document.getElementById("inputas").style.marginLeft = "-30px";
+                    document.getElementById("taskeliai").style.marginLeft = "-30px";
                     document.getElementById("key1").style.opacity = "1";
                     document.getElementById("key2").style.opacity = "1";
                     document.getElementById("key3").style.opacity = "1";
                     document.getElementById("key4").style.opacity = "1";
+                    document.getElementById("taskeliai").style.opacity = "1";
                     document.getElementById("keypad").style.pointerEvents = "all";
+                    inputas = ""
+                    document.getElementById("kodas").value = '';
+                    document.getElementById("taskelis1").style.backgroundColor = "transparent";
+                    document.getElementById("taskelis2").style.backgroundColor = "transparent";
+                    document.getElementById("taskelis3").style.backgroundColor = "transparent";
+                    document.getElementById("taskelis4").style.backgroundColor = "transparent";
+                    document.getElementById("taskelis5").style.backgroundColor = "transparent";
+                    document.getElementById("taskelis6").style.backgroundColor = "transparent";
+                }, 3000);
+                setTimeout(() => {
+                    document.getElementById("taskeliai").style.marginLeft = "100px";
                 }, 3100);
                 setTimeout(() => {
-                    document.getElementById("inputas").style.marginLeft = "30px";
+                    document.getElementById("taskeliai").style.marginLeft = "-100px";
                 }, 3200);
                 setTimeout(() => {
-                    document.getElementById("inputas").style.marginLeft = "-30px";
+                    document.getElementById("taskeliai").style.marginLeft = "100px";
                 }, 3300);
                 setTimeout(() => {
-                    document.getElementById("inputas").style.marginLeft = "30px";
+                    document.getElementById("taskeliai").style.marginLeft = "0";
                 }, 3400);
-                setTimeout(() => {
-                    document.getElementById("inputas").style.marginLeft = "0";
-                }, 3500);
             }
         }
+        var inputas = ""
         function pirmas() {
-            document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("vienetas").value;
-            document.getElementById("vienasY").style.backgroundColor = "#0a0a29";
-            document.getElementById("vienasY").style.color = "white";
-            setTimeout(() => {
-                document.getElementById("vienasY").style.backgroundColor = "white";
-                document.getElementById("vienasY").style.color = "#0a0a29";
-            }, 150);
+            inputas = inputas + 1;
+            document.getElementById("kodas").value = inputas;
+            if(inputas.length == "1")
+                {
+                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "2")
+                {
+                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "3")
+                {
+                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "4")
+                {
+                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "5")
+                {
+                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "6")
+                {
+                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("checkBtn").click();
+            }
         }
         function antras() {
-            document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("dvejetas").value;
-            document.getElementById("duY").style.backgroundColor = "#0a0a29";
-            document.getElementById("duY").style.color = "white";
-            setTimeout(() => {
-                document.getElementById("duY").style.backgroundColor = "white";
-                document.getElementById("duY").style.color = "#0a0a29";
-            }, 150);
+            inputas = inputas + 2;
+            document.getElementById("kodas").value = inputas;
+            if(inputas.length == "1")
+                {
+                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "2")
+                {
+                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "3")
+                {
+                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "4")
+                {
+                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "5")
+                {
+                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "6")
+                {
+                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("checkBtn").click();
+            }
         }
         function trecias() {
-            document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("trejetas").value;
-            document.getElementById("trysY").style.backgroundColor = "#0a0a29";
-            document.getElementById("trysY").style.color = "white";
-            setTimeout(() => {
-                document.getElementById("trysY").style.backgroundColor = "white";
-                document.getElementById("trysY").style.color = "#0a0a29";
-            }, 150);
+            inputas = inputas + 3;
+            document.getElementById("kodas").value = inputas;
+            if(inputas.length == "1")
+                {
+                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "2")
+                {
+                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "3")
+                {
+                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "4")
+                {
+                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "5")
+                {
+                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "6")
+                {
+                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("checkBtn").click();
+            }
         }
         function ketvirtas() {
-            document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("ketvertas").value;
-            document.getElementById("keturiY").style.backgroundColor = "#0a0a29";
-            document.getElementById("keturiY").style.color = "white";
-            setTimeout(() => {
-                document.getElementById("keturiY").style.backgroundColor = "white";
-                document.getElementById("keturiY").style.color = "#0a0a29";
-            }, 150);
+            inputas = inputas + 4;
+            document.getElementById("kodas").value = inputas;
+            if(inputas.length == "1")
+                {
+                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "2")
+                {
+                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "3")
+                {
+                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "4")
+                {
+                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "5")
+                {
+                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "6")
+                {
+                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("checkBtn").click();
+            }
         }
         function penktas() {
-            document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("penketas").value;
-            document.getElementById("penkiY").style.backgroundColor = "#0a0a29";
-            document.getElementById("penkiY").style.color = "white";
-            setTimeout(() => {
-                document.getElementById("penkiY").style.backgroundColor = "white";
-                document.getElementById("penkiY").style.color = "#0a0a29";
-            }, 150);
+            inputas = inputas + 5;
+            document.getElementById("kodas").value = inputas;
+            if(inputas.length == "1")
+                {
+                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "2")
+                {
+                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "3")
+                {
+                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "4")
+                {
+                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "5")
+                {
+                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "6")
+                {
+                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("checkBtn").click();
+            }
         }
         function sestas() {
-            document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("sesetas").value;
-            document.getElementById("sesiY").style.backgroundColor = "#0a0a29";
-            document.getElementById("sesiY").style.color = "white";
-            setTimeout(() => {
-                document.getElementById("sesiY").style.backgroundColor = "white";
-                document.getElementById("sesiY").style.color = "#0a0a29";
-            }, 150);
+            inputas = inputas + 6;
+            document.getElementById("kodas").value = inputas;
+            if(inputas.length == "1")
+                {
+                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "2")
+                {
+                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "3")
+                {
+                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "4")
+                {
+                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "5")
+                {
+                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "6")
+                {
+                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("checkBtn").click();
+            }
         }
         function septintas() {
-            document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("septynetas").value;
-            document.getElementById("septyniY").style.backgroundColor = "#0a0a29";
-            document.getElementById("septyniY").style.color = "white";
-            setTimeout(() => {
-                document.getElementById("septyniY").style.backgroundColor = "white";
-                document.getElementById("septyniY").style.color = "#0a0a29";
-            }, 150);
+            inputas = inputas + 7;
+            document.getElementById("kodas").value = inputas;
+            if(inputas.length == "1")
+                {
+                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "2")
+                {
+                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "3")
+                {
+                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "4")
+                {
+                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "5")
+                {
+                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "6")
+                {
+                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("checkBtn").click();
+            }
         }
         function astuntas() {
-            document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("astuonetas").value;
-            document.getElementById("astuoniY").style.backgroundColor = "#0a0a29";
-            document.getElementById("astuoniY").style.color = "white";
-            setTimeout(() => {
-                document.getElementById("astuoniY").style.backgroundColor = "white";
-                document.getElementById("astuoniY").style.color = "#0a0a29";
-            }, 150);
+            inputas = inputas + 8;
+            document.getElementById("kodas").value = inputas;
+            if(inputas.length == "1")
+                {
+                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "2")
+                {
+                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "3")
+                {
+                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "4")
+                {
+                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "5")
+                {
+                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "6")
+                {
+                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("checkBtn").click();
+            }
         }
         function devintas() {
-            document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("devynetas").value;
-            document.getElementById("devyniY").style.backgroundColor = "#0a0a29";
-            document.getElementById("devyniY").style.color = "white";
-            setTimeout(() => {
-                document.getElementById("devyniY").style.backgroundColor = "white";
-                document.getElementById("devyniY").style.color = "#0a0a29";
-            }, 150);
+            inputas = inputas + 9;
+            document.getElementById("kodas").value = inputas;
+            if(inputas.length == "1")
+                {
+                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "2")
+                {
+                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "3")
+                {
+                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "4")
+                {
+                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "5")
+                {
+                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "6")
+                {
+                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("checkBtn").click();
+            }
         }
         function nulinis() {
-            document.getElementById("inputas").value = document.getElementById("inputas").value + document.getElementById("nulis").value;
-            document.getElementById("nulisY").style.backgroundColor = "#0a0a29";
-            document.getElementById("nulisY").style.color = "white";
-            setTimeout(() => {
-                document.getElementById("nulisY").style.backgroundColor = "white";
-                document.getElementById("nulisY").style.color = "#0a0a29";
-            }, 150);
+            inputas = inputas + 0;
+            document.getElementById("kodas").value = inputas;
+            if(inputas.length == "1")
+                {
+                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "2")
+                {
+                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "3")
+                {
+                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "4")
+                {
+                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "5")
+                {
+                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+            }
+            else if(inputas.length == "6")
+                {
+                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("checkBtn").click();
+            }
         }
         function istrinti() {
-            document.getElementById("istrinimas").style.backgroundColor = "#0a0a29";
-            document.getElementById("istrinimas").style.color = "white";
-            setTimeout(() => {
-                document.getElementById("istrinimas").style.backgroundColor = "white";
-                document.getElementById("istrinimas").style.color = "#0a0a29";
-                document.getElementById("inputas").value = '';
-            }, 150);
+            inputas = ""
+            document.getElementById("kodas").value = '';
+            document.getElementById("taskelis1").style.backgroundColor = "transparent";
+            document.getElementById("taskelis2").style.backgroundColor = "transparent";
+            document.getElementById("taskelis3").style.backgroundColor = "transparent";
+            document.getElementById("taskelis4").style.backgroundColor = "transparent";
+            document.getElementById("taskelis5").style.backgroundColor = "transparent";
+            document.getElementById("taskelis6").style.backgroundColor = "transparent";
         }
     </script>
 </body>
