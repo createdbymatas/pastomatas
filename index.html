@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:image" content="https://raw.githubusercontent.com/createdbymatas/pastomatas/main/thumbnail.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:title" content="LS Paštomatų sistema">
+    <meta property="og:description" content="Created by Matas">
     <title>LS Paštomatų sistema</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,8 +26,12 @@
             box-sizing: border-box;
             transition: 0.3s;
             font-family: 'IBM Plex Sans', sans-serif;
-            user-select: none;
             -webkit-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            user-select: none;
         }
         body{
             height: 100vh;
@@ -171,7 +183,7 @@
         }
         #keypad{
             width: 280px; 
-            height: 450px; 
+            height: 410px; 
             border-radius: 25px; 
             border: none; 
             background-color: white; 
@@ -185,18 +197,21 @@
             position: relative;
         }
         #keypad button{
-            width: 70px;
-            height: 70px;
-            border-radius: 50px;
+            width: 85px;
+            height: 85px;
+            border-radius: 10px;
             border: 2px solid #000033;
             font-size: 30px;
-            background-color: white;
+            background-color: #000033;
             cursor: pointer;
             transition: 0.15s;
-            color: #000033;
+            color: white;
         }
         #keypad button:active{
-            background-color: #000033;
+            background-color: white;
+        }
+        #istrinimas:active{
+            opacity: 0.5;
         }
         #keypad input{
             width: 0;
@@ -215,6 +230,7 @@
             width: 15px;
             height: 15px;
             border: 2px solid #000033;
+            background-color: #000033;
             border-radius: 100%;
             transition: 0.15s;
         }
@@ -245,6 +261,14 @@
             }
             100%{
                 opacity: 0;
+            }
+        }
+        @keyframes spin {
+            0%{
+                transform: rotate(0);
+            }
+            100%{
+                transform: rotate(360deg);
             }
         }
         #cancelLanguageBtn{
@@ -292,10 +316,11 @@
         <div style="width: 90%; height: 5px; background-color: lightgrey; border-radius: 25px; overflow: hidden;"><div style="width: 0; height: 5px; background-color: #000033; animation: load 1.6s ease-out infinite;"></div></div>
     </div>
     <div id="screenSize">
-        <p style="font-size: 25px;">Ekranas per didelis.</p>
-        <div style="width: 70px; height: 70px; display: flex; justify-content: center; align-items: center; margin-top: 30px;">
-            <i class="fa-solid fa-display" style="font-size: 70px;"></i>
-            <i class="fa-regular fa-circle-xmark" style="position: absolute; color: red; font-size: 30px; background-color: white; border-radius: 100%; margin-top: 35px; margin-left: 65px;"></i>
+        <p style="font-size: 25px; text-align: center; margin-bottom: 20px;">Ekranas per didelis</p>
+        <p style="font-size: 17px; text-align: center; margin-bottom: 20px;">Tinklalapis pritaikytas telefonui</p>
+        <div style="width: 100px; height: 100px; display: flex; justify-content: center; align-items: center;">
+            <i class="fa-solid fa-mobile-screen-button" style="font-size: 70px; position: absolute;"></i>
+            <i class="fa-regular fa-circle-xmark" style="font-size: 30px; color: red; background-color: white; border-radius: 100%; margin-top: 60px; z-index: 2; margin-left: 45px;"></i>
         </div>
     </div>
 
@@ -303,20 +328,20 @@
     <div id="languageWindow">
         <div style="width: 80%; height: 200px; background-color: #000033; border-radius: 25px; color: white; position: relative; overflow: hidden;">
             <p style="font-size: 20px; margin-top: 20px; margin-left: 20px;">Kalbos pasirinkimas</p>
-            <button style="margin-left: 20px; background-color: transparent; border: none; font-size: 17px; color: white; margin-top: 20px; font-weight: 600; display: block;"><i class="fa-regular fa-circle-check"></i> Lietuvių (Lithuanian)</button>
-            <button style="margin-left: 20px; background-color: transparent; border: none; font-size: 17px; color: white; margin-top: 20px; font-weight: 400; display: block;"><i class="fa-regular fa-circle"></i> English (Anglų)</button>
-            <button id="cancelLanguageBtn" onclick="cancelLanguage()">Atšaukti</button>
+            <button ontouchstart style="margin-left: 20px; background-color: transparent; border: none; font-size: 17px; color: white; margin-top: 20px; font-weight: 600; display: block;"><i class="fa-regular fa-circle-check"></i> Lietuvių (Lithuanian)</button>
+            <button ontouchstart style="margin-left: 20px; background-color: transparent; border: none; font-size: 17px; color: white; margin-top: 20px; font-weight: 400; display: block;"><i class="fa-regular fa-circle"></i> English (Anglų)</button>
+            <button ontouchstart id="cancelLanguageBtn" onclick="cancelLanguage()">Atšaukti</button>
         </div>
     </div>
 
         <div style="width: 100%; height: 50px; background-color: #000033; position: fixed; top: 0; left: 0; right: 0; z-index: 20; padding: 5px; color: white;">
-            <div style="width: 50px; height: 100%; font-size: 20px; position: absolute; top: 0; left: -50px; display: flex; justify-content: center; align-items: center;" id="backSelect" onclick="selectBack()"><i class="fa-solid fa-chevron-left" style="font-size: 25px;"></i></div>
-            <div style="width: 50px; height: 100%; font-size: 20px; position: absolute; top: 0; left: 0; display: none; justify-content: center; align-items: center;" id="backCollect" onclick="collectBack()"><i class="fa-solid fa-chevron-left" style="font-size: 25px;"></i></div>
+            <div ontouchstart style="width: 50px; height: 100%; font-size: 20px; position: absolute; top: 0; left: -50px; display: flex; justify-content: center; align-items: center;" id="backSelect" onclick="selectBack()"><i class="fa-solid fa-chevron-left" style="font-size: 25px;"></i></div>
+            <div ontouchstart style="width: 50px; height: 100%; font-size: 20px; position: absolute; top: 0; left: 0; display: none; justify-content: center; align-items: center;" id="backCollect" onclick="collectBack()"><i class="fa-solid fa-chevron-left" style="font-size: 25px;"></i></div>
             <img src="logo.jpg" alt="LS" style="height: 100%; margin-left: 0;" id="logoMenu">
             <i class="fa-solid fa-language" style="width: 50px; height: 50px; display: flex; justify-content: center; align-items: center; position: absolute; right: 5px; top: 0; bottom: 0; font-size: 25px;;" id="languageBtn" onclick="language()"></i>
         </div>
         <div id="reklamosTekstas">
-            <p style="text-align: center; font-size: 20px;" id="reklama1">Nuo šiol siuntas pristatome per 2 darbo dienas!</p>
+            <p style="text-align: center; font-size: 20px;" id="reklama1">Nuo šiol siuntas pristatome per 2 d.d.!</p>
             <p style="text-align: center; font-size: 20px; display: none;" id="reklama2">Paštomatų sistema atsinaujino!</p>
         </div>
         <div id="ekranas" onclick="start()">
@@ -325,12 +350,12 @@
             <p style="position: absolute; color: #000033; width: auto; height: auto; border-radius: 25px; padding: 10px; text-align: center; background-color: white; bottom: 20px;"><i class="fa-regular fa-hand-pointer"></i> Palieskite ekraną norėdami pradėti</p>
         </div>
         <div id="options">
-            <p style="font-size: 30px; color: #000033; margin-bottom: 10%;">Ką norėtumėte daryti?</p>
-            <div id="collectBtn" onclick="collect()" style="width: 90%; height: 30%; border: 2px solid #000033; border-radius: 25px 25px 10px 10px; display: flex; justify-content: center; align-items: center; flex-direction: column; margin-bottom: 1%; background-color: #000033; color: white;"><i class="fa-solid fa-box-open" style="font-size: 100px; margin-bottom: 20px;"></i><p style="font-size: 30px;">Atsiimti siuntą</p></div>
-            <div id="sendBtn" onclick="send()" style="width: 90%; height: 30%; border: 2px solid #000033; border-radius: 10px 10px 25px 25px; display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 1%; background-color: #000033; color: white;"><i class="fa-solid fa-dolly" style="font-size: 100px; margin-bottom: 20px;"></i><p style="font-size: 30px;">Siųsti siuntą</p></div>
+            <p style="font-size: 30px; color: #000033; margin-bottom: 10%;">Ką norite daryti?</p>
+            <div id="collectBtn" ontouchstart onclick="collect()" style="width: 90%; height: 30%; border: 2px solid #000033; border-radius: 15px; display: flex; justify-content: center; align-items: center; flex-direction: column; margin-bottom: 1%; background-color: #000033; color: white;"><i class="fa-solid fa-box-open" style="font-size: 100px; margin-bottom: 20px;"></i><p style="font-size: 30px;">Atsiimti siuntą</p></div>
+            <div id="sendBtn" ontouchstart onclick="send()" style="width: 90%; height: 30%; border: 2px solid #000033; border-radius: 15px; display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 1%; background-color: #000033; color: white;"><i class="fa-solid fa-dolly" style="font-size: 100px; margin-bottom: 20px;"></i><p style="font-size: 30px;">Siųsti siuntą</p></div>
         </div>
         <div id="collect">
-            <p style="font-size: 30px; color: #000033;">Įveskite siuntos PIN:</p>
+            <p style="font-size: 30px; color: #000033; margin-bottom: 10%;">Įveskite PIN kodą:</p>
             <form>
                 <div id="keypad">
                   <form style="width: 100%; height: 100%; display: flex; justify-content: space-around; align-items: center; flex-direction: column;">
@@ -344,43 +369,35 @@
                         <div id="taskelis6"></div>
                     </div>
                   <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;" id="key1">
-                      <button type="button" onclick="pirmas()" id="vienasY">1<i class="fa-solid fa-voicemail" style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;"></i></button>
-                      <button type="button" onclick="antras()" id="duY">2<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">a b c</p></button>
-                      <button type="button" onclick="trecias()" id="trysY">3<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">d e f</p></button>
+                      <button ontouchstart type="button" onclick="pirmas()" id="vienasY">1<i class="fa-solid fa-plus" style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s; opacity: 0;"></i></button>
+                      <button ontouchstart type="button" onclick="antras()" id="duY">2<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">A B C</p></button>
+                      <button ontouchstart type="button" onclick="trecias()" id="trysY">3<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">D E F</p></button>
                   </div>
                   <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;" id="key2">
-                      <button type="button" onclick="ketvirtas()" id="keturiY">4<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">g h i</p></button>
-                      <button type="button" onclick="penktas()" id="penkiY">5<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">j k l</p></button>
-                      <button type="button" onclick="sestas()" id="sesiY">6<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">m n o</p></button>
+                      <button ontouchstart type="button" onclick="ketvirtas()" id="keturiY">4<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">G H I</p></button>
+                      <button ontouchstart type="button" onclick="penktas()" id="penkiY">5<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">J K L</p></button>
+                      <button ontouchstart type="button" onclick="sestas()" id="sesiY">6<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">M N O</p></button>
                   </div>
                   <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;" id="key3">
-                      <button type="button" onclick="septintas()" id="septyniY">7<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">p q r s</p></button>
-                      <button type="button" onclick="astuntas()" id="astuoniY">8<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">t u v</p></button>
-                      <button type="button" onclick="devintas()" id="devyniY">9<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">w x y z</p></button>
+                      <button ontouchstart type="button" onclick="septintas()" id="septyniY">7<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">P Q R S</p></button>
+                      <button ontouchstart type="button" onclick="astuntas()" id="astuoniY">8<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">T U V</p></button>
+                      <button ontouchstart type="button" onclick="devintas()" id="devyniY">9<p style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;">W X Y Z</p></button>
                   </div>
                   <div style="width: 100%; display: flex; justify-content: space-around; align-items: center;" id="key4">
-                      <button type="button" onclick="check(this.form)" id="checkBtn" style="opacity: 0; pointer-events: none;">OK</button>
-                      <button type="button" onclick="nulinis()" id="nulisY">0<i class="fa-solid fa-plus" style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;"></i></button>
-                      <button type="button" onclick="istrinti()"  id="istrinimas" style="border: none;"><i class="fa-regular fa-trash-can" style="transition: none;"></i></button>
+                      <button ontouchstart type="button" onclick="check(this.form)" id="checkBtn" style="opacity: 0; pointer-events: none;">OK</button>
+                      <button ontouchstart type="button" onclick="nulinis()" id="nulisY">0<i class="fa-solid fa-plus" style="font-size: 12px; margin-bottom: 5px; display: block; transition: 0.01s;"></i></button>
+                      <button ontouchstart type="button" onclick="istrinti()" id="istrinimas" style="font-size: 18px; border: none; background-color: transparent; color: transparent; pointer-events: none;">Trinti</button>
                   </div>
                   </form>
-              </div>
-                <input type="number" value="1" id="vienetas" style="display: none;">
-                <input type="number" value="2" id="dvejetas" style="display: none;">
-                <input type="number" value="3" id="trejetas" style="display: none;">
-                <input type="number" value="4" id="ketvertas" style="display: none;">
-                <input type="number" value="5" id="penketas" style="display: none;">
-                <input type="number" value="6" id="sesetas" style="display: none;">
-                <input type="number" value="7" id="septynetas" style="display: none;">
-                <input type="number" value="8" id="astuonetas" style="display: none;">
-                <input type="number" value="9" id="devynetas" style="display: none;">
-                <input type="number" value="0" id="nulis" style="display: none;">
+                </div>
               </form>
         </div>
         <div id="completeCollect">
             <p style="font-size: 30px; color: #000033; margin-bottom: 10%;">Atsiimkite siuntą.</p>
             <p style="font-size: 25px; color: #000033; margin-bottom: 10%;">Nepamirškite uždaryti durelių!</p>
             <i class="fa-solid fa-arrow-right-to-bracket" style="transform: rotate(90deg); color: #000033; font-size: 100px;"></i>
+            <p style="position: absolute; right: 15px; bottom: 15px;" id="vaizdasBusRodomas">Vaizdas bus rodomas <span id="15sec" style="background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:15</span><span id="14sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:14</span><span id="13sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:13</span><span id="12sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:12</span><span id="11sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:11</span><span id="10sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:10</span><span id="9sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:09</span><span id="8sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:08</span><span id="7sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:07</span><span id="6sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:06</span><span id="5sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:05</span><span id="4sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:04</span><span id="3sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:03</span><span id="2sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:02</span><span id="1sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:01</span><span id="0sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:00</span></p>
+            <p style="position: absolute; right: 15px; bottom: 15px; display: none;" id="sistemaAtnaujinama"><i class="fa-solid fa-gear" style="animation: spin 2s linear infinite;"></i> Sistema atnaujinama. Palaukite...</p>
         </div>
 
         <div style="background-color: black; width: 100%; height: 100%; position: fixed; top: 0; right: 0; left: 0; z-index: 70; font-family: 'Source Code Pro', monospace; padding: 5px; transition: none; display: none; justify-content: center; align-items: center; flex-direction: column; transition: none;" id="recoveryWindow">
@@ -521,8 +538,10 @@
             }, 310);
         }
         function send() {
+            document.getElementById("backSelect").style.pointerEvents = "none";
             setTimeout(() => {  
                 document.getElementById("recoveryWindow").style.display = "flex";
+                document.getElementById("backSelect").style.pointerEvents = "all";
             }, 1000);
             setTimeout(() => { 
                 document.getElementById("recoveryWindow").style.backgroundColor = "red";
@@ -598,9 +617,11 @@
         };
         function check(form)
         {
-            if(form.pin.value == "049857")
+            if(form.pin.value == "222857")
             {
                 document.getElementById("backCollect").style.pointerEvents = "none";
+                document.getElementById("istrinimas").style.color = "transparent";
+                document.getElementById("istrinimas").style.pointerEvents = "none";
                 setTimeout(() => {
                     document.getElementById("key1").style.opacity = "0.2";
                     document.getElementById("key2").style.opacity = "0.2";
@@ -621,11 +642,78 @@
                     document.getElementById("backCollect").style.left = "-50px";
                     document.getElementById("logoMenu").style.marginLeft = "0";
                 }, 3000);
+                setTimeout(() => {
+                    document.getElementById("15sec").style.display = "none";
+                    document.getElementById("14sec").style.display = "inline";
+                }, 4000);
+                setTimeout(() => {
+                    document.getElementById("14sec").style.display = "none";
+                    document.getElementById("13sec").style.display = "inline";
+                }, 5000);
+                setTimeout(() => {
+                    document.getElementById("13sec").style.display = "none";
+                    document.getElementById("12sec").style.display = "inline";
+                }, 6000);
+                setTimeout(() => {
+                    document.getElementById("12sec").style.display = "none";
+                    document.getElementById("11sec").style.display = "inline";
+                }, 7000);
+                setTimeout(() => {
+                    document.getElementById("11sec").style.display = "none";
+                    document.getElementById("10sec").style.display = "inline";
+                }, 8000);
+                setTimeout(() => {
+                    document.getElementById("10sec").style.display = "none";
+                    document.getElementById("9sec").style.display = "inline";
+                }, 9000);
+                setTimeout(() => {
+                    document.getElementById("9sec").style.display = "none";
+                    document.getElementById("8sec").style.display = "inline";
+                }, 10000);
+                setTimeout(() => {
+                    document.getElementById("8sec").style.display = "none";
+                    document.getElementById("7sec").style.display = "inline";
+                }, 11000);
+                setTimeout(() => {
+                    document.getElementById("7sec").style.display = "none";
+                    document.getElementById("6sec").style.display = "inline";
+                }, 12000);
+                setTimeout(() => {
+                    document.getElementById("6sec").style.display = "none";
+                    document.getElementById("5sec").style.display = "inline";
+                }, 13000);
+                setTimeout(() => {
+                    document.getElementById("5sec").style.display = "none";
+                    document.getElementById("4sec").style.display = "inline";
+                }, 14000);
+                setTimeout(() => {
+                    document.getElementById("4sec").style.display = "none";
+                    document.getElementById("3sec").style.display = "inline";
+                }, 15000);
+                setTimeout(() => {
+                    document.getElementById("3sec").style.display = "none";
+                    document.getElementById("2sec").style.display = "inline";
+                }, 16000);
+                setTimeout(() => {
+                    document.getElementById("2sec").style.display = "none";
+                    document.getElementById("1sec").style.display = "inline";
+                }, 17000);
+                setTimeout(() => {
+                    document.getElementById("1sec").style.display = "none";
+                    document.getElementById("0sec").style.display = "inline";
+                }, 18000);
+                setTimeout(() => {
+                    document.getElementById("vaizdasBusRodomas").style.display = "none";
+                    document.getElementById("sistemaAtnaujinama").style.display = "block";
+                }, 19000);
                 setTimeout(() => {  
                     location.replace("index.html");
-                }, 13000);
+                }, 20000);
             }
             else{
+                document.getElementById("backCollect").style.pointerEvents = "none";
+                document.getElementById("istrinimas").style.color = "transparent";
+                document.getElementById("istrinimas").style.pointerEvents = "none";
                 setTimeout(() => {
                     document.getElementById("key1").style.opacity = "0.2";
                     document.getElementById("key2").style.opacity = "0.2";
@@ -644,12 +732,13 @@
                     document.getElementById("keypad").style.pointerEvents = "all";
                     inputas = ""
                     document.getElementById("kodas").value = '';
-                    document.getElementById("taskelis1").style.backgroundColor = "transparent";
-                    document.getElementById("taskelis2").style.backgroundColor = "transparent";
-                    document.getElementById("taskelis3").style.backgroundColor = "transparent";
-                    document.getElementById("taskelis4").style.backgroundColor = "transparent";
-                    document.getElementById("taskelis5").style.backgroundColor = "transparent";
-                    document.getElementById("taskelis6").style.backgroundColor = "transparent";
+                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("backCollect").style.pointerEvents = "all";
                 }, 3000);
                 setTimeout(() => {
                     document.getElementById("taskeliai").style.marginLeft = "100px";
@@ -669,302 +758,324 @@
         function pirmas() {
             inputas = inputas + 1;
             document.getElementById("kodas").value = inputas;
+            document.getElementById("istrinimas").style.color = "#000033";
+            document.getElementById("istrinimas").style.pointerEvents = "all";
             if(inputas.length == "1")
                 {
-                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis1").style.backgroundColor = "white";
             }
             else if(inputas.length == "2")
                 {
-                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis2").style.backgroundColor = "white";
             }
             else if(inputas.length == "3")
                 {
-                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis3").style.backgroundColor = "white";
             }
             else if(inputas.length == "4")
                 {
-                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis4").style.backgroundColor = "white";
             }
             else if(inputas.length == "5")
                 {
-                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis5").style.backgroundColor = "white";
             }
             else if(inputas.length == "6")
                 {
-                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis6").style.backgroundColor = "white";
                     document.getElementById("checkBtn").click();
             }
         }
         function antras() {
             inputas = inputas + 2;
             document.getElementById("kodas").value = inputas;
+            document.getElementById("istrinimas").style.color = "#000033";
+            document.getElementById("istrinimas").style.pointerEvents = "all";
             if(inputas.length == "1")
                 {
-                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis1").style.backgroundColor = "white";
             }
             else if(inputas.length == "2")
                 {
-                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis2").style.backgroundColor = "white";
             }
             else if(inputas.length == "3")
                 {
-                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis3").style.backgroundColor = "white";
             }
             else if(inputas.length == "4")
                 {
-                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis4").style.backgroundColor = "white";
             }
             else if(inputas.length == "5")
                 {
-                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis5").style.backgroundColor = "white";
             }
             else if(inputas.length == "6")
                 {
-                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis6").style.backgroundColor = "white";
                     document.getElementById("checkBtn").click();
             }
         }
         function trecias() {
             inputas = inputas + 3;
             document.getElementById("kodas").value = inputas;
+            document.getElementById("istrinimas").style.color = "#000033";
+            document.getElementById("istrinimas").style.pointerEvents = "all";
             if(inputas.length == "1")
                 {
-                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis1").style.backgroundColor = "white";
             }
             else if(inputas.length == "2")
                 {
-                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis2").style.backgroundColor = "white";
             }
             else if(inputas.length == "3")
                 {
-                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis3").style.backgroundColor = "white";
             }
             else if(inputas.length == "4")
                 {
-                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis4").style.backgroundColor = "white";
             }
             else if(inputas.length == "5")
                 {
-                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis5").style.backgroundColor = "white";
             }
             else if(inputas.length == "6")
                 {
-                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis6").style.backgroundColor = "white";
                     document.getElementById("checkBtn").click();
             }
         }
         function ketvirtas() {
             inputas = inputas + 4;
             document.getElementById("kodas").value = inputas;
+            document.getElementById("istrinimas").style.color = "#000033";
+            document.getElementById("istrinimas").style.pointerEvents = "all";
             if(inputas.length == "1")
                 {
-                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis1").style.backgroundColor = "white";
             }
             else if(inputas.length == "2")
                 {
-                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis2").style.backgroundColor = "white";
             }
             else if(inputas.length == "3")
                 {
-                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis3").style.backgroundColor = "white";
             }
             else if(inputas.length == "4")
                 {
-                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis4").style.backgroundColor = "white";
             }
             else if(inputas.length == "5")
                 {
-                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis5").style.backgroundColor = "white";
             }
             else if(inputas.length == "6")
                 {
-                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis6").style.backgroundColor = "white";
                     document.getElementById("checkBtn").click();
             }
         }
         function penktas() {
             inputas = inputas + 5;
             document.getElementById("kodas").value = inputas;
+            document.getElementById("istrinimas").style.color = "#000033";
+            document.getElementById("istrinimas").style.pointerEvents = "all";
             if(inputas.length == "1")
                 {
-                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis1").style.backgroundColor = "white";
             }
             else if(inputas.length == "2")
                 {
-                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis2").style.backgroundColor = "white";
             }
             else if(inputas.length == "3")
                 {
-                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis3").style.backgroundColor = "white";
             }
             else if(inputas.length == "4")
                 {
-                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis4").style.backgroundColor = "white";
             }
             else if(inputas.length == "5")
                 {
-                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis5").style.backgroundColor = "white";
             }
             else if(inputas.length == "6")
                 {
-                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis6").style.backgroundColor = "white";
                     document.getElementById("checkBtn").click();
             }
         }
         function sestas() {
             inputas = inputas + 6;
             document.getElementById("kodas").value = inputas;
+            document.getElementById("istrinimas").style.color = "#000033";
+            document.getElementById("istrinimas").style.pointerEvents = "all";
             if(inputas.length == "1")
                 {
-                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis1").style.backgroundColor = "white";
             }
             else if(inputas.length == "2")
                 {
-                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis2").style.backgroundColor = "white";
             }
             else if(inputas.length == "3")
                 {
-                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis3").style.backgroundColor = "white";
             }
             else if(inputas.length == "4")
                 {
-                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis4").style.backgroundColor = "white";
             }
             else if(inputas.length == "5")
                 {
-                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis5").style.backgroundColor = "white";
             }
             else if(inputas.length == "6")
                 {
-                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis6").style.backgroundColor = "white";
                     document.getElementById("checkBtn").click();
             }
         }
         function septintas() {
             inputas = inputas + 7;
             document.getElementById("kodas").value = inputas;
+            document.getElementById("istrinimas").style.color = "#000033";
+            document.getElementById("istrinimas").style.pointerEvents = "all";
             if(inputas.length == "1")
                 {
-                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis1").style.backgroundColor = "white";
             }
             else if(inputas.length == "2")
                 {
-                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis2").style.backgroundColor = "white";
             }
             else if(inputas.length == "3")
                 {
-                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis3").style.backgroundColor = "white";
             }
             else if(inputas.length == "4")
                 {
-                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis4").style.backgroundColor = "white";
             }
             else if(inputas.length == "5")
                 {
-                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis5").style.backgroundColor = "white";
             }
             else if(inputas.length == "6")
                 {
-                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis6").style.backgroundColor = "white";
                     document.getElementById("checkBtn").click();
             }
         }
         function astuntas() {
             inputas = inputas + 8;
             document.getElementById("kodas").value = inputas;
+            document.getElementById("istrinimas").style.color = "#000033";
+            document.getElementById("istrinimas").style.pointerEvents = "all";
             if(inputas.length == "1")
                 {
-                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis1").style.backgroundColor = "white";
             }
             else if(inputas.length == "2")
                 {
-                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis2").style.backgroundColor = "white";
             }
             else if(inputas.length == "3")
                 {
-                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis3").style.backgroundColor = "white";
             }
             else if(inputas.length == "4")
                 {
-                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis4").style.backgroundColor = "white";
             }
             else if(inputas.length == "5")
                 {
-                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis5").style.backgroundColor = "white";
             }
             else if(inputas.length == "6")
                 {
-                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis6").style.backgroundColor = "white";
                     document.getElementById("checkBtn").click();
             }
         }
         function devintas() {
             inputas = inputas + 9;
             document.getElementById("kodas").value = inputas;
+            document.getElementById("istrinimas").style.color = "#000033";
+            document.getElementById("istrinimas").style.pointerEvents = "all";
             if(inputas.length == "1")
                 {
-                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis1").style.backgroundColor = "white";
             }
             else if(inputas.length == "2")
                 {
-                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis2").style.backgroundColor = "white";
             }
             else if(inputas.length == "3")
                 {
-                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis3").style.backgroundColor = "white";
             }
             else if(inputas.length == "4")
                 {
-                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis4").style.backgroundColor = "white";
             }
             else if(inputas.length == "5")
                 {
-                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis5").style.backgroundColor = "white";
             }
             else if(inputas.length == "6")
                 {
-                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis6").style.backgroundColor = "white";
                     document.getElementById("checkBtn").click();
             }
         }
         function nulinis() {
             inputas = inputas + 0;
             document.getElementById("kodas").value = inputas;
+            document.getElementById("istrinimas").style.color = "#000033";
+            document.getElementById("istrinimas").style.pointerEvents = "all";
             if(inputas.length == "1")
                 {
-                    document.getElementById("taskelis1").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis1").style.backgroundColor = "white";
             }
             else if(inputas.length == "2")
                 {
-                    document.getElementById("taskelis2").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis2").style.backgroundColor = "white";
             }
             else if(inputas.length == "3")
                 {
-                    document.getElementById("taskelis3").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis3").style.backgroundColor = "white";
             }
             else if(inputas.length == "4")
                 {
-                    document.getElementById("taskelis4").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis4").style.backgroundColor = "white";
             }
             else if(inputas.length == "5")
                 {
-                    document.getElementById("taskelis5").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis5").style.backgroundColor = "white";
             }
             else if(inputas.length == "6")
                 {
-                    document.getElementById("taskelis6").style.backgroundColor = "#000033";
+                    document.getElementById("taskelis6").style.backgroundColor = "white";
                     document.getElementById("checkBtn").click();
             }
         }
         function istrinti() {
             inputas = ""
             document.getElementById("kodas").value = '';
-            document.getElementById("taskelis1").style.backgroundColor = "transparent";
-            document.getElementById("taskelis2").style.backgroundColor = "transparent";
-            document.getElementById("taskelis3").style.backgroundColor = "transparent";
-            document.getElementById("taskelis4").style.backgroundColor = "transparent";
-            document.getElementById("taskelis5").style.backgroundColor = "transparent";
-            document.getElementById("taskelis6").style.backgroundColor = "transparent";
+            document.getElementById("istrinimas").style.color = "transparent";
+            document.getElementById("istrinimas").style.pointerEvents = "none";
+            document.getElementById("taskelis1").style.backgroundColor = "#000033";
+            document.getElementById("taskelis2").style.backgroundColor = "#000033";
+            document.getElementById("taskelis3").style.backgroundColor = "#000033";
+            document.getElementById("taskelis4").style.backgroundColor = "#000033";
+            document.getElementById("taskelis5").style.backgroundColor = "#000033";
+            document.getElementById("taskelis6").style.backgroundColor = "#000033";
         }
     </script>
 </body>
