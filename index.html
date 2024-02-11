@@ -283,6 +283,7 @@
             right: 0;
             bottom: 0;
             font-size: 17px;
+            cursor: pointer;
         }
         #languageBtn:active{
             transform: scale(0.8);
@@ -337,10 +338,10 @@
     </div>
 
         <div style="width: 100%; height: 50px; background-color: #000033; position: fixed; top: 0; left: 0; right: 0; z-index: 20; padding: 5px; color: white;">
-            <div ontouchstart style="width: 50px; height: 100%; font-size: 20px; position: absolute; top: 0; left: -50px; display: flex; justify-content: center; align-items: center;" id="backSelect" onclick="selectBack()"><i class="fa-solid fa-chevron-left" style="font-size: 25px;"></i></div>
-            <div ontouchstart style="width: 50px; height: 100%; font-size: 20px; position: absolute; top: 0; left: 0; display: none; justify-content: center; align-items: center;" id="backCollect" onclick="collectBack()"><i class="fa-solid fa-chevron-left" style="font-size: 25px;"></i></div>
+            <div ontouchstart style="width: 50px; height: 100%; font-size: 20px; position: absolute; top: 0; left: -50px; display: flex; justify-content: center; align-items: center; cursor: pointer;" id="backSelect" onclick="selectBack()"><i class="fa-solid fa-chevron-left" style="font-size: 25px;"></i></div>
+            <div ontouchstart style="width: 50px; height: 100%; font-size: 20px; position: absolute; top: 0; left: 0; display: none; justify-content: center; align-items: center; cursor: pointer;" id="backCollect" onclick="collectBack()"><i class="fa-solid fa-chevron-left" style="font-size: 25px;"></i></div>
             <img src="logo.jpg" alt="LS" style="height: 100%; margin-left: 0;" id="logoMenu">
-            <i class="fa-solid fa-language" style="width: 50px; height: 50px; display: flex; justify-content: center; align-items: center; position: absolute; right: 5px; top: 0; bottom: 0; font-size: 25px;;" id="languageBtn" onclick="language()"></i>
+            <i class="fa-solid fa-language" style="width: 50px; height: 50px; display: flex; justify-content: center; align-items: center; position: absolute; right: 5px; top: 0; bottom: 0; font-size: 25px; cursor: pointer;" id="languageBtn" onclick="language()"></i>
         </div>
         <div id="reklamosTekstas">
             <p style="text-align: center; font-size: 20px;" id="reklama1">Nuo šiol siuntas pristatome per 2 d.d.!</p>
@@ -353,11 +354,11 @@
         </div>
         <div id="options">
             <p style="font-size: 30px; color: #000033; margin-bottom: 10%;">Ką norite daryti?</p>
-            <div id="collectBtn" ontouchstart onclick="collect()" style="width: 90%; height: 30%; border: 2px solid #000033; border-radius: 15px; display: flex; justify-content: center; align-items: center; flex-direction: column; margin-bottom: 1%; background-color: #000033; color: white;"><i class="fa-solid fa-box-open" style="font-size: 100px; margin-bottom: 20px;"></i><p style="font-size: 30px;">Atsiimti siuntą</p></div>
-            <div id="sendBtn" ontouchstart onclick="send()" style="width: 90%; height: 30%; border: 2px solid #000033; border-radius: 15px; display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 1%; background-color: #000033; color: white;"><i class="fa-solid fa-dolly" style="font-size: 100px; margin-bottom: 20px;"></i><p style="font-size: 30px;">Siųsti siuntą</p></div>
+            <div id="collectBtn" ontouchstart onclick="collect()" style="width: 90%; height: 30%; border: 2px solid #000033; border-radius: 15px; display: flex; justify-content: center; align-items: center; flex-direction: column; margin-bottom: 1%; background-color: #000033; color: white; cursor: pointer;"><i class="fa-solid fa-box-open" style="font-size: 100px; margin-bottom: 20px;"></i><p style="font-size: 30px;">Atsiimti siuntą</p></div>
+            <div id="sendBtn" ontouchstart onclick="send()" style="width: 90%; height: 30%; border: 2px solid #000033; border-radius: 15px; display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 1%; background-color: #000033; color: white; cursor: pointer;"><i class="fa-solid fa-dolly" style="font-size: 100px; margin-bottom: 20px;"></i><p style="font-size: 30px;">Siųsti siuntą</p></div>
         </div>
         <div id="collect">
-            <p style="font-size: 30px; color: #000033; margin-bottom: 10%;">Įveskite PIN kodą:</p>
+            <p style="font-size: 30px; color: #000033; margin-bottom: 7%;" id="ivestiPinKoda">Įveskite PIN kodą:</p>
             <form>
                 <div id="keypad">
                   <form style="width: 100%; height: 100%; display: flex; justify-content: space-around; align-items: center; flex-direction: column;">
@@ -399,7 +400,7 @@
             <p style="font-size: 25px; color: #000033; margin-bottom: 10%;">Nepamirškite uždaryti durelių!</p>
             <i class="fa-solid fa-arrow-right-to-bracket" style="transform: rotate(90deg); color: #000033; font-size: 100px;"></i>
             <p style="position: absolute; right: 15px; bottom: 15px;" id="vaizdasBusRodomas">Vaizdas bus rodomas <span id="15sec" style="background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:15</span><span id="14sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:14</span><span id="13sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:13</span><span id="12sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:12</span><span id="11sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:11</span><span id="10sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:10</span><span id="9sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:09</span><span id="8sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:08</span><span id="7sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:07</span><span id="6sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:06</span><span id="5sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:05</span><span id="4sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:04</span><span id="3sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:03</span><span id="2sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:02</span><span id="1sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:01</span><span id="0sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:00</span></p>
-            <p style="position: absolute; right: 15px; bottom: 15px; display: none;" id="sistemaAtnaujinama"><i class="fa-solid fa-gear" style="animation: spin 2s linear infinite;"></i> Sistema atnaujinama. Palaukite...</p>
+            <p style="position: absolute; right: 15px; bottom: 15px; display: none;" id="sistemaAtnaujinama"><i class="fa-solid fa-gear" style="animation: spin 2s linear infinite;"></i> Sistema atnaujinama...</p>
         </div>
 
         <div style="background-color: black; width: 100%; height: 100%; position: fixed; top: 0; right: 0; left: 0; z-index: 70; font-family: 'Source Code Pro', monospace; padding: 5px; transition: none; display: none; justify-content: center; align-items: center; flex-direction: column; transition: none;" id="recoveryWindow">
@@ -648,6 +649,7 @@
                     document.getElementById("key3").style.opacity = "0.2";
                     document.getElementById("key4").style.opacity = "0.2";
                     document.getElementById("taskeliai").style.opacity = "0.2";
+                    document.getElementById("ivestiPinKoda").style.opacity = "0.2";
                     document.getElementById("keypad").style.pointerEvents = "none";
                 }, 10);
                 setTimeout(() => {
@@ -656,6 +658,7 @@
                     document.getElementById("key3").style.opacity = "1";
                     document.getElementById("key4").style.opacity = "1";
                     document.getElementById("taskeliai").style.opacity = "1";
+                    document.getElementById("ivestiPinKoda").style.opacity = "1";
                     document.getElementById("keypad").style.pointerEvents = "all";
                     document.getElementById("collect").style.left = "-100%";
                     document.getElementById("completeCollect").style.left = "0";
@@ -740,6 +743,7 @@
                     document.getElementById("key3").style.opacity = "0.2";
                     document.getElementById("key4").style.opacity = "0.2";
                     document.getElementById("taskeliai").style.opacity = "0.2";
+                    document.getElementById("ivestiPinKoda").style.opacity = "0.2";
                     document.getElementById("keypad").style.pointerEvents = "none";
                 }, 10);
                 setTimeout(() => {
@@ -749,6 +753,7 @@
                     document.getElementById("key3").style.opacity = "1";
                     document.getElementById("key4").style.opacity = "1";
                     document.getElementById("taskeliai").style.opacity = "1";
+                    document.getElementById("ivestiPinKoda").style.opacity = "1";
                     document.getElementById("keypad").style.pointerEvents = "all";
                     inputas = ""
                     document.getElementById("kodas").value = '';
