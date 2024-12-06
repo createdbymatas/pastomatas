@@ -173,7 +173,7 @@
         #keypad button{
             width: 85px;
             height: 85px;
-            border-radius: 10px;
+            border-radius: 25px;
             border: 2px solid #000033;
             font-size: 30px;
             background-color: #000033;
@@ -271,7 +271,7 @@
         <div style="width: 50%; height: 5px; background-color: lightgrey; border-radius: 25px; overflow: hidden;"><div style="width: 0; height: 5px; background-color: #000033; animation: load 1.6s ease-out infinite;"></div></div>
     </div>
     <div id="screenSize">
-        <p style="font-size: 25px; text-align: center; margin-bottom: 20px;">Ekranas per didelis</p>
+        <p style="font-size: 25px; text-align: center; margin-bottom: 20px; font-weight: 600;">Ekranas per didelis</p>
         <p style="font-size: 17px; text-align: center; margin-bottom: 20px;">Tinklalapis pritaikytas telefonui</p>
         <div style="width: 100px; height: 100px; display: flex; justify-content: center; align-items: center;">
             <i class="fa-solid fa-mobile-screen-button" style="font-size: 70px; position: absolute;"></i>
@@ -294,12 +294,12 @@
             <p style="position: absolute; color: #000033; width: auto; height: auto; border-radius: 25px; padding: 10px; text-align: center; background-color: white; bottom: 20px;"><i class="fa-regular fa-hand-pointer"></i> Palieskite ekraną norėdami pradėti</p>
         </div>
         <div id="options">
-            <p style="font-size: 30px; color: #000033; margin-bottom: 10%;">Ką norite daryti?</p>
-            <div id="collectBtn" ontouchstart onclick="collect()" style="width: 90%; height: 30%; border: 2px solid #000033; border-radius: 15px; display: flex; justify-content: center; align-items: center; flex-direction: column; margin-bottom: 1%; background-color: #000033; color: white; cursor: pointer;"><i class="fa-solid fa-box-open" style="font-size: 100px; margin-bottom: 20px;"></i><p style="font-size: 30px;">Atsiimti siuntą</p></div>
-            <div id="sendBtn" ontouchstart onclick="send()" style="width: 90%; height: 30%; border: 2px solid #000033; border-radius: 15px; display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 1%; background-color: #000033; color: white; cursor: pointer;"><i class="fa-solid fa-dolly" style="font-size: 100px; margin-bottom: 20px;"></i><p style="font-size: 30px;">Siųsti siuntą</p></div>
+            <p style="font-size: 30px; color: #000033; margin-bottom: 10%; font-weight: 600; cursor: default;">Ką norite daryti?</p>
+            <div id="collectBtn" ontouchstart onclick="collect()" style="width: 90%; height: 30%; border-radius: 25px; display: flex; justify-content: center; align-items: center; flex-direction: column; margin-bottom: 1%; background-color: #000033; color: white; cursor: pointer;"><i class="fa-solid fa-box-open" style="font-size: 100px; margin-bottom: 20px;"></i><p style="font-size: 30px;">Atsiimti siuntą</p></div>
+            <div style="width: 90%; height: 30%; border-radius: 25px; display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 1%; background-color: rgba(0, 0, 51, 0.2); color: white; pointer-events: none;"><i class="fa-solid fa-dolly" style="font-size: 100px; margin-bottom: 20px; opacity: 0.2;"></i><p style="font-size: 30px; opacity: 0.2;">Siųsti siuntą</p><p style="position: absolute; font-size: 25px; color: #000033;">Galimybės nėra.</p></div>
         </div>
         <div id="collect">
-            <p style="font-size: 30px; color: #000033; margin-bottom: 7%;" id="ivestiPinKoda">Įveskite PIN kodą:</p>
+            <p style="font-size: 30px; color: #000033; margin-bottom: 7%; font-weight: 600; cursor: default;" id="ivestiPinKoda">Įveskite PIN kodą:</p>
             <form>
                 <div id="keypad">
                   <form style="width: 100%; height: 100%; display: flex; justify-content: space-around; align-items: center; flex-direction: column;">
@@ -337,19 +337,11 @@
               </form>
         </div>
         <div id="completeCollect">
-            <p style="font-size: 30px; color: #000033; margin-bottom: 10%;">Atsiimkite siuntą.</p>
-            <p style="font-size: 25px; color: #000033; margin-bottom: 10%;">Nepamirškite uždaryti durelių!</p>
+            <p style="font-size: 30px; color: #000033; margin-bottom: 10%; font-weight: 600; cursor: default;">Atsiimkite siuntą.</p>
+            <p style="font-size: 25px; color: #000033; margin-bottom: 10%; cursor: default;">Nepamirškite uždaryti durelių!</p>
             <i class="fa-solid fa-arrow-right-to-bracket" style="transform: rotate(90deg); color: #000033; font-size: 100px;"></i>
-            <p style="position: absolute; right: 15px; bottom: 15px;" id="vaizdasBusRodomas">Vaizdas bus rodomas <span id="15sec" style="background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:15</span><span id="14sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:14</span><span id="13sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:13</span><span id="12sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:12</span><span id="11sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:11</span><span id="10sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:10</span><span id="9sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:09</span><span id="8sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:08</span><span id="7sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:07</span><span id="6sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:06</span><span id="5sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:05</span><span id="4sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:04</span><span id="3sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:03</span><span id="2sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:02</span><span id="1sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:01</span><span id="0sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:00</span></p>
-            <p style="position: absolute; right: 15px; bottom: 15px; display: none;" id="sistemaAtnaujinama"><i class="fa-solid fa-gear" style="animation: spin 2s linear infinite;"></i> Sistema atnaujinama...</p>
-        </div>
-
-        <div style="background-color: black; width: 100%; height: 100%; position: fixed; top: 0; right: 0; left: 0; z-index: 70; font-family: 'Source Code Pro', monospace; padding: 5px; transition: none; display: none; justify-content: center; align-items: center; flex-direction: column; transition: none;" id="recoveryWindow">
-            <i class="fa-solid fa-triangle-exclamation" style="color: white; font-size: 100px; animation: blink 2s linear infinite; display: none;" id="exclamation"></i>
-            <p style="color: white; font-size: 17px; font-family: 'Source Code Pro', monospace; text-align: center; padding: 10%; padding-top: 20px; display: none;" id="textError">命令 'ls/sendParcel()' 未經授權。 系統鎖定。 <br><span style="font-size: 18px; font-family: 'Source Code Pro', monospace;">透過 USB 使用恢復裝置。</span></p>
-            <p style="color: white; font-size: 17px; font-family: 'Source Code Pro', monospace; display: none;" id="rebootingSystem">正在重啟系統...</p>
-            <p style="color: white; font-size: 17px; font-family: 'Source Code Pro', monospace; display: none;" id="loadingFiles">正在加載檔案...</p>
-            <p style="color: white; font-size: 17px; font-family: 'Source Code Pro', monospace; display: none;" id="mosquito"><i class="fa-solid fa-mosquito"></i> Mosquito</p>
+            <p style="position: absolute; right: 15px; bottom: 15px; cursor: default;" id="vaizdasBusRodomas">Vaizdas bus rodomas <span id="15sec" style="background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:15</span><span id="14sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:14</span><span id="13sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:13</span><span id="12sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:12</span><span id="11sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:11</span><span id="10sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:10</span><span id="9sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:09</span><span id="8sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:08</span><span id="7sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:07</span><span id="6sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:06</span><span id="5sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:05</span><span id="4sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:04</span><span id="3sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:03</span><span id="2sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:02</span><span id="1sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:01</span><span id="0sec" style="display: none; background-color: #000033; color: white; border-radius: 5px; padding: 5px;">0:00</span></p>
+            <p style="position: absolute; right: 15px; bottom: 15px; display: none; cursor: default;" id="sistemaAtnaujinama"><i class="fa-solid fa-gear" style="animation: spin 2s linear infinite;"></i> Sistema atnaujinama...</p>
         </div>
         
     <script src="https://kit.fontawesome.com/a11707644f.js" crossorigin="anonymous"></script>
@@ -480,84 +472,6 @@
                 document.getElementById("inputas").value = '';
             }, 310);
         }
-        function send() {
-            document.getElementById("backSelect").style.pointerEvents = "none";
-            setTimeout(() => {  
-                document.getElementById("recoveryWindow").style.display = "flex";
-                document.getElementById("backSelect").style.pointerEvents = "all";
-            }, 1000);
-            setTimeout(() => { 
-                document.getElementById("recoveryWindow").style.backgroundColor = "red";
-                document.getElementById("exclamation").style.display = "block";
-                document.getElementById("textError").style.display = "block";
-                document.getElementById("error-audio").play();
-                document.getElementById('error-audio').currentTime = 0;
-                document.getElementById("klaida-audio").play();
-                document.getElementById('klaida-audio').currentTime = 0;
-            }, 3000);
-            setTimeout(() => { 
-                document.getElementById("recoveryWindow").style.backgroundColor = "black";
-                document.getElementById("exclamation").style.display = "none";
-                document.getElementById("textError").style.display = "none";
-                document.getElementById("powerBtn").style.display = "none";
-                document.getElementById("powerBtn").style.pointerEvents = "all";
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 13000);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 13050);
-            setTimeout(() => { 
-                document.getElementById("error-audio").pause();
-                document.getElementById("klaida-audio").pause();
-            }, 13100);
-            setTimeout(() => { 
-                document.getElementById("recoveryWindow").style.display = "block";
-                document.getElementById("recoveryWindow").style.backgroundColor = "blue";
-            }, 15000);
-            setTimeout(() => { 
-                document.getElementById("rebootingSystem").style.display = "block";
-            }, 15500);
-            setTimeout(() => { 
-                document.getElementById("rebootingSystem").style.display = "none";
-                document.getElementById("recoveryWindow").style.backgroundColor = "black";
-            }, 17500);
-            setTimeout(() => { 
-                document.getElementById("recoveryWindow").style.backgroundColor = "blue";
-            }, 27500);
-            setTimeout(() => { 
-                document.getElementById("loadingFiles").style.display = "block";
-            }, 28000);
-            setTimeout(() => { 
-                document.getElementById("mosquito").style.display = "block";
-            }, 30000);
-            setTimeout(() => { 
-                document.getElementById("mosquito").style.display = "none";
-                document.getElementById("loadingFiles").style.display = "none";
-                document.getElementById("recoveryWindow").style.backgroundColor = "black";
-                document.getElementById("recoveryWindow").style.display = "flex";
-            }, 32000);
-            setTimeout(() => { 
-                document.getElementById("recoveryWindow").style.backgroundColor = "red";
-                document.getElementById("exclamation").style.display = "block";
-                document.getElementById("textError").style.display = "block";
-                document.getElementById("error-audio").play();
-                document.getElementById('error-audio').currentTime = 0;
-                document.getElementById("klaida-audio").play();
-                document.getElementById('klaida-audio').currentTime = 0;
-            }, 34000);
-        }
-        var audioError = document.getElementById("error-audio");
-        audioError.onended = function() {
-            document.getElementById("error-audio").play();
-            document.getElementById('error-audio').currentTime = 0;
-        };
-        var klaidaError = document.getElementById("klaida-audio");
-        klaidaError.onended = function() {
-            document.getElementById("klaida-audio").play();
-            document.getElementById('klaida-audio').currentTime = 0;
-        };
         function check(form)
         {
             if(form.pin.value == "222857")
