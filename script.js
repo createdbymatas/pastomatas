@@ -126,7 +126,7 @@ function collectBack() {
 }
 function check(form)
 {
-    if(form.pin.value === "222857")
+    if(form.pin.value === "000000")
     {
         document.getElementById("backCollect").style.pointerEvents = "none";
         document.getElementById("istrinimas").style.color = "transparent";
