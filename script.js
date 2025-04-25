@@ -245,12 +245,12 @@ function check(form)
             document.getElementById("keypad").style.pointerEvents = "all";
             inputas = ""
             document.getElementById("kodas").value = '';
-            document.getElementById("taskelis1").style.backgroundColor = "#000033";
-            document.getElementById("taskelis2").style.backgroundColor = "#000033";
-            document.getElementById("taskelis3").style.backgroundColor = "#000033";
-            document.getElementById("taskelis4").style.backgroundColor = "#000033";
-            document.getElementById("taskelis5").style.backgroundColor = "#000033";
-            document.getElementById("taskelis6").style.backgroundColor = "#000033";
+            document.getElementById("taskelis1").style.backgroundColor = "white";
+            document.getElementById("taskelis2").style.backgroundColor = "white";
+            document.getElementById("taskelis3").style.backgroundColor = "white";
+            document.getElementById("taskelis4").style.backgroundColor = "white";
+            document.getElementById("taskelis5").style.backgroundColor = "white";
+            document.getElementById("taskelis6").style.backgroundColor = "white";
             document.getElementById("backCollect").style.pointerEvents = "all";
         }, 3000);
         setTimeout(() => {
