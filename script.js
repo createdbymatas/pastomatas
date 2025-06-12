@@ -1,3 +1,46 @@
+function getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+let Pastomatas_KOMODA = getCookie("Pastomatas_KOMODA");
+let Pastomatas_KOMODA_2 = getCookie("Pastomatas_KOMODA_2");
+if (Pastomatas_KOMODA != "") {
+    document.getElementById("startScreen").style.opacity = "0";
+    document.getElementById("startScreen").style.display = "none";
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Paštomatas KOMODA';
+        document.getElementById("addressP").style.cursor = 'default';
+        document.getElementById("addressP").style.pointerEvents = 'none';
+    }, 5000);
+}
+else if (Pastomatas_KOMODA_2 != "") {
+    document.getElementById("startScreen").style.opacity = "0";
+    document.getElementById("startScreen").style.display = "none";
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Paštomatas KOMODA 2';
+        document.getElementById("addressP").style.cursor = 'default';
+        document.getElementById("addressP").style.pointerEvents = 'none';
+    }, 5000);
+}
+else{
+    document.getElementById("startScreen").style.opacity = "1";
+    document.getElementById("startScreen").style.display = "flex";
+    document.getElementById("addressP").style.cursor = 'default';
+    document.getElementById("addressP").style.pointerEvents = 'none';
+}
+
+
+
 // išjungti dešinį pelės mygtuką
 document.addEventListener('contextmenu', (e) => e.preventDefault());
 
@@ -67,6 +110,109 @@ function loadFunction() {
     // }, 10300);
 }
 
+function selectKomoda(){
+    document.getElementById("circleKomoda").style.display = "none";
+    document.getElementById("checkKomoda").style.display = "inline";
+    document.getElementById("circleKomoda2").style.display = "inline";
+    document.getElementById("checkKomoda2").style.display = "none";
+    document.getElementById('machineNameInput').value = 'Paštomatas KOMODA';
+    document.getElementById("confirmName").style.opacity = "1";
+    document.getElementById("confirmName").style.pointerEvents = "all";
+}
+function selectKomoda2(){
+    document.getElementById("circleKomoda").style.display = "inline";
+    document.getElementById("checkKomoda").style.display = "none";
+    document.getElementById("circleKomoda2").style.display = "none";
+    document.getElementById("checkKomoda2").style.display = "inline";
+    document.getElementById('machineNameInput').value = 'Paštomatas KOMODA 2';
+    document.getElementById("confirmName").style.opacity = "1";
+    document.getElementById("confirmName").style.pointerEvents = "all";
+}
+function enterMachineName(){
+    document.getElementById("machineAddress").innerHTML = document.getElementById('machineNameInput').value;
+    if (document.getElementById('machineNameInput').value == 'Paštomatas KOMODA') {
+        document.cookie = 'Pastomatas_KOMODA=true';
+    }
+    else{
+        document.cookie = 'Pastomatas_KOMODA_2=true';
+    }
+    setTimeout(() => {  
+        document.getElementById("startScreen").style.opacity = "0";
+    }, 10);
+    setTimeout(() => {  
+        document.getElementById("startScreen").style.display = "none";
+    }, 310);
+}
+function changeAddress(){
+    document.cookie = "Pastomatas_KOMODA=; expires=Sat, 01 Jan 2000 00:00:00 UTC";
+    document.cookie = "Pastomatas_KOMODA_2=; expires=Sat, 01 Jan 2000 00:00:00 UTC";
+    document.getElementById("startScreen").style.display = "flex";
+    setTimeout(() => {  
+        document.getElementById("startScreen").style.opacity = "1";
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 10);
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 100);
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 200);
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 300);
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 400);
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 500);
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 600);
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 700);
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 800);
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 900);
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 1000);
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 1100);
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 1200);
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 1300);
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 1400);
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 1500);
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 1600);
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 1700);
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 1800);
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 1900);
+    setTimeout(() => {  
+        document.getElementById("machineAddress").innerHTML = 'Pasirinkti paštomato adresą';
+    }, 2000);
+}
+
 function start() {
     document.getElementById("screen").style.display = "flex";
     setTimeout(() => {  
@@ -76,6 +222,7 @@ function start() {
         document.getElementById("options").style.left = "0";
         document.getElementById("ekranas").style.marginLeft = "-100%";
         document.getElementById("reklamosTekstas").style.marginLeft = "-100%";
+        document.getElementById("menuBar").style.boxShadow = "0 0 15px #000033";
         document.getElementById("logoMenu").style.marginLeft = "45px";
         document.getElementById("backSelect").style.left = "0";
     }, 1700);
@@ -90,6 +237,7 @@ function selectBack() {
     setTimeout(() => {
         document.getElementById("ekranas").style.marginLeft = "0";
         document.getElementById("reklamosTekstas").style.marginLeft = "0";
+        document.getElementById("menuBar").style.boxShadow = "none";
         document.getElementById("options").style.left = "100%";
         document.getElementById("logoMenu").style.marginLeft = "0";
         document.getElementById("backSelect").style.left = "-50px";
