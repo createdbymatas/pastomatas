@@ -13,7 +13,7 @@ function getCookie(cname) {
     return "";
 }
 let Pastomatas_KOMODA = getCookie("Pastomatas_KOMODA");
-let Pastomatas_KOMODA_2 = getCookie("Pastomatas_KOMODA_2");
+let Pastomatas_MATO_KOMODA = getCookie("Pastomatas_MATO_KOMODA");
 if (Pastomatas_KOMODA != "") {
     document.getElementById("startScreen").style.opacity = "0";
     document.getElementById("startScreen").style.display = "none";
@@ -23,11 +23,11 @@ if (Pastomatas_KOMODA != "") {
         document.getElementById("addressP").style.pointerEvents = 'none';
     }, 5000);
 }
-else if (Pastomatas_KOMODA_2 != "") {
+else if (Pastomatas_MATO_KOMODA != "") {
     document.getElementById("startScreen").style.opacity = "0";
     document.getElementById("startScreen").style.display = "none";
     setTimeout(() => {  
-        document.getElementById("machineAddress").innerHTML = 'Paštomatas KOMODA 2';
+        document.getElementById("machineAddress").innerHTML = 'Paštomatas MATO KOMODA';
         document.getElementById("addressP").style.cursor = 'default';
         document.getElementById("addressP").style.pointerEvents = 'none';
     }, 5000);
@@ -113,18 +113,18 @@ function loadFunction() {
 function selectKomoda(){
     document.getElementById("circleKomoda").style.display = "none";
     document.getElementById("checkKomoda").style.display = "inline";
-    document.getElementById("circleKomoda2").style.display = "inline";
-    document.getElementById("checkKomoda2").style.display = "none";
+    document.getElementById("circleMatoKomoda").style.display = "inline";
+    document.getElementById("checkMatoKomoda").style.display = "none";
     document.getElementById('machineNameInput').value = 'Paštomatas KOMODA';
     document.getElementById("confirmName").style.opacity = "1";
     document.getElementById("confirmName").style.pointerEvents = "all";
 }
-function selectKomoda2(){
+function selectMatoKomoda(){
     document.getElementById("circleKomoda").style.display = "inline";
     document.getElementById("checkKomoda").style.display = "none";
-    document.getElementById("circleKomoda2").style.display = "none";
-    document.getElementById("checkKomoda2").style.display = "inline";
-    document.getElementById('machineNameInput').value = 'Paštomatas KOMODA 2';
+    document.getElementById("circleMatoKomoda").style.display = "none";
+    document.getElementById("checkMatoKomoda").style.display = "inline";
+    document.getElementById('machineNameInput').value = 'Paštomatas MATO KOMODA';
     document.getElementById("confirmName").style.opacity = "1";
     document.getElementById("confirmName").style.pointerEvents = "all";
 }
@@ -134,7 +134,7 @@ function enterMachineName(){
         document.cookie = 'Pastomatas_KOMODA=true';
     }
     else{
-        document.cookie = 'Pastomatas_KOMODA_2=true';
+        document.cookie = 'Pastomatas_MATO_KOMODA=true';
     }
     setTimeout(() => {  
         document.getElementById("startScreen").style.opacity = "0";
@@ -145,7 +145,7 @@ function enterMachineName(){
 }
 function changeAddress(){
     document.cookie = "Pastomatas_KOMODA=; expires=Sat, 01 Jan 2000 00:00:00 UTC";
-    document.cookie = "Pastomatas_KOMODA_2=; expires=Sat, 01 Jan 2000 00:00:00 UTC";
+    document.cookie = "Pastomatas_MATO_KOMODA=; expires=Sat, 01 Jan 2000 00:00:00 UTC";
     document.getElementById("startScreen").style.display = "flex";
     setTimeout(() => {  
         document.getElementById("startScreen").style.opacity = "1";
@@ -274,7 +274,7 @@ function collectBack() {
 }
 function check(form)
 {
-    if(form.pin.value === "000000")
+    if(form.pin.value === "494295")
     {
         document.getElementById("backCollect").style.pointerEvents = "none";
         document.getElementById("istrinimas").style.color = "transparent";
